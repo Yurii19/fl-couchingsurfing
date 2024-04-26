@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AsideBarComponent } from './pages/dashboard/aside-bar/aside-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     HeaderComponent,
     ToDoListComponent,
     DashboardComponent,
+    AsideBarComponent,
+    AsideBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
-  exports:[]
+  exports: [],
 })
 export class AppModule {}

@@ -7,13 +7,15 @@
   }
 }
 .verify-icon {
-  color: var(--light-green);
-  font-size: 2em;
+  color: var(--dark-green);
+  font-size: 2.5em;
 }
 .control {
   button {
     background-color: var(--light-green);
+    color: white;
     border-radius: 0;
     width: 150px;
+   
   }
 }

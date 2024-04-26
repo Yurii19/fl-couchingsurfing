@@ -19,7 +19,7 @@
     <ul class="d-flex col-6 justify-content-end align-items-center">
       <li class="mx-3 d-flex flex-column align-items-center " *ngFor="let route of routs">
         <i class="{{route.icon}} pb-1"></i>
-        <a routerLink="{{ route }}">{{ route.name | titlecase }}</a>
+        <a routerLink="{{ route.name }}">{{ route.name | titlecase }}</a>
       </li>
     </ul>
   </div>

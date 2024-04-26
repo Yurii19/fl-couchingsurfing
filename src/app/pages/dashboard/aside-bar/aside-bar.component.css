@@ -1,0 +1,14 @@
+.card {
+  background-color: var(--light-black);
+  color: var(--white);
+}
+.progress {
+  height: 30px;
+  font-size: 1em;
+}
+.progress-bar {
+  background-color: var(--light-green);
+}
+.complete {
+  color: var(--dark-blue);
+}

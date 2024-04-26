@@ -1,0 +1,21 @@
+<div>
+  <h3>Log in to Couchsurfing</h3>
+  <hr/>
+
+  <div>
+    <div *ngIf="errorMsg.length">
+      <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+    </div>
+    <input [(ngModel)]="authRequest.email" id="login" type="text" placeholder="Email"/>
+    <input [(ngModel)]="authRequest.password" id="password" type="password" placeholder="Password"/>
+    <input type="checkbox" id="rememberMe">
+    <label for="rememberMe">Remember me</label>
+  </div>
+
+  <div>
+    <button type="button" id="signId" (click)="login()">Log In</button>
+    <hr/>
+    <h4>Don't have an account?</h4>
+    <button type="button" id="register" (click)="register()">Register</button>
+  </div>
+</div>

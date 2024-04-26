@@ -1,0 +1,43 @@
+:root {
+  --dark-black: #121212;
+  --black: #212121;
+  --light-black: #282723;
+  --grey: #42454A;
+  --dark-grey: #25282A;
+  --shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+  --white: #CDDDF8;
+  --light-green: #41B866;
+  --dark-green: #215c33;
+  --light-blue: #287FB8;
+  --dark-blue: #0e4a76;
+  --orange: #ED6504;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--light-black);
+
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+h1, p {
+  margin: 0;
+}
+
+a {
+  font-size: inherit;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: default;
+}
+
+a i {
+  padding-left: 5px;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

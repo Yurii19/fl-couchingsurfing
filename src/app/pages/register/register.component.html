@@ -1,0 +1,27 @@
+<div>
+  <h2>Stay with Locals and Meet Travelers</h2>
+  <h3>Share Authentic Travel Experience</h3>
+
+  <div>
+    <h3>Sign Up Faster With</h3>
+    <button type="button">Facebook</button>
+    <p>We will never post without your permission.</p>
+  </div>
+
+  <div>
+    <div *ngIf="errorMsg.length">
+      <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+    </div>
+    <input [(ngModel)]="registrationRequest.email" id="email" type="email" placeholder="Email" />
+    <input [(ngModel)]="registrationRequest.firstName" id="firstName" type="text" placeholder="First name"/>
+    <input [(ngModel)]="registrationRequest.lastName" id="lastName" type="text" placeholder="Last name"/>
+    <input [(ngModel)]="registrationRequest.password" id="password" type="password" placeholder="Password" />
+
+    <button type="button" id="signId" (click)="register()">Join</button>
+  </div>
+
+  <div>
+    <h4>Already member?</h4>
+    <button type="button" id="register" (click)="login()">Log In</button>
+  </div>
+</div>

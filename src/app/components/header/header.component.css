@@ -1,9 +1,14 @@
 a {
   cursor: pointer;
-  color: cyan;
+  color: var(--white);
+  font-size: 0.8em;
+}
+i {
+  color: var(--white);
 }
 .card {
   color: white;
+  margin: 0;
 }
 /* .logo,
 .d-flex {

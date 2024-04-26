@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
+    ToDoListComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,5 +31,6 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
+  exports:[]
 })
 export class AppModule {}

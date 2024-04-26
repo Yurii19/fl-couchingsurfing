@@ -1,0 +1,19 @@
+.container {
+  background-color: var(--light-black);
+  color: var(--white);
+  * {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+.verify-icon {
+  color: var(--light-green);
+  font-size: 2em;
+}
+.control {
+  button {
+    background-color: var(--light-green);
+    border-radius: 0;
+    width: 150px;
+  }
+}

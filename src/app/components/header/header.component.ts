@@ -9,5 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  routs: string[] = ['dashboard', 'profile', 'verify', 'settings'];
+  routs: { name: string; icon: string }[] = [
+    { name: 'verify', icon: 'fa-solid fa-circle-check verify-icon' },
+    { name: 'dashboard', icon: 'fa-solid fa-earth-europe' },
+    { name: 'profile', icon: 'fa-regular fa-user' },
+    { name: 'settings', icon: 'fa-solid fa-gear' },
+  ];
 }

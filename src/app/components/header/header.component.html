@@ -1,5 +1,5 @@
 <div class="card bg-dark">
-  <div class="card-body row">
+  <div class="card-body row m-0">
     <div class="logo col d-flex justify-content-start align-items-center gap-2">
       <div class=""><img src="/assets/imgs/logo.jpg" alt="" /></div>
       <span class="">Explore</span>
@@ -17,8 +17,9 @@
       </div>
     </div>
     <ul class="d-flex col-6 justify-content-end align-items-center">
-      <li class="mx-3" *ngFor="let route of routs">
-        <a routerLink="{{ route }}">{{ route | titlecase }}</a>
+      <li class="mx-3 d-flex flex-column align-items-center " *ngFor="let route of routs">
+        <i class="{{route.icon}} pb-1"></i>
+        <a routerLink="{{ route }}">{{ route.name | titlecase }}</a>
       </li>
     </ul>
   </div>

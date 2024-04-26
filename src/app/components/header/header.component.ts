@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
   // standalone: true,
   // imports: [],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-
+  routs: string[] = ['dashboard', 'profile', 'verify', 'settings'];
 }

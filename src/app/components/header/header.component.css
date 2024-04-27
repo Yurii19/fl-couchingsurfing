@@ -1,4 +1,51 @@
-a {
+.padding-container {
+  height: 100px;
+}
+.global-header {
+  background: var(--dark-black);
+  box-shadow: var(--shadow);
+
+  display: flex;
+  width: 100vw;
+  /* height: 69px; */
+  position: fixed;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 6;
+  font-size: 16px;
+}
+
+.global-header-wrapper {
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.global-header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: 67px;
+}
+
+app-search {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+app-navbar {
+  height: 100%;
+}
+
+/* a {
   cursor: pointer;
   color: var(--white);
   font-size: 0.8em;
@@ -9,7 +56,7 @@ i {
 .card {
   color: white;
   margin: 0;
-}
+} */
 /* .logo,
 .d-flex {
  // border: 1px solid red;

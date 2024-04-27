@@ -43,7 +43,7 @@ ul, ol {
 }
 
 .app-link {
-  color: var(--light-blue);
+  color: var(--light-blue) !important;
   cursor: pointer;
 }
 .app-link:after {

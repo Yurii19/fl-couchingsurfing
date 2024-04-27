@@ -785,6 +785,7 @@
       },
       "RegistrationRequest": {
         "required": [
+          "email",
           "firstName",
           "lastName"
         ],
@@ -804,9 +805,7 @@
             "type": "string"
           },
           "password": {
-            "maxLength": 2147483647,
-            "minLength": 5,
-            "pattern": "^([a-zA-Z]){2,} ([a-zA-Z]){2,}$",
+            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\S+$).{5,20}$",
             "type": "string"
           }
         }
@@ -820,12 +819,16 @@
         }
       },
       "AuthRequest": {
+        "required": [
+          "email"
+        ],
         "type": "object",
         "properties": {
           "email": {
             "type": "string"
           },
           "password": {
+            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\S+$).{5,20}$",
             "type": "string"
           }
         }
@@ -1028,10 +1031,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "paged": {
+          "unpaged": {
             "type": "boolean"
           },
-          "unpaged": {
+          "paged": {
             "type": "boolean"
           }
         }

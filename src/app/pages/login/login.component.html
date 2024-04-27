@@ -5,7 +5,7 @@
     </header>
 
     <div class="form">
-      <div *ngIf="errorMsg.length">
+      <div *ngIf="errorMsg.length" class="alert alert-danger err" role="alert">
         <p *ngFor="let msg of errorMsg">{{ msg }}</p>
       </div>
       <div class="form-in">

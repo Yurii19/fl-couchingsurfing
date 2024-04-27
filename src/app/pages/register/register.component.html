@@ -14,9 +14,11 @@
     <div><h3 class="title">or</h3></div>
 
     <div class="signup">
-      <h4>Sign Up With Email</h4>
+      <div>
+        <h4>Sign Up With Email</h4>
+      </div>
       <div class="form">
-        <div *ngIf="errorMsg.length" class="signup-in  input-err">
+        <div *ngIf="errorMsg.length" class="alert alert-danger err" role="alert">
           <p *ngFor="let msg of errorMsg">{{ msg }}</p>
         </div>
         <div class="form-in">

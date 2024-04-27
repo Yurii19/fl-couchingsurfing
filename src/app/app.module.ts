@@ -15,6 +15,8 @@ import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plans.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MyTripsComponent } from './pages/dashboard/my-trips/my-trips.component';
+import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
     AsideBarComponent,
     DashboardCollageComponent,
     TravelPlansComponent,
-    FooterComponent
+    FooterComponent,
+    MyTripsComponent,
+    PublicTripsComponent,
   ],
   imports: [
     BrowserModule,

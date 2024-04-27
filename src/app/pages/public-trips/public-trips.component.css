@@ -33,7 +33,7 @@
 .create {
   .title {
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--orange);
   }
   .create-btn {
     button {

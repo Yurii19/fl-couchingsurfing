@@ -14,6 +14,7 @@ import { DashboardCollageComponent } from './pages/dashboard/dashboard-collage/d
 import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plans.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plan
     AsideBarComponent,
     AsideBarComponent,
     DashboardCollageComponent,
-    TravelPlansComponent
+    TravelPlansComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

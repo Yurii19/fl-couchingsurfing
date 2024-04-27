@@ -28,7 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AsideBarComponent,
     DashboardCollageComponent,
     TravelPlansComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

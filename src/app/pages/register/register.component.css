@@ -1,0 +1,87 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+  background-color: var(--light-black);
+  height: 100%;
+  color: var(--white);
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.signup-helper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: var(--dark-black);
+  width: 400px;
+  height: 270px;
+  border-radius: 5px;
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 15px;
+  background-color: var(--dark-black);
+  width: 400px;
+  height: 450px;
+  border-radius: 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+#register, #fb-register, #login {
+  width: 250px;
+  color: var(--white);
+  height: 45px;
+  border-radius: 5px;
+}
+
+#register {
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
+#fb-register, #login {
+  background-color: var(--light-blue);
+  border: 1px solid var(--light-blue);
+}
+
+#login {
+  width: 120px;
+}
+
+.sup-data {
+  width: 230px;
+}
+
+.login-ref {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Request {
-  dateCreated?: string;
   from?: string;
   id?: string;
   location?: string;

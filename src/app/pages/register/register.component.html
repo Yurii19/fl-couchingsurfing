@@ -1,27 +1,44 @@
-<div>
-  <h2>Stay with Locals and Meet Travelers</h2>
-  <h3>Share Authentic Travel Experience</h3>
+<div class="content">
+  <header class="titles">
+    <h2 class="title">Stay with Locals and Meet Travelers</h2>
+    <h4 class="title">Share Authentic Travel Experience</h4>
+  </header>
 
-  <div>
-    <h3>Sign Up Faster With</h3>
-    <button type="button">Facebook</button>
-    <p>We will never post without your permission.</p>
-  </div>
-
-  <div>
-    <div *ngIf="errorMsg.length">
-      <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+  <main class="auth">
+    <div class="signup-helper">
+      <h4 class="title">Sign Up Faster With</h4>
+      <button type="button" id="fb-register">Facebook</button>
+      <p class="title">We will never post without your permission.</p>
     </div>
-    <input [(ngModel)]="registrationRequest.email" id="email" type="email" placeholder="Email" />
-    <input [(ngModel)]="registrationRequest.firstName" id="firstName" type="text" placeholder="First name"/>
-    <input [(ngModel)]="registrationRequest.lastName" id="lastName" type="text" placeholder="Last name"/>
-    <input [(ngModel)]="registrationRequest.password" id="password" type="password" placeholder="Password" />
 
-    <button type="button" id="signId" (click)="register()">Join</button>
-  </div>
+    <div><h3 class="title">or</h3></div>
 
-  <div>
-    <h4>Already member?</h4>
-    <button type="button" id="register" (click)="login()">Log In</button>
+    <div class="signup">
+      <h4>Sign Up With Email</h4>
+      <div class="form">
+        <div *ngIf="errorMsg.length" class="signup-in  input-err">
+          <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+        </div>
+        <label for="firstName">First name</label>
+        <input [(ngModel)]="registrationRequest.firstName" id="firstName" type="text" placeholder="First name"
+               class="sup-data"/>
+        <label for="lastName">Last name</label>
+        <input [(ngModel)]="registrationRequest.lastName" id="lastName" type="text" placeholder="Last name"
+               class="sup-data"/>
+        <label for="email">Email</label>
+        <input [(ngModel)]="registrationRequest.email" id="email" type="email" placeholder="Email"
+               class="sup-data"/>
+        <label for="Password">Password</label>
+        <input [(ngModel)]="registrationRequest.password" id="password" type="password" placeholder="Password"
+               class="sup-data"/>
+
+        <button type="button" id="register" (click)="register()">Join</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="login-ref">
+    <h4 class="title">Already member?</h4>
+    <button type="button" id="login" (click)="login()">Log In</button>
   </div>
 </div>

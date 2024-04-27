@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface Review {
-  dateCreated?: string;
   id?: string;
   rating?: number;
   receiverId?: string;

@@ -64,6 +64,7 @@
   color: var(--white);
   height: 45px;
   border-radius: 5px;
+  font-size: 18px;
 }
 
 #register {
@@ -89,4 +90,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }

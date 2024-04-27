@@ -1,7 +1,7 @@
 <nav class="global-header-nav">
   <ul class="nav-list">
     <li class="nav-item">
-      <a href="/" id="verify">
+      <a href="" id="verify">
         <span class="nav-icon-wrap"
           ><i class="fa-solid fa-circle-check verify-icon"></i
         ></span>
@@ -13,7 +13,7 @@
       (click)="onNavbarItemSelect('dashboard')"
       [class.selected]="selectedItem === 'dashboard'"
     >
-      <a href="/{{ dashbordLink }}" id="dashboard">
+      <a routerLink="{{ dashbordLink }}" id="dashboard">
         <span class="nav-icon-wrap"
           ><i class="fa-solid fa-earth-europe"></i
         ></span>
@@ -25,7 +25,7 @@
       (click)="onNavbarItemSelect('inbox')"
       [class.selected]="selectedItem === 'inbox'"
     >
-      <a href="/" id="inbox">
+      <a href="" id="inbox">
         <span class="nav-icon-wrap"
           ><i class="fa-regular fa-envelope"></i
         ></span>
@@ -37,7 +37,7 @@
       (click)="onNavbarItemSelect('profile')"
       [class.selected]="selectedItem === 'profile'"
     >
-      <a href="/" id="profile">
+      <a routerLink="/profile" id="profile">
         <span class="nav-icon-wrap"><i class="fa-regular fa-user"></i></span>
         <label>Profile</label>
       </a>
@@ -51,10 +51,10 @@
 
         <ul class="settings-options" id="settings-options">
           <li class="settings-option">
-            <a href="/">Account & Settings</a>
+            <a href="">Account & Settings</a>
           </li>
           <li class="settings-option">
-            <a href="/">Log Out</a>
+            <a href="">Log Out</a>
           </li>
         </ul>
       </div>

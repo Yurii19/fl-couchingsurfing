@@ -26,7 +26,7 @@ import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plan
     AsideBarComponent,
     AsideBarComponent,
     DashboardCollageComponent,
-    TravelPlansComponent,
+    TravelPlansComponent
   ],
   imports: [
     BrowserModule,

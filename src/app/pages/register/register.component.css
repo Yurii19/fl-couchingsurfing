@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   row-gap: 20px;
-  background-color: var(--light-black);
   height: 100%;
   color: var(--white);
 }
@@ -51,7 +50,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 10px;
+  row-gap: 20px;
+}
+
+.form-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #register, #fb-register, #login {
@@ -59,6 +64,7 @@
   color: var(--white);
   height: 45px;
   border-radius: 5px;
+  font-size: 18px;
 }
 
 #register {
@@ -84,4 +90,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }

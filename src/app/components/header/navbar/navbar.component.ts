@@ -6,16 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  selectedItem: string = 'dashboard';
+  selectedItem: string = '';
 
   dashbordLink: string = 'dashboard';
 
   ngOnInit(): void {}
 
-  dropdownList(): void {
-    let list = document.getElementById('settings-options');
-    list!.classList.toggle('open');
+  logout() {
+    console.log('logout');
   }
+
+  // dropdownList(): void {
+  //   let list = document.getElementById('settings-options');
+  //   list!.classList.toggle('open');
+  // }
 
   onNavbarItemSelect(item: string): void {
     this.selectedItem = item;

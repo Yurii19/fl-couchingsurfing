@@ -23,7 +23,7 @@
 }
 
 .control {
-  button {
+  .btn {
     color: var(--white);
     background-color: var(--light-blue);
     width: 200px;

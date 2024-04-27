@@ -19,18 +19,26 @@
         <div *ngIf="errorMsg.length" class="signup-in  input-err">
           <p *ngFor="let msg of errorMsg">{{ msg }}</p>
         </div>
-        <label for="firstName">First name</label>
-        <input [(ngModel)]="registrationRequest.firstName" id="firstName" type="text" placeholder="First name"
-               class="sup-data"/>
-        <label for="lastName">Last name</label>
-        <input [(ngModel)]="registrationRequest.lastName" id="lastName" type="text" placeholder="Last name"
-               class="sup-data"/>
-        <label for="email">Email</label>
-        <input [(ngModel)]="registrationRequest.email" id="email" type="email" placeholder="Email"
-               class="sup-data"/>
-        <label for="Password">Password</label>
-        <input [(ngModel)]="registrationRequest.password" id="password" type="password" placeholder="Password"
-               class="sup-data"/>
+        <div class="form-in">
+          <label for="firstName">First name</label>
+          <input [(ngModel)]="registrationRequest.firstName" id="firstName" type="text" placeholder="First name"
+                 class="sup-data"/>
+        </div>
+        <div class="form-in">
+          <label for="lastName">Last name</label>
+          <input [(ngModel)]="registrationRequest.lastName" id="lastName" type="text" placeholder="Last name"
+                 class="sup-data"/>
+        </div>
+        <div class="form-in">
+          <label for="email">Email</label>
+          <input [(ngModel)]="registrationRequest.email" id="email" type="email" placeholder="Email"
+                 class="sup-data"/>
+        </div>
+        <div class="form-in">
+          <label for="Password">Password</label>
+          <input [(ngModel)]="registrationRequest.password" id="password" type="password" placeholder="Password"
+                 class="sup-data"/>
+        </div>
 
         <button type="button" id="register" (click)="register()">Join</button>
       </div>

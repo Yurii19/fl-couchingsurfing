@@ -6,6 +6,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { VerifyComponent } from './pages/verify/verify.component';
+import { MyTripsComponent } from './pages/dashboard/my-trips/my-trips.component';
+import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+  },
+  {
+    path: 'dashboard/public-trips',
+    component: PublicTripsComponent,
+    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
   },
   {
     path: 'settings',

@@ -257,6 +257,36 @@
         }
       }
     },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/surfers": {
       "get": {
         "tags": [
@@ -346,6 +376,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/authenticated-user": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "getAuthenticatedUser",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -680,10 +730,6 @@
           },
           "reviewMessage": {
             "type": "string"
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -734,10 +780,6 @@
               "CANCELED",
               "COMPLETED"
             ]
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
@@ -829,21 +871,6 @@
           },
           "userHome": {
             "$ref": "#/components/schemas/UserHome"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "username": {
-            "type": "string"
-          },
-          "credentialsNonExpired": {
-            "type": "boolean"
-          },
-          "accountNonExpired": {
-            "type": "boolean"
-          },
-          "accountNonLocked": {
-            "type": "boolean"
           }
         }
       },
@@ -881,13 +908,13 @@
           "otherInfo": {
             "type": "string"
           },
-          "iamSmoker": {
+          "ihaveKids": {
             "type": "boolean"
           },
           "ihavePets": {
             "type": "boolean"
           },
-          "ihaveKids": {
+          "iamSmoker": {
             "type": "boolean"
           }
         }
@@ -934,13 +961,13 @@
       "PageUser": {
         "type": "object",
         "properties": {
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
           "totalElements": {
             "type": "integer",
             "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
           },
           "size": {
             "type": "integer",
@@ -1032,13 +1059,13 @@
       "PageReview": {
         "type": "object",
         "properties": {
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
           "totalElements": {
             "type": "integer",
             "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
           },
           "size": {
             "type": "integer",
@@ -1081,13 +1108,13 @@
       "PageRequest": {
         "type": "object",
         "properties": {
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
           "totalElements": {
             "type": "integer",
             "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
           },
           "size": {
             "type": "integer",

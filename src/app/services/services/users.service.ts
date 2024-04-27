@@ -9,10 +9,14 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { getAuthenticatedUser } from '../fn/users/get-authenticated-user';
+import { GetAuthenticatedUser$Params } from '../fn/users/get-authenticated-user';
 import { getHosts } from '../fn/users/get-hosts';
 import { GetHosts$Params } from '../fn/users/get-hosts';
 import { getSurfers } from '../fn/users/get-surfers';
 import { GetSurfers$Params } from '../fn/users/get-surfers';
+import { getUserById } from '../fn/users/get-user-by-id';
+import { GetUserById$Params } from '../fn/users/get-user-by-id';
 import { PageUser } from '../models/page-user';
 import { updateUserInfo } from '../fn/users/update-user-info';
 import { UpdateUserInfo$Params } from '../fn/users/update-user-info';
@@ -45,6 +49,31 @@ export class UsersService extends BaseService {
    */
   updateUserInfo(params: UpdateUserInfo$Params, context?: HttpContext): Observable<User> {
     return this.updateUserInfo$Response(params, context).pipe(
+      map((r: StrictHttpResponse<User>): User => r.body)
+    );
+  }
+
+  /** Path part for operation `getUserById()` */
+  static readonly GetUserByIdPath = '/users/{userId}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getUserById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUserById$Response(params: GetUserById$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return getUserById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getUserById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getUserById(params: GetUserById$Params, context?: HttpContext): Observable<User> {
+    return this.getUserById$Response(params, context).pipe(
       map((r: StrictHttpResponse<User>): User => r.body)
     );
   }
@@ -96,6 +125,31 @@ export class UsersService extends BaseService {
   getHosts(params: GetHosts$Params, context?: HttpContext): Observable<PageUser> {
     return this.getHosts$Response(params, context).pipe(
       map((r: StrictHttpResponse<PageUser>): PageUser => r.body)
+    );
+  }
+
+  /** Path part for operation `getAuthenticatedUser()` */
+  static readonly GetAuthenticatedUserPath = '/users/authenticated-user';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAuthenticatedUser()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAuthenticatedUser$Response(params?: GetAuthenticatedUser$Params, context?: HttpContext): Observable<StrictHttpResponse<User>> {
+    return getAuthenticatedUser(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAuthenticatedUser$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAuthenticatedUser(params?: GetAuthenticatedUser$Params, context?: HttpContext): Observable<User> {
+    return this.getAuthenticatedUser$Response(params, context).pipe(
+      map((r: StrictHttpResponse<User>): User => r.body)
     );
   }
 

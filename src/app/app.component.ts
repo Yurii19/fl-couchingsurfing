@@ -20,7 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((eventData: object) => {
         const data = eventData as NavigationEnd;
-        this.headerVisible = data.url === '/register' ? false : true;
+        if (data.url === '/register' || data.url === '/login') {
+          this.headerVisible = false;
+        } else this.headerVisible = true;
       });
   }
 

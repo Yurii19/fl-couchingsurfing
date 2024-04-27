@@ -43,20 +43,20 @@
       </a>
     </li>
     <li class="nav-item">
-      <div class="settings-dropdown" (click)="dropdownList()">
-        <a id="settings">
-          <span class="nav-icon-wrap"><i class="fa-solid fa-gear"></i></span>
-          <label>Settings <i class="fa-solid fa-caret-down"></i></label>
+      <div class="settings-dropdown" (click)="logout()">
+        <a id="settings" routerLink="/register">
+          <span class="nav-icon-wrap"><i class="fa-solid fa-right-from-bracket"></i></span>
+           <label>Log out</label>
         </a>
 
-        <ul class="settings-options" id="settings-options">
+        <!-- <ul class="settings-options" id="settings-options">
           <li class="settings-option">
             <a href="">Account & Settings</a>
           </li>
           <li class="settings-option">
             <a href="">Log Out</a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </li>
   </ul>

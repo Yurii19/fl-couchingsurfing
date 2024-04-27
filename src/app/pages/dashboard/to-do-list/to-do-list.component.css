@@ -6,16 +6,16 @@
     color: inherit;
   }
 }
-.verify-icon {
+.card-icon > i {
   color: var(--dark-green);
   font-size: 2.5em;
 }
+
 .control {
-  button {
+  .btn {
     background-color: var(--light-green);
     color: white;
     border-radius: 0;
     width: 150px;
-   
   }
 }

@@ -1,0 +1,29 @@
+<div class="container p-3 py-5 row">
+  <div class="col-10">
+    <span class="title d-block mb-5"
+      ><i class="fa-solid fa-plane"></i>
+      <span class="ps-1">{{ "public trips" | uppercase }}</span></span
+    >
+    <div *ngIf="!trips.length" class="content my-5 text-center">
+      <span>You have no upcoming trips.</span>
+    </div>
+    <div class="trips  d-flex flex-column justify-content-between">
+      <div class="trip p-3 d-flex justify-content-between" *ngFor="let trip of trips">
+        <div>
+          <span class="destination">Trip to {{ trip.location }}</span>
+          <span class="date-range d-block">
+            <span class="date-start">{{ trip.from | date : "MMM dd" }}</span
+            >{{ " - " }}
+            <span class="date-end">{{ trip.to | date : "MMM dd" }}</span>
+          </span>
+          <span class="message">{{ trip.message }}</span>
+        </div>
+        <div class="control"><button class="btn">Edit</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="create col-2">
+    <span class="title d-block mb-2"> Create Public Trip</span>
+    <div class="create-btn"><button class="btn">New Public Trip</button></div>
+  </div>
+</div>

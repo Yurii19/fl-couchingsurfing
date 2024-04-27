@@ -10,5 +10,5 @@
   background-color: var(--light-green);
 }
 .complete {
-  color: var(--dark-blue);
+  /* color: var(--light-blue); */
 }

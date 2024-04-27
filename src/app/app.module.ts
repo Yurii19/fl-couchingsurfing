@@ -9,9 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AsideBarComponent } from './pages/dashboard/aside-bar/aside-bar.component';
+import { DashboardCollageComponent } from './pages/dashboard/dashboard-collage/dashboard-collage.component';
 import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { AsideBarComponent } from './pages/dashboard/aside-bar/aside-bar.component';
+import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plans.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AsideBarComponent } from './pages/dashboard/aside-bar/aside-bar.compone
     DashboardComponent,
     AsideBarComponent,
     AsideBarComponent,
+    DashboardCollageComponent,
+    TravelPlansComponent,
   ],
   imports: [
     BrowserModule,

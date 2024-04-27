@@ -41,3 +41,14 @@ ul, ol {
   margin: 0;
   padding: 0;
 }
+
+.app-link {
+  color: var(--light-blue) !important;
+  cursor: pointer;
+}
+.app-link:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0da";
+  font-weight: 900;
+  margin-left: 3px;
+}

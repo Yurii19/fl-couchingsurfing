@@ -13,6 +13,7 @@ import { AsideBarComponent } from './pages/dashboard/aside-bar/aside-bar.compone
 import { DashboardCollageComponent } from './pages/dashboard/dashboard-collage/dashboard-collage.component';
 import { ToDoListComponent } from './pages/dashboard/to-do-list/to-do-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plans.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AsideBarComponent,
     AsideBarComponent,
     DashboardCollageComponent,
+    TravelPlansComponent,
   ],
   imports: [
     BrowserModule,

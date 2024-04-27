@@ -1,0 +1,19 @@
+<div class="global-header-search">
+    <div class="global-header-search-dropdown">
+      <div class="dropdown-wrap" (click)="dropdownList()">
+        <div class="select-btn">
+          <span id="selected-item" class="select-text">{{ selectedOption }}</span>
+          <span class="select-icon"><i class="fa-solid fa-caret-down fa-sm"></i></span>
+        </div>
+  
+        <ul class="search-options" id="search-options">
+          <li *ngFor="let option of searchOptions" class="search-option" (click)="doSelectOption(option)">{{ option }}</li>
+        </ul>
+      </div>
+  
+      <button class="search-submit" type="submit" name="button" title="Search">
+        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      </button>
+      <input class="search-input" type="text" placeholder="Where are you going?"/>
+    </div>
+  </div>

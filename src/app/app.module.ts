@@ -17,6 +17,8 @@ import { TravelPlansComponent } from './pages/dashboard/travel-plans/travel-plan
 import { FooterComponent } from './components/footer/footer.component';
 import { MyTripsComponent } from './pages/dashboard/my-trips/my-trips.component';
 import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
+import { SearchComponent } from './components/header/search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { PublicTripsComponent } from './pages/public-trips/public-trips.componen
     FooterComponent,
     MyTripsComponent,
     PublicTripsComponent,
+    NavbarComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

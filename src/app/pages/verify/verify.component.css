@@ -1,0 +1,29 @@
+.options {
+  color: var(--white);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 15px;
+}
+
+.image-container {
+  width: 800px;
+  height: 800px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+input[type="file"] {
+  color: transparent;
+}
+
+.vbtn {
+  width: 100px;
+  height: 40px;
+}

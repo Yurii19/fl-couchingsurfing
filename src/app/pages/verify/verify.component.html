@@ -1,1 +1,11 @@
-<p>verify works!</p>
+<div class="main-pane">
+  <div class="options">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" class="select-btn vbtn">
+    <button (click)="clear()" class="clear-btn vbtn">Clear</button>
+    <button (click)="verify()" class="verify-btn vbtn">Verify</button>
+  </div>
+
+  <div class="image-container">
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image">
+  </div>
+</div>

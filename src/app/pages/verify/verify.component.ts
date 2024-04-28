@@ -38,39 +38,53 @@ export class VerifyComponent {
   }
 
   verify() {
-    if (this.imageUrl != '') {
-      this.usersService.getAuthenticatedUser()
-        .subscribe({
-          next: (res) => {
-            this.authenticatedUser = res;
-
-            console.log(res);
-
-            this.verificationService.verifyVerificationApiV1Post({
-              body: {
-                fullname: this.authenticatedUser.fullName,
-                passport_img: this.imageUrl
-              }
-            }).subscribe({
-              next: (res) => {
-                console.log(res.is_verified);
-              },
-              error: (err) => {
-                console.log(err);
-
-                if (err.error.status_message)
-                  this.responseMessage = err.error.status_message;
-              }
-            });
-
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-    } else {
-      this.responseMessage = 'Please select image!'
+    if (this.imageUrl === '') {
+      this.responseMessage = 'Please select image!';
+      return;
     }
+    this.usersService.getAuthenticatedUser()
+      .subscribe({
+        next: (user) => {
+          console.log(user);
+
+          this.verificationService.verifyVerificationApiV1Post({
+            body: {
+              fullname: user.fullName,
+              passport_img: this.imageUrl
+            }
+          }).subscribe({
+            next: (verificationResponse) => {
+              console.log(verificationResponse);
+
+              if (verificationResponse.is_verified) {
+                this.usersService.updateUserInfo({
+                  body: {
+                    isVerified: verificationResponse.is_verified
+                  }
+                }).subscribe({
+                  next: (updatedUser) => {
+                    console.log('User has been updated successfully!');
+                    console.log(updatedUser);
+                  },
+                  error: (err) => {
+                    console.log(`User updating error: ${err}`);
+                  }
+                });
+
+                console.log('User has been verified successfully!');
+              }
+            },
+            error: (err) => {
+              console.log(err);
+              if (err.error.status_message)
+                this.responseMessage = err.error.status_message;
+            }
+          });
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 
   clear() {

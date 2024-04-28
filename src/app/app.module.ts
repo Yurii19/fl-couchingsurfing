@@ -19,6 +19,7 @@ import { MyTripsComponent } from './pages/dashboard/my-trips/my-trips.component'
 import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { SearchComponent } from './components/header/search/search.component';
+import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SearchComponent } from './components/header/search/search.component';
     PublicTripsComponent,
     NavbarComponent,
     SearchComponent,
+    CreateTripComponent,
   ],
   imports: [
     BrowserModule,

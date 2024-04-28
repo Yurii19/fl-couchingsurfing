@@ -1,0 +1,35 @@
+.modal {
+  background-color: var(--light-black);
+  * {
+    background-color: var(--light-black);
+    color: var(--white);
+  }
+}
+.btn-cancel,
+.btn-create,
+.btn-trigger {
+  color: white !important;
+}
+.btn-trigger {
+  color: var(--white);
+  background-color: var(--light-blue);
+  width: 200px;
+  border-radius: 0;
+}
+
+.btn-cancel {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  width: 100px !important;
+}
+.btn-create {
+  background-color: var(--orange) !important;
+  width: 100px !important;
+}
+
+.form-input {
+  margin-bottom: 20px;
+}
+.required {
+  color: var(--orange) !important;
+  padding-left: 3px;
+}

@@ -805,7 +805,7 @@
             "type": "string"
           },
           "password": {
-            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\S+$).{5,20}$",
+            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,20}$",
             "type": "string"
           }
         }
@@ -828,7 +828,7 @@
             "type": "string"
           },
           "password": {
-            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\S+$).{5,20}$",
+            "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,20}$",
             "type": "string"
           }
         }
@@ -844,10 +844,6 @@
           },
           "email": {
             "type": "string"
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time"
           },
           "isVerified": {
             "type": "boolean"
@@ -911,13 +907,13 @@
           "otherInfo": {
             "type": "string"
           },
-          "ihaveKids": {
+          "iamSmoker": {
             "type": "boolean"
           },
           "ihavePets": {
             "type": "boolean"
           },
-          "iamSmoker": {
+          "ihaveKids": {
             "type": "boolean"
           }
         }

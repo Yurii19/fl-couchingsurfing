@@ -1,11 +1,14 @@
 <div class="main-pane">
   <div class="options">
+    <div *ngIf="responseMessage" class="alert alert-info msg" role="alert">
+      <p>{{ responseMessage }}</p>
+    </div>
     <input type="file" (change)="onFileSelected($event)" accept="image/*" class="select-btn vbtn">
-    <button (click)="clear()" class="clear-btn vbtn">Clear</button>
-    <button (click)="verify()" class="verify-btn vbtn">Verify</button>
+    <button (click)="clear()" class="clear-btn vbtn" id="clear">Clear</button>
+    <button (click)="verify()" class="verify-btn vbtn" id="verify">Verify</button>
   </div>
 
-  <div class="image-container">
+  <div class="image-container" id="img-pane">
     <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image">
   </div>
 </div>

@@ -13,9 +13,8 @@ import {ApiService} from "../../verification/services/api.service";
 })
 export class VerifyComponent {
 
-  imageUrl: string = '';
-  responseMessage: string = '';
-  authenticatedUser!: User;
+  imageUrl: string | null = null;
+  responseMessage: string | null = null;
 
   constructor(
     private usersService: UsersService,
@@ -38,7 +37,7 @@ export class VerifyComponent {
   }
 
   verify() {
-    if (this.imageUrl === '') {
+    if (!this.imageUrl) {
       this.responseMessage = 'Please select image!';
       return;
     }
@@ -50,7 +49,7 @@ export class VerifyComponent {
           this.verificationService.verifyVerificationApiV1Post({
             body: {
               fullname: user.fullName,
-              passport_img: this.imageUrl
+              passport_img: this.imageUrl as string
             }
           }).subscribe({
             next: (verificationResponse) => {
@@ -70,14 +69,10 @@ export class VerifyComponent {
                     console.log(`User updating error: ${err}`);
                   }
                 });
-
-                console.log('User has been verified successfully!');
               }
-            },
-            error: (err) => {
-              console.log(err);
-              if (err.error.status_message)
-                this.responseMessage = err.error.status_message;
+
+              this.responseMessage = verificationResponse.status_message;
+              return;
             }
           });
         },
@@ -88,6 +83,6 @@ export class VerifyComponent {
   }
 
   clear() {
-    this.imageUrl = '';
+    this.imageUrl = null;
   }
 }

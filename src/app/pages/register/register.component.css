@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   row-gap: 20px;
-  height: 100%;
   color: var(--white);
 }
 
@@ -42,7 +41,7 @@
   row-gap: 15px;
   background-color: var(--dark-black);
   width: 400px;
-  height: 450px;
+  min-height: 450px;
   border-radius: 5px;
 }
 
@@ -82,7 +81,7 @@
 }
 
 .sup-data {
-  width: 230px;
+  width: 300px;
 }
 
 .login-ref {
@@ -91,4 +90,9 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.err {
+  width: 350px;
+  font-size: 16px;
 }

@@ -14,7 +14,6 @@
   width: 40%;
   background-color: var(--dark-black);
   border-radius: 5px;
-  height: 80vh;
 }
 
 .titles {
@@ -66,9 +65,16 @@
 }
 
 .register-ref {
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.err {
+  width: 400px;
+  font-size: 16px;
+}
+

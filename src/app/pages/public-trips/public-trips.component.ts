@@ -7,6 +7,8 @@ import { Request } from 'src/app/services/models/request';
   styleUrls: ['./public-trips.component.css'],
 })
 export class PublicTripsComponent {
+  createTripVisible = false;
+  
   trips: Request[] = [
     {
       id: '662ccda103898e29d2dfda34',
@@ -35,4 +37,8 @@ export class PublicTripsComponent {
       dateCreated: [2024, 4, 27, 13, 4, 17, 324180700],
     },
   ];
+
+  toggleTripVisibility() {
+    this.createTripVisible = !this.createTripVisible;
+  }
 }

@@ -19,7 +19,17 @@ export class CreateTripComponent implements OnInit {
     departure: new FormControl(''),
     travelers: new FormControl(''),
     description: new FormControl(''),
+    host: new FormControl(''),
   });
+
+  hosts = [
+    { name: 'Kharkiv', hosts: ['host1', 'host2', 'host3'] },
+    { name: 'Odessa', hosts: ['host1', 'host2', 'host3'] },
+  ];
+
+  foundedHosts: string[] = [];
+
+  isEdit: boolean = false;
 
   constructor(private formsService: FormsService) {}
 
@@ -27,8 +37,20 @@ export class CreateTripComponent implements OnInit {
     const req = this.formsService.currentRequest;
     if (req.id) {
       this.initForm(req);
+      this.isEdit = true;
       this.updateProps();
+    } else {
+      this.isEdit = false;
     }
+  }
+
+  findHosts() {
+    this.foundedHosts = this.hosts[0].hosts;
+  }
+
+  selectHost(host: string) {
+    console.log(host);
+    this.form.get('host')?.setValue(host);
   }
 
   openModal(req: any) {
@@ -40,7 +62,7 @@ export class CreateTripComponent implements OnInit {
   }
 
   updateProps() {
-    this.title = 'Hello world';
+    this.title = 'Edit my public trip';
   }
 
   onCreateRequest() {
@@ -54,6 +76,7 @@ export class CreateTripComponent implements OnInit {
       departure: new FormControl(req.to),
       travelers: new FormControl(req.travelersAmount),
       description: new FormControl(req.message),
+      host: new FormControl(req.receiver),
     });
   }
 }

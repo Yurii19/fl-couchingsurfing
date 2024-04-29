@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TravelPlansComponent {
   links: { name: string; url: string }[] = [
-    { name: 'Create a Publick Trip', url: '' },
+    { name: 'Create a Public Trip', url: '' },
     { name: 'My Public Trips', url: 'dashboard/public-trips' },
     { name: 'My Couch Requests', url: '' },
   ];

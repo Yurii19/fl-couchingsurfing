@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,16 @@ export class NavbarComponent implements OnInit {
   dashboardLink: string = 'dashboard';
   verificationLink: string = 'verify';
 
+  constructor(
+    private router: Router
+  ) {}
+
   ngOnInit(): void {}
 
   logout() {
+    localStorage.removeItem('token');
     console.log('logout');
+    this.router.navigate(['login']);
   }
 
   // dropdownList(): void {

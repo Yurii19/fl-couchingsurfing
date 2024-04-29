@@ -8,7 +8,7 @@ import { Request } from 'src/app/services/models/request';
 })
 export class PublicTripsComponent {
   createTripVisible = false;
-  
+
   trips: Request[] = [
     {
       id: '662ccda103898e29d2dfda34',
@@ -21,7 +21,6 @@ export class PublicTripsComponent {
       serviceType: 'ACCOMMODATION_REQUEST',
       location: 'Kharkiv, Ukraine',
       requestStatus: 'CREATED',
-      dateCreated: [2024, 4, 27, 13, 4, 17, 324180700],
     },
     {
       id: '662ccda103898e29d2dfda34',
@@ -34,7 +33,6 @@ export class PublicTripsComponent {
       serviceType: 'ACCOMMODATION_REQUEST',
       location: 'Kharkiv, Ukraine',
       requestStatus: 'CREATED',
-      dateCreated: [2024, 4, 27, 13, 4, 17, 324180700],
     },
   ];
 

@@ -1,7 +1,7 @@
 <nav class="global-header-nav">
   <ul class="nav-list">
     <li class="nav-item">
-      <a href="" id="verify">
+      <a routerLink="{{ verificationLink }}" href="" id="verify">
         <span class="nav-icon-wrap"
           ><i class="fa-solid fa-circle-check verify-icon"></i
         ></span>
@@ -13,7 +13,7 @@
       (click)="onNavbarItemSelect('dashboard')"
       [class.selected]="selectedItem === 'dashboard'"
     >
-      <a routerLink="{{ dashbordLink }}" id="dashboard">
+      <a routerLink="{{ dashboardLink }}" id="dashboard">
         <span class="nav-icon-wrap"
           ><i class="fa-solid fa-earth-europe"></i
         ></span>

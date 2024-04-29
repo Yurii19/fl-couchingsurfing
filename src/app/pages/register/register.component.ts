@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {RegistrationRequest} from "../../services/models/registration-request";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../../services/services/authentication.service";
 import {StorageService} from "../../services/storage/storage.service";
+import {AuthenticationService} from "../../services/services/authentication.service";
 
 @Component({
   selector: 'app-register',
@@ -38,7 +38,7 @@ export class RegisterComponent {
         if (err.error.validationErrors)
           this.errorMsg = err.error.validationErrors;
         else
-          this.errorMsg.push(err.error.errorMsg);
+          this.errorMsg.push(err.error.error);
       }
     })
   }

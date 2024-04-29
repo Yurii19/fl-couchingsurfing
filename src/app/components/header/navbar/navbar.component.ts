@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   selectedItem: string = '';
 
-  dashbordLink: string = 'dashboard';
+  dashboardLink: string = 'dashboard';
+  verificationLink: string = 'verify';
 
   ngOnInit(): void {}
 

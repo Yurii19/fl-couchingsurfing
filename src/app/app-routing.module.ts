@@ -7,6 +7,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
+import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'dashboard/public-trips',
     component: PublicTripsComponent,
+    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+  },
+  {
+    path: 'dashboard/public-trips/create',
+    component: CreateTripComponent,
     //children: [{ path: 'public-trips', component: PublicTripsComponent }],
   },
   {

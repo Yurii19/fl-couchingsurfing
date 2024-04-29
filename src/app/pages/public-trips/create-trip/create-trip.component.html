@@ -1,34 +1,16 @@
-<!-- Button trigger modal -->
-<button
-  type="button"
-  class="btn-trigger btn"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  New Public Trip
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5">Create Public Trip</h1>
-      </div>
-      <span class="caption"
+<div class="create mt-5">
+  <div class="main">
+    <div class="main-header">
+      <h1 class="main-title w-100 fs-5 px-2 py-3">{{ title }}</h1>
+    </div>
+    <div class="main-body px-3">
+      <span class="caption d-block mt-3" *ngIf="!isEdit"
         >Post your trip details so that you can be discovered by local hosts,
         event organizer, or other travelers</span
       >
-      <div class="modal-body">
-        <form action="" class="container row">
-
-          <div class="form-input col-12">
+      <form [formGroup]="form" class="container mt-3 row">
+        <div class="form-input col-12 row destiantion-block position-relative">
+          <div class="destination-input col-11">
             <label for="destination" class="form-label"
               >Destination<b class="required">*</b></label
             >
@@ -37,64 +19,122 @@
               class="form-control"
               id="destination"
               aria-describedby="emailHelp"
+              formControlName="destination"
             />
           </div>
-
-          <div class="form-input col-6">
-            <label for="arrival" class="form-label"
-              >Arrival date<b class="required">*</b></label
-            >
-            <input
-              type="date"
-              class="form-control"
-              id="arrival"
-              aria-describedby="emailHelp"
-            />
+          <div class="icon-wrap d-flex align-items-end p-1 text-end col-1">
+            <i class="fa-solid fa-magnifying-glass" (click)="findHosts()"></i>
           </div>
-
-          <div class="form-input col-6">
-            <label for="departure" class="form-label"
-              >Departure date<b class="required">*</b></label
-            >
-            <input
-              type="date"
-              class="form-control"
-              id="departure"
-              aria-describedby="emailHelp"
-            />
+          <div class="hosts position-absolute p-0">
+            <ul class="list-group">
+              <li
+                class="list-group-item"
+                *ngFor="let host of foundedHosts"
+                (click)="selectHost(host)"
+              >
+                {{ host }}
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div class="form-input col-6">
+        <div class="form-input col-6">
+          <label for="arrival" class="form-label"
+            >Arrival date<b class="required">*</b></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="arrival"
+            aria-describedby="emailHelp"
+            formControlName="arrival"
+          />
+        </div>
+
+        <div class="form-input col-6">
+          <label for="departure" class="form-label"
+            >Departure date<b class="required">*</b></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="departure"
+            aria-describedby="emailHelp"
+            formControlName="departure"
+          />
+        </div>
+
+        <div class="form-input col-6">
+          <label for="travelers" class="form-label"
+            >Number of Travelers<b class="required">*</b></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="travelers"
+            aria-describedby="emailHelp"
+            formControlName="travelers"
+          />
+        </div>
+
+        <div class="form-input col-6">
+          <fieldset disabled>
             <label for="travelers" class="form-label"
-              >Number of Travelers<b class="required">*</b></label
+              >Host<b class="required">*</b></label
             >
             <input
-              type="number"
+              type="string"
               class="form-control"
               id="travelers"
               aria-describedby="emailHelp"
+              formControlName="host"
             />
-          </div>
+          </fieldset>
+        </div>
 
-          <div class="form-input col-12">
-            <label for="description" class="form-label"
-              >Trip description<b class="required">*</b></label
-            >
-            <textarea
-              type="text"
-              class="form-control"
-              id="description"
-              aria-describedby="emailHelp"
-            ></textarea>
-          </div>
-          
-        </form>
+        <div class="form-input col-12">
+          <label for="description" class="form-label"
+            >Trip description<b class="required">*</b></label
+          >
+          <textarea
+            type="text"
+            class="form-control"
+            id="description"
+            aria-describedby="emailHelp"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer row py-3 ps-4 pe-4 ">
+      <div class="text-start col-7">
+        <button
+          *ngIf="isEdit"
+          type="button"
+          class="btn-delete btn "
+          routerLink="/dashboard/public-trips"
+          (click)="cancelForm()"
+        >
+          Delete
+        </button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-cancel btn" data-bs-dismiss="modal">
+      <div class=" d-flex justify-content-between col-5">
+        <button
+          type="button"
+          class="btn-cancel btn "
+          routerLink="/dashboard/public-trips"
+          (click)="cancelForm()"
+        >
           Cancel
         </button>
-        <button type="button" class="btn-create btn">Create</button>
+        <button
+          type="button"
+          class="btn-create btn"
+          (click)="onCreateRequest()"
+        >
+          Create
+        </button>
       </div>
     </div>
   </div>

@@ -21,14 +21,29 @@
           </span>
           <span class="message">{{ trip.message }}</span>
         </div>
-        <div class="control"><button class="btn">Edit</button></div>
+        <div class="control">
+          <button
+            type="button"
+            class="btn-trigger btn"
+            routerLink="/dashboard/public-trips/create"
+            (click)="edit(trip)"
+          >
+            Edit
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div class="create col-2">
     <span class="title d-block mb-2"> Create Public Trip</span>
     <div class="create-btn">
-      <app-create-trip></app-create-trip>
+      <button
+        type="button"
+        class="btn-trigger btn"
+        routerLink="/dashboard/public-trips/create"
+      >
+        New Public Trip
+      </button>
     </div>
   </div>
 </div>

@@ -1,10 +1,22 @@
 <div class="card px-3">
   <div class="card-body">
-    <h5 class="card-title text-center">Oleksii Drabchak</h5>
-    <span class="location d-block text-center"
-      >Kharkiv, Kharkiv Oblast, Ukraine</span
-    >
-    <span class="status d-block text-center my-5">Non Accepting Guests</span>
+    <div *ngIf="currentUser">
+      <h5 class="card-title text-center">{{ currentUser.fullName }}</h5>
+      <span *ngIf="currentUser.userInfo" class="location d-block text-center">
+        {{ currentUser.userInfo.location }}
+      </span>
+
+      <div *ngIf="currentUser.userHome">
+        <span *ngIf="currentUser.userHome.isAcceptingGuests"
+              class="status d-block text-center my-5">Accepting Guests</span>
+        <span *ngIf="!currentUser.userHome.isAcceptingGuests"
+              class="status d-block text-center my-5">Non Accepting Guests</span>
+      </div>
+      <div *ngIf="!currentUser.userHome">
+        <span class="status d-block text-center my-5">Non Accepting Guests</span>
+      </div>
+    </div>
+
     <span class="profile d-block mb-5">MY PROFILE</span>
     <div
       class="progress"

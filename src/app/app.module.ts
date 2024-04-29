@@ -3,9 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,7 +24,7 @@ import { PublicTripsComponent } from './pages/public-trips/public-trips.componen
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { SearchComponent } from './components/header/search/search.component';
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
-import {HttpTokenInterceptor} from "./services/interceptor/http-token.interceptor";
+import { HttpTokenInterceptor } from './services/interceptor/http-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,14 +52,15 @@ import {HttpTokenInterceptor} from "./services/interceptor/http-token.intercepto
     HttpClientModule,
     FormsModule,
     TitleCasePipe,
+    ReactiveFormsModule,
   ],
   providers: [
     HttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpTokenInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsService } from 'src/app/services/forms.service';
 import { Request } from 'src/app/services/models/request';
 
 @Component({
@@ -19,7 +20,7 @@ export class PublicTripsComponent {
       to: 1714435200000,
       message: 'string',
       serviceType: 'ACCOMMODATION_REQUEST',
-      location: 'Kharkiv, Ukraine',
+      location: 'Odessa, Ukraine',
       requestStatus: 'CREATED',
     },
     {
@@ -36,7 +37,9 @@ export class PublicTripsComponent {
     },
   ];
 
-  toggleTripVisibility() {
-    this.createTripVisible = !this.createTripVisible;
+ constructor( private formsService: FormsService){}
+
+  edit(trip: Request){
+    this.formsService.setRequest(trip)
   }
 }

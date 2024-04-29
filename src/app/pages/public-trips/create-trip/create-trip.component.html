@@ -1,100 +1,105 @@
-<!-- Button trigger modal -->
-<button
-  type="button"
-  class="btn-trigger btn"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  New Public Trip
-</button>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5">Create Public Trip</h1>
-      </div>
-      <span class="caption"
+<div class="create mt-5">
+  <div class="main">
+    <div class="main-header">
+      <h1 class="main-title w-100 fs-5 px-2 py-3">{{ title }}</h1>
+    </div>
+    <div class="main-body px-3">
+      <span class="caption d-block my-3"
         >Post your trip details so that you can be discovered by local hosts,
         event organizer, or other travelers</span
       >
-      <div class="modal-body">
-        <form action="" class="container row">
+      <form [formGroup]="form" class="container row">
+        <div class="form-input col-12">
+          <label for="destination" class="form-label"
+            >Destination<b class="required">*</b></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="destination"
+            aria-describedby="emailHelp"
+            formControlName="destination"
+          />
+        </div>
 
-          <div class="form-input col-12">
-            <label for="destination" class="form-label"
-              >Destination<b class="required">*</b></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="destination"
-              aria-describedby="emailHelp"
-            />
-          </div>
+        <div class="form-input col-6">
+          <label for="arrival" class="form-label"
+            >Arrival date<b class="required">*</b></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="arrival"
+            aria-describedby="emailHelp"
+            formControlName="arrival"
+          />
+        </div>
 
-          <div class="form-input col-6">
-            <label for="arrival" class="form-label"
-              >Arrival date<b class="required">*</b></label
-            >
-            <input
-              type="date"
-              class="form-control"
-              id="arrival"
-              aria-describedby="emailHelp"
-            />
-          </div>
+        <div class="form-input col-6">
+          <label for="departure" class="form-label"
+            >Departure date<b class="required">*</b></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="departure"
+            aria-describedby="emailHelp"
+            formControlName="departure"
+          />
+        </div>
 
-          <div class="form-input col-6">
-            <label for="departure" class="form-label"
-              >Departure date<b class="required">*</b></label
-            >
-            <input
-              type="date"
-              class="form-control"
-              id="departure"
-              aria-describedby="emailHelp"
-            />
-          </div>
+        <div class="form-input col-6">
+          <label for="travelers" class="form-label"
+            >Number of Travelers<b class="required">*</b></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="travelers"
+            aria-describedby="emailHelp"
+            formControlName="travelers"
+          />
+        </div>
 
-          <div class="form-input col-6">
-            <label for="travelers" class="form-label"
-              >Number of Travelers<b class="required">*</b></label
-            >
-            <input
-              type="number"
-              class="form-control"
-              id="travelers"
-              aria-describedby="emailHelp"
-            />
-          </div>
-
-          <div class="form-input col-12">
-            <label for="description" class="form-label"
-              >Trip description<b class="required">*</b></label
-            >
-            <textarea
-              type="text"
-              class="form-control"
-              id="description"
-              aria-describedby="emailHelp"
-            ></textarea>
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-cancel btn" data-bs-dismiss="modal">
+        <div class="form-input col-12">
+          <label for="description" class="form-label"
+            >Trip description<b class="required">*</b></label
+          >
+          <textarea
+            type="text"
+            class="form-control"
+            id="description"
+            aria-describedby="emailHelp"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-between p-3 px-5" >
+      <button
+        type="button"
+        class="btn-delete btn me-2"
+        routerLink="/dashboard/public-trips"
+        (click)="cancelForm()"
+      >
+        Delete
+      </button>
+      <div>
+        <button
+          type="button"
+          class="btn-cancel btn me-2"
+          routerLink="/dashboard/public-trips"
+          (click)="cancelForm()"
+        >
           Cancel
         </button>
-        <button type="button" class="btn-create btn">Create</button>
+        <button
+          type="button"
+          class="btn-create btn"
+          (click)="onCreateRequest()"
+        >
+          Create
+        </button>
       </div>
     </div>
   </div>

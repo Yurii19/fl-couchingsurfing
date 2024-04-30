@@ -5,16 +5,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class StorageService {
-  // userEmail: BehaviorSubject<string> = new BehaviorSubject('un logined');
-
-  // getUserEmail() {
-  //   return this.userEmail;
-  // }
-
-  // setUserEmail(email: string) {
-  //   this.userEmail.next(email);
-  // }
-  
+  logout() {
+    this.token = '';
+    this.email = '';
+  }
 
   set token(token: string) {
     localStorage.setItem('token', token);

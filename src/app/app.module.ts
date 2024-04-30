@@ -28,6 +28,10 @@ import { HttpTokenInterceptor } from './services/interceptor/http-token.intercep
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileAsideComponent } from './pages/profile/profile-aside/profile-aside.component';
 import { ProfileMainSectionComponent } from './pages/profile/profile-main-section/profile-main-section.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { EditProfileAsideComponent } from './pages/edit-profile/edit-profile-aside/edit-profile-aside.component';
+import { EditProfileMainComponent } from './pages/edit-profile/edit-profile-main/edit-profile-main.component';
+import { AboutFormComponent } from './pages/edit-profile/about-form/about-form.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { ProfileMainSectionComponent } from './pages/profile/profile-main-sectio
     ProfileComponent,
     ProfileAsideComponent,
     ProfileMainSectionComponent,
+    EditProfileComponent,
+    EditProfileAsideComponent,
+    EditProfileMainComponent,
+    AboutFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,44 +1,39 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Request} from 'src/app/services/models/request';
 import {FormsService} from "../../services/forms/forms.service";
+import {RequestsService} from "../../services/services/requests.service";
 
 @Component({
   selector: 'app-public-trips',
   templateUrl: './public-trips.component.html',
   styleUrls: ['./public-trips.component.css'],
 })
-export class PublicTripsComponent {
-  createTripVisible = false;
+export class PublicTripsComponent implements OnInit {
+  page: number = 0;
+  size: number = 1000;
 
-  trips: Request[] = [
-    {
-      id: '662ccda103898e29d2dfda34',
-      sender: '6625213d2652662ac801f3b1',
-      receiver: '662507fb48f352542d2dab6b',
-      travelersAmount: 1,
-      from: 1714176000000,
-      to: 1714435200000,
-      message: 'string',
-      serviceType: 'ACCOMMODATION_REQUEST',
-      location: 'Odessa, Ukraine',
-      requestStatus: 'CREATED',
-    },
-    {
-      id: '662ccda103898e29d2dfda34',
-      sender: '6625213d2652662ac801f3b1',
-      receiver: '662507fb48f352542d2dab6b',
-      travelersAmount: 1,
-      from: 1714176000000,
-      to: 1714435200000,
-      message: 'string',
-      serviceType: 'ACCOMMODATION_REQUEST',
-      location: 'Kharkiv, Ukraine',
-      requestStatus: 'CREATED',
-    },
-  ];
+  trips: Request[] = [];
 
-  constructor(private formsService: FormsService) {
+  constructor(
+    private formsService: FormsService,
+    private requestsService: RequestsService
+  ) {}
+
+  ngOnInit(): void {
+    this.requestsService.getOutgoingRequests({
+      page: this.page,
+      size: this.size
+    }).subscribe({
+      next: (res) => {
+        this.trips = res.content as Request[];
+        console.log('Requests retrieved.');
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
+
 
   edit(trip: Request) {
     this.formsService.setRequest(trip)

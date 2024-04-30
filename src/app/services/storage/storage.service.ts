@@ -5,9 +5,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class StorageService {
+
   logout() {
-    this.token = '';
-    this.email = '';
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
   }
 
   set token(token: string) {

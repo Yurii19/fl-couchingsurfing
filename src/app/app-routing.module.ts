@@ -21,30 +21,33 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent, canActivate: [authGuard]
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    component: DashboardComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard/public-trips',
     component: PublicTripsComponent,
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard/public-trips/create',
     component: CreateTripComponent,
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    canActivate: [authGuard],
   },
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'verify',
     component: VerifyComponent,
+    canActivate: [authGuard],
   },
 ];
 

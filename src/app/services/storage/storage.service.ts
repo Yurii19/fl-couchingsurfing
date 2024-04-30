@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
+  user$: BehaviorSubject<User> = new BehaviorSubject({});
+
+  setUser(user: User) {
+    this.user$.next(user);
+  }
+  getUser(){
+    return this.user$;
+  }
 
   logout() {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
   }
 
   set token(token: string) {

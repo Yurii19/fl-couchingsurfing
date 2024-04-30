@@ -5,22 +5,22 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/services/models/user';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-profile-aside',
   templateUrl: './profile-aside.component.html',
   styleUrls: ['./profile-aside.component.css'],
 })
-export class ProfileAsideComponent implements OnInit, OnChanges {
+export class ProfileAsideComponent implements OnInit {
   @Input() user: User = {} as User;
+  user$!: Observable<User>;
+
+  constructor(private storeService: StorageService) {}
 
   ngOnInit(): void {
-    // console.log(this.user);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    //console.log(changes);
-    console.log(this.user);
+    this.user$ = this.storeService.getUser();
   }
 }

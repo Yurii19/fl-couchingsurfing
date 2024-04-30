@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormsService } from 'src/app/services/forms.service';
-import { Request } from 'src/app/services/models/request';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Request} from 'src/app/services/models/request';
+import {FormsService} from "../../../services/forms/forms.service";
 
 @Component({
   selector: 'app-create-trip',
@@ -23,15 +23,16 @@ export class CreateTripComponent implements OnInit {
   });
 
   hosts = [
-    { name: 'Kharkiv', hosts: ['host1', 'host2', 'host3'] },
-    { name: 'Odessa', hosts: ['host1', 'host2', 'host3'] },
+    {name: 'Kharkiv', hosts: ['host1', 'host2', 'host3']},
+    {name: 'Odessa', hosts: ['host1', 'host2', 'host3']},
   ];
 
   foundedHosts: string[] = [];
 
   isEdit: boolean = false;
 
-  constructor(private formsService: FormsService) {}
+  constructor(private formsService: FormsService) {
+  }
 
   ngOnInit(): void {
     const req = this.formsService.currentRequest;
@@ -57,6 +58,7 @@ export class CreateTripComponent implements OnInit {
     this.form.reset();
     this.initForm(req);
   }
+
   cancelForm() {
     this.formsService.setRequest({});
   }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { FormsService } from 'src/app/services/forms.service';
-import { Request } from 'src/app/services/models/request';
+import {Component} from '@angular/core';
+import {Request} from 'src/app/services/models/request';
+import {FormsService} from "../../services/forms/forms.service";
 
 @Component({
   selector: 'app-public-trips',
@@ -37,9 +37,10 @@ export class PublicTripsComponent {
     },
   ];
 
- constructor( private formsService: FormsService){}
+  constructor(private formsService: FormsService) {
+  }
 
-  edit(trip: Request){
+  edit(trip: Request) {
     this.formsService.setRequest(trip)
   }
 }

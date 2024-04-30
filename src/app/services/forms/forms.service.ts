@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Request } from './models';
+import {Injectable} from '@angular/core';
+import { Request } from "../models/request";
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,9 @@ import { Request } from './models';
 export class FormsService {
   currentRequest: Request = {} as Request;
 
-  constructor() {}
+  constructor() {
+  }
+
   setRequest(r: Request) {
     this.currentRequest = r;
   }

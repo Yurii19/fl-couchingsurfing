@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormsService } from 'src/app/services/forms.service';
-import { Request } from 'src/app/services/models/request';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Request} from 'src/app/services/models/request';
+import {FormsService} from "../../../services/forms/forms.service";
 import {
   AuthenticationService,
   RequestsService,

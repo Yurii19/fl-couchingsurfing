@@ -599,14 +599,6 @@
         "operationId": "getIncomingRequests",
         "parameters": [
           {
-            "name": "location",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -907,13 +899,13 @@
           "otherInfo": {
             "type": "string"
           },
+          "ihaveKids": {
+            "type": "boolean"
+          },
           "iamSmoker": {
             "type": "boolean"
           },
           "ihavePets": {
-            "type": "boolean"
-          },
-          "ihaveKids": {
             "type": "boolean"
           }
         }
@@ -960,13 +952,13 @@
       "PageUser": {
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
           "totalPages": {
             "type": "integer",
             "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
           },
           "size": {
             "type": "integer",
@@ -1019,18 +1011,18 @@
               "$ref": "#/components/schemas/SortObject"
             }
           },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
           "pageSize": {
             "type": "integer",
             "format": "int32"
           },
-          "unpaged": {
-            "type": "boolean"
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
           },
           "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
             "type": "boolean"
           }
         }
@@ -1058,13 +1050,13 @@
       "PageReview": {
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
           "totalPages": {
             "type": "integer",
             "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
           },
           "size": {
             "type": "integer",
@@ -1107,13 +1099,13 @@
       "PageRequest": {
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
           "totalPages": {
             "type": "integer",
             "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
           },
           "size": {
             "type": "integer",

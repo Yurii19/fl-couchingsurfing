@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Request } from './models';
+import {Injectable} from '@angular/core';
+import { Request } from "../models/request";
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({

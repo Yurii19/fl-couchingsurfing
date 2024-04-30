@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,14 +14,14 @@ export class NavbarComponent implements OnInit {
   verificationLink: string = 'verify';
 
   constructor(
-    private router: Router
+    private router: Router,
+    private storage: StorageService
   ) {}
 
   ngOnInit(): void {}
 
   logout() {
-    localStorage.removeItem('token');
-    console.log('logout');
+    this.storage.logout();
     this.router.navigate(['login']);
   }
 

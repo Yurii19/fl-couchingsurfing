@@ -2,6 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsService } from 'src/app/services/forms.service';
 import { Request } from 'src/app/services/models/request';
+import {
+  AuthenticationService,
+  RequestsService,
+  UsersService,
+} from 'src/app/services/services';
 
 @Component({
   selector: 'app-create-trip',
@@ -24,19 +29,23 @@ export class CreateTripComponent implements OnInit {
 
   hosts = [
     { name: 'Kharkiv', hosts: ['host1', 'host2', 'host3'] },
-    { name: 'Odessa', hosts: ['host1', 'host2', 'host3'] },
+    { name: 'Odessa', hosts: ['host4', 'host5', 'host6'] },
   ];
 
   foundedHosts: string[] = [];
 
   isEdit: boolean = false;
 
-  constructor(private formsService: FormsService) {}
+  constructor(
+    private formsService: FormsService,
+    private reqServices: RequestsService,
+    private userService: UsersService
+  ) {}
 
   ngOnInit(): void {
     const req = this.formsService.currentRequest;
     if (req.id) {
-      this.initForm(req);
+      this.form = this.formsService.initRequestForm(req);
       this.isEdit = true;
       this.updateProps();
     } else {
@@ -44,39 +53,33 @@ export class CreateTripComponent implements OnInit {
     }
   }
 
+  onCreateRequest() {
+    console.log(this.form);
+    this.userService.getAuthenticatedUser().subscribe((resp: object) => {
+      const respData = resp as { id: string };
+      console.log(respData.id);
+      //this.reqServices.sendAccommodationRequest()
+    });
+    //this.reqServices.sendAccommodationRequest()
+  }
+
   findHosts() {
     this.foundedHosts = this.hosts[0].hosts;
   }
 
   selectHost(host: string) {
-    console.log(host);
     this.form.get('host')?.setValue(host);
   }
 
   openModal(req: any) {
-    this.form.reset();
-    this.initForm(req);
+    // this.form.reset();
   }
+
   cancelForm() {
     this.formsService.setRequest({});
   }
 
   updateProps() {
     this.title = 'Edit my public trip';
-  }
-
-  onCreateRequest() {
-    console.log(this.form);
-  }
-
-  initForm(req: Request) {
-    this.form = new FormGroup({
-      destination: new FormControl(req.location),
-      arrival: new FormControl(req.from),
-      departure: new FormControl(req.to),
-      travelers: new FormControl(req.travelersAmount),
-      description: new FormControl(req.message),
-      host: new FormControl(req.receiver),
-    });
   }
 }

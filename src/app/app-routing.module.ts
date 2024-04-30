@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
+import { authGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,29 +22,32 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard/public-trips',
     component: PublicTripsComponent,
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard/public-trips/create',
     component: CreateTripComponent,
-    //children: [{ path: 'public-trips', component: PublicTripsComponent }],
+    canActivate: [authGuard],
   },
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'verify',
     component: VerifyComponent,
+    canActivate: [authGuard],
   },
 ];
 

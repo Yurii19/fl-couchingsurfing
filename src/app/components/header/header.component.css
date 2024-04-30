@@ -44,20 +44,6 @@ app-search {
 app-navbar {
   height: 100%;
 }
-
-/* a {
-  cursor: pointer;
-  color: var(--white);
-  font-size: 0.8em;
+.user {
+  color: yellow;
 }
-i {
-  color: var(--white);
-}
-.card {
-  color: white;
-  margin: 0;
-} */
-/* .logo,
-.d-flex {
- // border: 1px solid red;
-} */

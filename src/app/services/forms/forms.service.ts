@@ -3,7 +3,7 @@ import {Request} from "../models/request";
 import {FormControl, FormGroup} from '@angular/forms';
 import {UsersService} from "../services/users.service";
 import {User} from "../models/user";
-import * as moment from "moment";
+import { format, parseISO } from 'date-fns';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,8 @@ export class FormsService {
   initRequestForm(req: Request) {
     const formGroup = new FormGroup({
       destination: new FormControl(req.location),
-      arrival: new FormControl(moment(req.from).format('YYYY-MM-DD')),
-      departure: new FormControl(moment(req.to).format('YYYY-MM-DD')),
+      arrival: new FormControl(format(new Date(req.from as number), 'yyyy-MM-dd')),
+      departure: new FormControl(format(new Date(req.to as number), 'yyyy-MM-dd')),
       travelers: new FormControl(req.travelersAmount),
       description: new FormControl(req.message),
       host: new FormControl(''),
@@ -49,8 +49,8 @@ export class FormsService {
       sender: senderId,
       receiver: receiverId,
       travelersAmount: formValues.travelers,
-      from: moment(formValues.arrival, 'YYYY-MM-DD').valueOf(),
-      to: moment(formValues.departure, 'YYYY-MM-DD').valueOf(),
+      from: parseISO(formValues.arrival).valueOf(),
+      to: parseISO(formValues.departure).valueOf(),
       message: formValues.description,
       serviceType: 'ACCOMMODATION_REQUEST',
       location: formValues.destination,

@@ -113,14 +113,16 @@ export class CreateTripComponent implements OnInit {
 
   cancelForm() {
     this.formsService.setRequest({});
+    this.router.navigate(['dashboard', 'public-trips']);
+  }
 
+  deleteTrip() {
     this.requestsService.deleteRequest({
       requestId: this.tripId
     }).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.log(err)
     });
-
     this.router.navigate(['dashboard', 'public-trips']);
   }
 

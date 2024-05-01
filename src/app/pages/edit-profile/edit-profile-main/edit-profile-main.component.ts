@@ -70,7 +70,7 @@ export class EditProfileMainComponent implements OnInit {
       age: 0,
       education: form.education ?? '',
       languages: this.aboutForm.languages ?? [],
-      location: '',
+      location: form.location ?? '',
       occupation: form.occupation ?? '',
       userPhotos: [''],
     };

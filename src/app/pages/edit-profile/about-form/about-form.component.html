@@ -1,4 +1,16 @@
 <form class="mt-5" [formGroup]="form">
+  <div class="checkbox-wrap mb-3 d-flex">
+    <label for="location" class="form-label w-25">Location</label>
+
+    <input
+      type="text"
+      class="form-control"
+      id="location"
+      autocomplete="off"
+      formControlName="location"
+      placeholder="City, Region"
+    />
+  </div>
 
   <div class="mb-3 d-flex">
     <label for="occupation" class="form-label w-25">Occupation</label>

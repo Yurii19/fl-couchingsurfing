@@ -1,11 +1,5 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/services/models/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 

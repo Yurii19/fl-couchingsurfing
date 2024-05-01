@@ -17,6 +17,7 @@ export class HomeFormComponent {
 
   form = new FormGroup({
     availability: new FormControl(null),
+    location: new FormControl(''),
     guests: new FormControl(0),
     gender: new FormControl(null),
     kids: new FormControl(null),

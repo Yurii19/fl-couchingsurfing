@@ -17,3 +17,12 @@
     width: 20px;
   }
 }
+#location {
+  color: var(--white);
+  &:focus {
+    background-color: var(--light-black);
+  }
+  &::placeholder {
+    color: var(--white);
+  }
+}

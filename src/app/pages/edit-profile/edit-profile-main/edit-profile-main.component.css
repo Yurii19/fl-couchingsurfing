@@ -6,7 +6,6 @@
     & li {
       border-bottom: 2px solid var(--white);
       color: var(--white);
-      cursor: pointer;
       & * {
         cursor: pointer;
       }

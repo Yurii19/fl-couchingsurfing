@@ -32,6 +32,7 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 import { EditProfileAsideComponent } from './pages/edit-profile/edit-profile-aside/edit-profile-aside.component';
 import { EditProfileMainComponent } from './pages/edit-profile/edit-profile-main/edit-profile-main.component';
 import { AboutFormComponent } from './pages/edit-profile/about-form/about-form.component';
+import { HomeFormComponent } from './pages/edit-profile/home-form/home-form.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AboutFormComponent } from './pages/edit-profile/about-form/about-form.c
     EditProfileAsideComponent,
     EditProfileMainComponent,
     AboutFormComponent,
+    HomeFormComponent,
   ],
   imports: [
     BrowserModule,

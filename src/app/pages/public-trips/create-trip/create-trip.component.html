@@ -1,141 +1,158 @@
-<div class="create mt-5">
-  <div class="main">
-    <div class="main-header">
+<div class="create mt-4 mb-4 d-flex column-gap-5 justify-content-center">
+  <div class="form" style="width: 500px;">
+    <div class="form-header">
       <h1 class="main-title w-100 fs-5 px-2 py-3">{{ title }}</h1>
     </div>
-    <div class="main-body px-3">
-      <span class="caption d-block mt-3" *ngIf="!isEdit"
-        >Post your trip details so that you can be discovered by local hosts,
-        event organizer, or other travelers</span
-      >
+    <div class="form-body px-3">
+      <span class="caption d-block mt-3" *ngIf="!isEdit">
+        Post your trip details so that you can be discovered by local hosts, event organizer, or other travelers
+      </span>
+
       <form [formGroup]="form" class="container mt-3 row">
-        <div class="form-input col-12 row destiantion-block position-relative">
+        <div class="form-input col-12 row destination-block position-relative">
           <div class="destination-input col-11">
-            <label for="destination" class="form-label"
-              >Destination<b class="required">*</b></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="destination"
-              aria-describedby="emailHelp"
-              formControlName="destination"
-            />
+            <label for="destination" class="form-label">
+              Destination
+              <b class="required">*</b>
+            </label>
+            <input type="text" class="form-control" id="destination" aria-describedby="emailHelp"
+                   formControlName="destination" [readOnly]="isEdit"/>
           </div>
-          <div class="icon-wrap d-flex align-items-end p-1 text-end col-1">
+          <div *ngIf="!isEdit" class="icon-wrap d-flex align-items-end p-1 text-end col-1">
             <i class="fa-solid fa-magnifying-glass" (click)="findHosts()"></i>
           </div>
-          <div class="hosts position-absolute p-0">
-            <ul class="list-group">
-              <li
-                class="list-group-item"
-                *ngFor="let host of foundedHosts"
-                (click)="selectHost(host)"
-              >
-                {{ host }}
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div class="form-input col-6">
-          <label for="arrival" class="form-label"
-            >Arrival date<b class="required">*</b></label
-          >
-          <input
-            type="date"
-            class="form-control"
-            id="arrival"
-            aria-describedby="emailHelp"
-            formControlName="arrival"
-          />
+          <label for="arrival" class="form-label">
+            Arrival date
+            <b class="required">*</b>
+          </label>
+          <input type="date" class="form-control" id="arrival" aria-describedby="emailHelp" formControlName="arrival"/>
         </div>
 
         <div class="form-input col-6">
-          <label for="departure" class="form-label"
-            >Departure date<b class="required">*</b></label
-          >
-          <input
-            type="date"
-            class="form-control"
-            id="departure"
-            aria-describedby="emailHelp"
-            formControlName="departure"
-          />
+          <label for="departure" class="form-label">
+            Departure date
+            <b class="required">*</b>
+          </label>
+          <input type="date" class="form-control" id="departure" aria-describedby="emailHelp"
+                 formControlName="departure"/>
         </div>
 
         <div class="form-input col-6">
-          <label for="travelers" class="form-label"
-            >Number of Travelers<b class="required">*</b></label
-          >
-          <input
-            type="number"
-            min="1"
-            class="form-control"
-            id="travelers"
-            aria-describedby="emailHelp"
-            formControlName="travelers"
-          />
+          <label for="travelers" class="form-label">
+            Number of Travelers
+            <b class="required">*</b>
+          </label>
+          <input type="number" min="1" class="form-control" id="travelers" aria-describedby="emailHelp"
+                 formControlName="travelers"/>
         </div>
 
         <div class="form-input col-6">
           <fieldset disabled>
-            <label for="travelers" class="form-label"
-              >Host<b class="required">*</b></label
-            >
-            <input
-              type="string"
-              class="form-control"
-              id="travelers"
-              aria-describedby="emailHelp"
-              formControlName="host"
-            />
+            <label for="selected-host" class="form-label">
+              Host
+              <b class="required">*</b>
+            </label>
+            <input type="string" class="form-control" id="selected-host" aria-describedby="emailHelp"
+                   formControlName="host"/>
           </fieldset>
         </div>
 
         <div class="form-input col-12">
-          <label for="description" class="form-label"
-            >Trip description<b class="required">*</b></label
-          >
-          <textarea
-            type="text"
-            class="form-control"
-            id="description"
-            aria-describedby="emailHelp"
-            formControlName="description"
-          ></textarea>
+          <label for="description" class="form-label">
+            Trip description
+            <b class="required">*</b>
+          </label>
+          <textarea type="text" class="form-control" id="description" aria-describedby="emailHelp"
+                    formControlName="description"></textarea>
         </div>
       </form>
     </div>
 
     <div class="modal-footer row py-3 ps-4 pe-4 ">
       <div class="text-start col-7">
-        <button
-          *ngIf="isEdit"
-          type="button"
-          class="btn-delete btn "
-          routerLink="/dashboard/public-trips"
-          (click)="cancelForm()"
-        >
+        <button *ngIf="isEdit" type="button" class="btn-delete btn" (click)="cancelForm()">
           Delete
         </button>
       </div>
       <div class=" d-flex justify-content-between col-5">
-        <button
-          type="button"
-          class="btn-cancel btn "
-          routerLink="/dashboard/public-trips"
-          (click)="cancelForm()"
-        >
+        <button type="button" class="btn-cancel btn" (click)="cancelForm()">
           Cancel
         </button>
-        <button
-          type="button"
-          class="btn-create btn"
-          (click)="onCreateRequest()"
-        >
+        <button type="button" class="btn-create btn" id="btn-create" (click)="onCreateRequest()"
+                [disabled]="isHostEmpty">
           Create
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isEdit" class="hosts" style="width: 500px;">
+    <div class="hosts-header">
+      <h1 class="main-title w-100 fs-5 px-2 py-3">
+        Available hosts at:
+        <b class="text-primary" style="background: transparent">{{ location }}</b>
+      </h1>
+    </div>
+    <div class="border-top border-1 border-black mt-3 user-select-none">
+      <div class="border-bottom border-1 border-black d-flex column-gap-4" style="cursor: pointer;"
+           *ngFor="let host of availableHosts" (dblclick)="selectHost(host)">
+        <img class="d-flex mt-3 mb-3 ms-4" src="/assets/imgs/profile-img.png" alt=""
+             style="width: 100px; height: 100px;">
+        <div class="mt-3 d-flex flex-column row-gap-1" style="width: 200px">
+          <span class="host-fullname fs-5">{{ host.fullName }}</span>
+          <div style="font-size: 13px">
+            <div>
+              <label for="langs" class="fw-bold">Speaks: </label>
+              &nbsp;
+              <span class="languages" id="langs" *ngFor="let language of host.userInfo?.languages; let last = last">
+              <span>{{ language }}</span>{{ !last ? ',' : '' }}
+            </span>
+            </div>
+            <div>
+              <label for="couches-amount" class="fw-bold">Max guests amount:</label>
+              &nbsp;
+              <span class="couches-amount" id="couches-amount">{{ host.userHome?.maxGuests }}</span>
+            </div>
+          </div>
+          <span class="text-success">Accepting guests</span>
+        </div>
+        <div class="mt-3 d-flex flex-column row-gap-1" style="font-size: 13px">
+          <div>
+            <label for="kids-allowed">Kids allowed:</label>
+            &nbsp;
+            <i class="fa-solid fs-6" id="kids-allowed"
+               [ngClass]="{'fa-xmark text-danger': !host.userHome?.kidFriendly,
+               'fa-check text-success': host.userHome?.kidFriendly}">
+            </i>
+          </div>
+          <div>
+            <label for="pets-allowed">Pets allowed:</label>
+            &nbsp;
+            <i class="fa-solid fs-6" id="pets-allowed"
+               [ngClass]="{'fa-xmark text-danger': !host.userHome?.petFriendly,
+               'fa-check text-success': host.userHome?.petFriendly}">
+            </i>
+          </div>
+          <div>
+            <label for="wheelchair-allowed">For disabled:</label>
+            &nbsp;
+            <i class="fa-solid fs-6" id="wheelchair-allowed"
+               [ngClass]="{'fa-xmark text-danger': !host.userHome?.wheelchairAllowed,
+               'fa-check text-success': host.userHome?.wheelchairAllowed}">
+            </i>
+          </div>
+          <div>
+            <label for="smoking-allowed">Smoking:</label>
+            &nbsp;
+            <i class="fa-solid fs-6" id="smoking-allowed"
+               [ngClass]="{'fa-xmark text-danger': !host.userHome?.smokingAllowed,
+               'fa-check text-success': host.userHome?.smokingAllowed}">
+            </i>
+          </div>
+        </div>
       </div>
     </div>
   </div>

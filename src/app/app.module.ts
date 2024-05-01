@@ -25,6 +25,13 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { SearchComponent } from './components/header/search/search.component';
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 import { HttpTokenInterceptor } from './services/interceptor/http-token.interceptor';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileAsideComponent } from './pages/profile/profile-aside/profile-aside.component';
+import { ProfileMainSectionComponent } from './pages/profile/profile-main-section/profile-main-section.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { EditProfileAsideComponent } from './pages/edit-profile/edit-profile-aside/edit-profile-aside.component';
+import { EditProfileMainComponent } from './pages/edit-profile/edit-profile-main/edit-profile-main.component';
+import { AboutFormComponent } from './pages/edit-profile/about-form/about-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +51,13 @@ import { HttpTokenInterceptor } from './services/interceptor/http-token.intercep
     NavbarComponent,
     SearchComponent,
     CreateTripComponent,
+    ProfileComponent,
+    ProfileAsideComponent,
+    ProfileMainSectionComponent,
+    EditProfileComponent,
+    EditProfileAsideComponent,
+    EditProfileMainComponent,
+    AboutFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<div class="main">
+  <div class="heading">
+    <h2>{{ user.fullName }}</h2>
+    <h5>Location: {{ user.userInfo?.location }}</h5>
+    <div class="nav d-flex justify-content-between align-items-center">
+      <ul class="d-flex gap-2">
+        <li class="px-3"><a>About</a></li>
+        <li class="px-3"><a>My Home</a></li>
+      </ul>
+      <div class="controls d-flex gap-4">
+        <button class="btn-save btn" (click)="saveUserInfo()">Save</button>
+        <button class="btn-cancel btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="about">
+    <app-about-form [user]="user"></app-about-form>
+  </div>
+</div>

@@ -48,6 +48,8 @@ export class UsersService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   updateUserInfo(params: UpdateUserInfo$Params, context?: HttpContext): Observable<User> {
+    console.log(params)
+    console.log(context)
     return this.updateUserInfo$Response(params, context).pipe(
       map((r: StrictHttpResponse<User>): User => r.body)
     );

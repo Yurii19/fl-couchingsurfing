@@ -1,0 +1,7 @@
+* {
+  color: var(--white);
+}
+.profile {
+  max-width: 1440px;
+  margin: 0 auto;
+}

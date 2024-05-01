@@ -1,0 +1,37 @@
+* {
+  color: var(--white);
+}
+.status {
+  color: var(--orange);
+}
+.btn-edit {
+  background-color: var(--light-blue);
+  width: 150px;
+}
+
+.about-counter {
+  background-color: var(--light-blue);
+  border-radius: 50%;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding-top: 1px;
+}
+.item {
+  color: var(--light-blue);
+}
+.about-link {
+  color: var(--orange);
+}
+.home-link {
+  color: var(--light-blue);
+}
+
+.overview {
+    border: 1px dotted yellow;
+  & h5 {
+    color: var(--white);
+    text-transform: uppercase;
+  }
+}

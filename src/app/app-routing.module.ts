@@ -9,6 +9,7 @@ import { VerifyComponent } from './pages/verify/verify.component';
 import { PublicTripsComponent } from './pages/public-trips/public-trips.component';
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 import { authGuard } from './core/auth.guard';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'profile/edit-profile',
+    component: EditProfileComponent,
     canActivate: [authGuard],
   },
   {

@@ -1,0 +1,68 @@
+<form class="mt-5" [formGroup]="form">
+  <div class="accepting-guests mb-3 d-flex">
+    <label for="acceptingGuests" class="form-label w-25"
+      >Hosting Availability</label
+    >
+    <span class="">Is Accepting Guests</span>
+    <input
+      type="checkbox"
+      class="guests-checkbox ms-2"
+      id="acceptingGuests"
+      autocomplete="off"
+      formControlName="availability"
+    />
+  </div>
+
+  <div class="mb-3 d-flex">
+    <label for="occupation" class="form-label w-25">Occupation</label>
+    <input
+      type="text"
+      class="form-control"
+      id="occupation"
+      formControlName="occupation"
+    />
+  </div>
+
+  <div class="mb-3 d-flex">
+    <label for="education" class="form-label w-25">Education</label>
+    <input
+      type="text"
+      class="form-control"
+      id="education"
+      formControlName="education"
+    />
+  </div>
+
+  <div class="mb-3 d-flex">
+    <label for="education" class="form-label language-label"
+      >Language i am fluent in</label
+    >
+    <div class="inputs w-50">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let l of languages">
+          <i class="fa-solid fa-trash-can me-2" (click)="removeLanguage(l)"></i
+          >{{ l }}
+        </li>
+      </ul>
+      <select
+        class="form-select form-select-lg mb-3"
+        aria-label="Large select example"
+        (change)="addLanguage()"
+        formControlName="languages"
+      >
+        <option *ngFor="let l of languagesSet" value="{{ l }}">{{ l }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="education" class="form-label w-25">About me</label>
+    <textarea
+      type="text"
+      class="form-control"
+      id="education"
+      rows="6"
+      formControlName="aboutText"
+    ></textarea>
+  </div>
+</form>

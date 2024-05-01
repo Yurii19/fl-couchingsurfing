@@ -1,33 +1,36 @@
 <div class="container p-3 py-5 row">
   <div class="col-10">
-    <span class="title d-block mb-5"
-      ><i class="fa-solid fa-plane"></i>
-      <span class="ps-1">{{ "public trips" | uppercase }}</span></span
-    >
+    <span class="title d-block mb-5">
+      <i class="fa-solid fa-plane"></i>
+      <span class="ps-1">
+        {{ "public trips" | uppercase }}
+      </span>
+    </span>
     <div *ngIf="!trips.length" class="content my-5 text-center">
-      <span>You have no upcoming trips.</span>
+      <span>You have no trips.</span>
     </div>
     <div class="trips d-flex flex-column justify-content-between">
-      <div
-        class="trip p-3 d-flex justify-content-between"
-        *ngFor="let trip of trips"
-      >
+      <div class="trip p-3 d-flex justify-content-between" *ngFor="let trip of trips">
         <div>
-          <span class="destination">Trip to {{ trip.location }}</span>
+          <span>
+            <span class="destination">Trip to {{ trip.location }}</span>
+            &nbsp;
+            <span *ngIf="trip.requestStatus == 'CREATED'" class="badge bg-secondary">{{ trip.requestStatus }}</span>
+            <span *ngIf="trip.requestStatus == 'ACCEPTED'" class="badge bg-primary">{{ trip.requestStatus }}</span>
+            <span *ngIf="trip.requestStatus == 'COMPLETED'" class="badge bg-success">{{ trip.requestStatus }}</span>
+          </span>
           <span class="date-range d-block">
-            <span class="date-start">{{ trip.from | date : "MMM dd" }}</span
-            >{{ " - " }}
-            <span class="date-end">{{ trip.to | date : "MMM dd" }}</span>
+            <span class="date-start">{{ trip.from | date : "MMM dd yyyy" }}</span>
+            {{ " - " }}
+            <span class="date-end">{{ trip.to | date : "MMM dd yyyy" }}</span>
           </span>
           <span class="message">{{ trip.message }}</span>
         </div>
         <div class="control">
-          <button
-            type="button"
-            class="btn-trigger btn"
-            routerLink="/dashboard/public-trips/create"
-            (click)="edit(trip)"
-          >
+          <button type="button"
+                  class="btn-trigger btn"
+                  routerLink="/dashboard/public-trips/manage"
+                  (click)="edit(trip)" [disabled]="trip.requestStatus == 'COMPLETED'">
             Edit
           </button>
         </div>
@@ -40,8 +43,7 @@
       <button
         type="button"
         class="btn-trigger btn"
-        routerLink="/dashboard/public-trips/create"
-      >
+        routerLink="/dashboard/public-trips/manage">
         New Public Trip
       </button>
     </div>

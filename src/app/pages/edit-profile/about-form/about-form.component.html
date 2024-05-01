@@ -40,14 +40,15 @@
     <div class="inputs w-50">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let l of languages">
-          <i class="fa-solid fa-trash-can me-2" (click)="removeLanguage(l)"></i>{{ l }}
+          <i class="fa-solid fa-trash-can me-2" (click)="removeLanguage(l)"></i
+          >{{ l }}
         </li>
       </ul>
       <select
         class="form-select form-select-lg mb-3"
         aria-label="Large select example"
         (change)="addLanguage()"
-       
+        formControlName="languages"
       >
         <option *ngFor="let l of languagesSet" value="{{ l }}">{{ l }}</option>
       </select>

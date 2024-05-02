@@ -2,3 +2,17 @@
   background-color: var(--black);
   color: var(--white);
 }
+.card-head {
+  & .card-caption {
+    color: var(--light-blue);
+  }
+}
+.verify-btn {
+  background-color: var(--light-green);
+  color: white;
+  border-radius: 0;
+}
+.footer-caption {
+  opacity: 0.8;
+  font-size: 0.8em;
+}

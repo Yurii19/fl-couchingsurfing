@@ -1,16 +1,37 @@
 <div class="card" style="width: 18rem" *ngIf="user$ | async as user">
   <img src="/assets/imgs/user.png" class="card-img-top" alt="..." />
+  <div class="card-head text-center mt-3 mb-5">
+    <h3 class="card-title">{{ user.fullName }}</h3>
+    <span class="card-caption">{{ user.userInfo?.location }}</span>
+  </div>
   <div class="card-body">
-    <h5 class="card-title">{{ user.fullName }}</h5>
-    <h6 class="card-title">{{ user.userInfo?.location }}</h6>
-    <h4 class="verified" *ngIf="user.isVerified; else notverified">Verified</h4>
+    <h5 class="verified" *ngIf="user.isVerified; else notverified">Verified</h5>
     <ng-template #notverified
-      ><h4 class="verified">Profile not Verified</h4></ng-template
+      ><h6 class="verified">Profile not Verified</h6></ng-template
     >
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="main">
+      <ul class="my-3">
+        <li class="verified-item my-2">
+          <span
+            ><i class="fa-solid fa-circle me-2"></i>Payment not verified</span
+          >
+        </li>
+        <li class="verified-item my-2">
+          <span><i class="fa-solid fa-circle me-2"></i>Phone not verified</span>
+        </li>
+        <li class="verified-item my-2">
+          <span>
+            <i class="fa-solid fa-circle me-2"></i>Goverment ID not
+            verified</span
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer px-0">
+      <button class="verify-btn btn w-100" routerLink="/verify">
+        <i class="fa-solid fa-circle-check me-1"></i>Upgrade to Verify Profile
+      </button>
+      <span class="footer-caption d-block mt-3 text-center">Verified members find hosts faster</span>
+    </div>
   </div>
 </div>

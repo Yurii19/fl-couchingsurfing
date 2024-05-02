@@ -29,9 +29,21 @@
 }
 
 .overview {
-    border: 1px dotted yellow;
+  /* border: 1px dotted yellow; */
   & h5 {
     color: var(--white);
     text-transform: uppercase;
+  }
+}
+.overview-options {
+  & span {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* border: 1px solid cyan; */
+  }
+}
+.complete {
+  * {
+    color: var(--light-blue);
   }
 }

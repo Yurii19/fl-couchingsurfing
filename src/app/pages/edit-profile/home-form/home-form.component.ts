@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { gender } from 'src/app/core/types/types';
 import { User } from 'src/app/services/models';
@@ -9,18 +9,32 @@ import { User } from 'src/app/services/models';
   templateUrl: './home-form.component.html',
   styleUrls: ['./home-form.component.css'],
 })
-export class HomeFormComponent {
+export class HomeFormComponent implements OnInit {
   @Input() user!: User;
 
   gendersSet: gender[] = ['MALE', 'FEMALE', 'ANY'];
   guestsAmount: (number | 'any')[] = [1, 2, 3, 4, 5, 'any'];
 
   form = new FormGroup({
-    availability: new FormControl(null),
+    availability: new FormControl(),
     guests: new FormControl(0),
-    gender: new FormControl(null),
-    kids: new FormControl(null),
-    pets: new FormControl(null),
-    smoking: new FormControl(null),
+    gender: new FormControl(),
+    kids: new FormControl(),
+    pets: new FormControl(),
+    smoking: new FormControl(),
   });
+
+  ngOnInit(): void {
+    this.initFormValues();
+  }
+  initFormValues() {
+    this.form.patchValue({
+      availability: this.user.userHome?.isAcceptingGuests ?? undefined,
+      guests: this.user.userHome?.maxGuests ?? 0,
+      gender: this.user.userHome?.preferredGender ?? undefined,
+      kids: this.user.userHome?.kidFriendly ?? undefined,
+      pets: this.user.userHome?.petFriendly ?? undefined,
+      smoking: this.user.userHome?.smokingAllowed ?? undefined,
+    });
+  }
 }

@@ -12,12 +12,12 @@
   width: 20px;
   height: 20px;
 }
-.language-label {
-  width: 210px !important;
-}
+
 .inputs {
-  & ul { border-color: none;
-    & li { border-color: var(--light-black);
+  & ul {
+    border-color: none;
+    & li {
+      border-color: var(--light-black);
       & i {
         color: var(--orange);
         cursor: pointer;
@@ -29,5 +29,14 @@
   color: var(--white);
   &:focus {
     background-color: var(--grey);
+  }
+}
+#location {
+  color: var(--white);
+  &:focus {
+    background-color: var(--light-black);
+  }
+  &::placeholder {
+    color: var(--white);
   }
 }

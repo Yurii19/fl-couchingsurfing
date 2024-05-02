@@ -10,6 +10,7 @@ import { PublicTripsComponent } from './pages/public-trips/public-trips.componen
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 import { authGuard } from './core/auth.guard';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import {CouchRequestsComponent} from "./pages/couch-requests/couch-requests.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'dashboard/public-trips/manage',
     component: CreateTripComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'dashboard/couch-requests',
+    component: CouchRequestsComponent,
     canActivate: [authGuard],
   },
   {

@@ -1,0 +1,84 @@
+<div class="container d-flex flex-column align-items-center py-4">
+  <div class="col-10 d-flex justify-content-evenly column-gap-5">
+    <div class="active-requests req-type">
+      <span class="title d-block mb-5 text-primary">
+        <span class="ps-1 ps-3 active-req" (click)="setRequestStatus('ACCEPTED')">
+          {{ "active couch requests" | uppercase }}
+        </span>
+      </span>
+    </div>
+    <div class="created-requests req-type">
+      <span class="title d-block mb-5 text-secondary">
+        <span class="ps-1 ps-3 created-req" (click)="setRequestStatus('CREATED')">
+          {{ "incoming requests" | uppercase }}
+        </span>
+      </span>
+    </div>
+    <div class="completed-requests req-type">
+      <span class="title d-block mb-5 text-success">
+        <span class="ps-1 ps-3 completed-req" (click)="setRequestStatus('COMPLETED')">
+          {{ "completed couch requests" | uppercase }}
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-10" style="min-height: 420px;">
+    <div *ngIf="!couchRequests.length" class="content my-5 text-center">
+      <span>You have no couch requests.</span>
+    </div>
+    <div class="trips d-flex flex-column justify-content-between">
+      <div class="trip p-3 d-flex justify-content-between" *ngFor="let req of couchRequests">
+        <div>
+          <span>
+            <span class="destination">Trip to {{ req.location }}</span>
+            &nbsp;
+            <span *ngIf="req.requestStatus == 'CREATED'" class="badge bg-secondary">{{ req.requestStatus }}</span>
+            <span *ngIf="req.requestStatus == 'ACCEPTED'" class="badge bg-primary">{{ req.requestStatus }}</span>
+            <span *ngIf="req.requestStatus == 'COMPLETED'" class="badge bg-success">{{ req.requestStatus }}</span>
+          </span>
+          <span class="date-range d-block">
+            <span class="date-start">{{ req.from | date : "MMM dd yyyy" }}</span>
+            {{ " - " }}
+            <span class="date-end">{{ req.to | date : "MMM dd yyyy" }}</span>
+          </span>
+          <span class="message">{{ req.message }}</span>
+        </div>
+        <div class="control">
+          <button type="button"
+                  class="btn-trigger btn btn-complete"
+                  *ngIf="requestStatus == 'ACCEPTED'"
+                  (click)="updateCouchRequest(req, 'COMPLETED')">
+            Complete
+          </button>
+          <button type="button"
+                  class="btn-trigger btn btn-cancel"
+                  *ngIf="requestStatus == 'ACCEPTED'"
+                  (click)="updateCouchRequest(req, 'CANCELED')">
+            Cancel
+          </button>
+
+          <button type="button"
+                  class="btn-trigger btn btn-accept"
+                  *ngIf="requestStatus == 'CREATED'"
+                  (click)="updateCouchRequest(req, 'ACCEPTED')">
+            Accept
+          </button>
+          <button type="button"
+                  class="btn-trigger btn btn-decline"
+                  *ngIf="requestStatus == 'CREATED'"
+                  (click)="updateCouchRequest(req, 'DECLINED')">
+            Decline
+          </button>
+
+          <button type="button"
+                  class="btn-trigger btn btn-feedback"
+                  *ngIf="requestStatus == 'COMPLETED'"
+                  (click)="giveFeedback(req)">
+            Give feedback
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

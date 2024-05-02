@@ -13,7 +13,7 @@ export class TravelPlansComponent implements OnInit {
   links: { name: string; url: string }[] = [
     { name: 'Create a Public Trip', url: '' },
     { name: 'My Public Trips', url: 'dashboard/public-trips' },
-    { name: 'My Couch Requests', url: '' },
+    { name: 'My Couch Requests', url: 'dashboard/couch-requests' },
   ];
 
   page: number = 0;

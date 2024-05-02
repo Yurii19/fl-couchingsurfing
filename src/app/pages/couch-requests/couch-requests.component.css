@@ -1,0 +1,82 @@
+.container {
+  background-color: var(--light-black);
+  color: var(--white);
+  * {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+.title {
+  i {
+    transform: rotate(225deg);
+  }
+  span {
+    font-weight: 600;
+  }
+}
+.destination {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.message {
+  font-size: 0.8em;
+}
+
+.control {
+  display: flex;
+  column-gap: 5px;
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+
+  .btn-trigger {
+    height: 40px;
+    width: 150px;
+  }
+
+  .btn-complete {
+    background-color: var(--light-green);
+  }
+  .btn-complete:hover {
+    background-color: var(--dark-green);
+  }
+  .btn-cancel {
+    background-color: var(--orange);
+  }
+  .btn-cancel:hover {
+    background-color: var(--dark-orange);
+  }
+
+  .btn-accept {
+    background-color: var(--light-blue);
+  }
+  .btn-accept:hover {
+    background-color: var(--dark-blue);
+  }
+  .btn-decline {
+    background-color: var(--light-red);
+  }
+  .btn-decline:hover {
+    background-color: var(--dark-red);
+  }
+
+  .btn-feedback {
+    background-color: var(--orange);
+  }
+  .btn-feedback:hover {
+    background-color: var(--dark-orange);
+  }
+}
+
+.req-type {
+  cursor: pointer;
+}
+.active-req:hover {
+  color: var(--dark-blue);
+}
+.created-req:hover {
+  color: var(--orange);
+}
+.completed-req:hover {
+  color: var(--dark-green);
+}

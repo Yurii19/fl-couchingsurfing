@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/services/models/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
+export enum tabs {
+  about = 'About',
+  home = 'My Home',
+  references = ' References',
+}
 
 @Component({
   selector: 'app-profile-main-section',
@@ -10,11 +15,17 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class ProfileMainSectionComponent implements OnInit {
   user!: User;
 
+  activeTab: tabs = tabs.about;
+  tabs = tabs;
 
   constructor(private storeService: StorageService) {}
   ngOnInit(): void {
     this.storeService.getUser().subscribe((user: User) => {
       this.user = user;
     });
+  }
+
+  swapTab(tab: tabs) {
+    this.activeTab = tab;
   }
 }

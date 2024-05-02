@@ -7,7 +7,6 @@
 .btn-edit {
   background-color: var(--light-blue);
   width: 150px;
-  border-radius: 0;
 }
 
 .about-counter {
@@ -22,11 +21,11 @@
 .item {
   color: var(--light-blue);
 }
-.tab-link {
-  color: var(--light-blue);
-}
-.active-tab {
+.about-link {
   color: var(--orange);
+}
+.home-link {
+  color: var(--light-blue);
 }
 
 .overview {
@@ -40,8 +39,15 @@
   & span {
     padding-top: 5px;
     padding-bottom: 5px;
+    /* border: 1px solid cyan; */
   }
 }
 .bookmark {
   cursor: pointer;
+}
+
+.complete {
+  * {
+    color: var(--light-blue);
+  }
 }

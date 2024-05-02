@@ -1,0 +1,40 @@
+<div class="overview">
+  <h5 class="my-5">my home</h5>
+  <span class="subtitle d-block mb-5">{{ getAppeal() }}</span>
+  <div class="overview-options d-flex flex-column">
+    <span class="col-6">
+      <span>Max Number of Guests:&nbsp; {{ user.userHome?.maxGuests }}</span>
+    </span>
+
+    <span class="col-6">
+      <span>Last Minute Request Okay? &nbsp; Yes</span>
+    </span>
+
+    <span class="col-6">
+      <span
+        >Preferred Gender to Host:&nbsp;
+        {{ user.userHome?.preferredGender }}</span
+      >
+    </span>
+
+    <span class="col-6">
+      <span
+        >Kid Friendly? &nbsp; {{ user.userHome?.kidFriendly ? "Yes" : "No" }}
+      </span>
+    </span>
+
+    <span class="col-6">
+      <span>
+        Pets Friendly? &nbsp;
+        {{ user.userHome?.petFriendly ? "Yes" : "No" }}</span
+      >
+    </span>
+
+    <span class="col-6">
+      <span
+        >Smoking Allowed? &nbsp;
+        {{ user.userHome?.smokingAllowed ? "Yes" : "No" }}</span
+      >
+    </span>
+  </div>
+</div>

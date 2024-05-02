@@ -33,6 +33,8 @@ import { EditProfileAsideComponent } from './pages/edit-profile/edit-profile-asi
 import { EditProfileMainComponent } from './pages/edit-profile/edit-profile-main/edit-profile-main.component';
 import { AboutFormComponent } from './pages/edit-profile/about-form/about-form.component';
 import { HomeFormComponent } from './pages/edit-profile/home-form/home-form.component';
+import { AboutTabComponent } from './pages/profile/about-tab/about-tab.component';
+import { MyHomeTabComponent } from './pages/profile/my-home-tab/my-home-tab.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { HomeFormComponent } from './pages/edit-profile/home-form/home-form.comp
     EditProfileMainComponent,
     AboutFormComponent,
     HomeFormComponent,
+    AboutTabComponent,
+    MyHomeTabComponent,
   ],
   imports: [
     BrowserModule,

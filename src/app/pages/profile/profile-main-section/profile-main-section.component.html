@@ -15,15 +15,18 @@
       </div>
     </div>
     <div class="edit-btn-wrap">
-      <button class="btn-edit btn" routerLink="/profile/edit-profile">Edit My Profile</button>
+      <button class="btn-edit btn" routerLink="/profile/edit-profile">
+        Edit My Profile
+      </button>
     </div>
   </div>
   <div class="about d-flex">
     <span class="about-link me-5">About</span>
     <span class="home-link me-5">My Home</span>
+    <span class="home-link me-5">References</span>
     <ul class="d-flex">
       <li class="me-5">
-        <span class="item pe-3">Photos</span>
+        <span class="item pe-1">Photos</span>
         <span class="about-counter">2</span>
       </li>
       <li class="me-5">
@@ -42,20 +45,49 @@
   </div>
 
   <div class="overview">
-    <h5>owerview</h5>
-    <div class="overview-options">
-      <span>
-        <i class="fa-solid fa-quote-left"></i>
+    <h5 class="mt-4 mb-5">owerview</h5>
+    <div class="overview-options row">
+
+      <span class="col-6">
+        <i class="fa-solid fa-quote-left me-2"></i>
         <span>0 references</span>
       </span>
-      <span>
-        <i class="fa-solid fa-comment"></i>
-        <span>Fluent in </span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-briefcase me-2"></i>
+        <span>{{ user.userInfo?.occupation }}</span>
       </span>
-      <span>
-        <i class="fa-solid fa-venus-mars"></i>
-        <span>0 references</span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-comment me-2"></i>
+        <span>Fluent in {{ user.userInfo?.languages }} </span>
       </span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-graduation-cap me-2"></i>
+        <span>{{ user.userInfo?.education }} </span>
+      </span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-venus-mars me-2"></i>
+        <span>{{ user.userInfo?.age }}</span>
+      </span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-location-dot me-2"></i>
+        <span>No hometown listed</span>
+      </span>
+
+      <span class="col-6">
+        <i class="fa-solid fa-user-group me-2"></i>
+        <span>Member since 2023</span>
+      </span>
+
+      <span class="complete col-6">
+        <i class="fa-regular fa-id-card me-2"></i>
+        <span>Profile 55% complete</span>
+      </span>
+
     </div>
   </div>
 </div>

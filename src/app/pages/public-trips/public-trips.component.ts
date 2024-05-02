@@ -3,6 +3,7 @@ import {Request} from 'src/app/services/models/request';
 import {FormsService} from "../../services/forms/forms.service";
 import {RequestsService} from "../../services/services/requests.service";
 import {NavigationEnd, Router} from "@angular/router";
+import {ReviewsService} from "../../services/services/reviews.service";
 
 @Component({
   selector: 'app-public-trips',
@@ -18,7 +19,8 @@ export class PublicTripsComponent implements OnInit {
   constructor(
     private router: Router,
     private formsService: FormsService,
-    private requestsService: RequestsService
+    private requestsService: RequestsService,
+    private reviewsService: ReviewsService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +37,8 @@ export class PublicTripsComponent implements OnInit {
   loadData() {
     this.requestsService.getOutgoingRequests({
       page: this.page,
-      size: this.size
+      size: this.size,
+      requestStatusList: ['CREATED', 'COMPLETED']
     }).subscribe({
       next: (res) => {
         this.trips = res.content as Request[];
@@ -49,5 +52,9 @@ export class PublicTripsComponent implements OnInit {
 
   edit(trip: Request) {
     this.formsService.setRequest(trip)
+  }
+
+  giveFeedback(requestId?: string) {
+    console.log(`Feedback for ${requestId} request`);
   }
 }

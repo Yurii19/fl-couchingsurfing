@@ -11,6 +11,7 @@ import { PageReview } from '../../models/page-review';
 export interface GetOutgoingReviews$Params {
   page: number;
   size: number;
+  serviceType: 'ACCOMMODATION_PROVISION' | 'ACCOMMODATION_REQUEST';
 }
 
 export function getOutgoingReviews(http: HttpClient, rootUrl: string, params: GetOutgoingReviews$Params, context?: HttpContext): Observable<StrictHttpResponse<PageReview>> {
@@ -18,6 +19,7 @@ export function getOutgoingReviews(http: HttpClient, rootUrl: string, params: Ge
   if (params) {
     rb.query('page', params.page, {});
     rb.query('size', params.size, {});
+    rb.query('serviceType', params.serviceType, {});
   }
 
   return http.request(

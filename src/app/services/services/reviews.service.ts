@@ -13,12 +13,16 @@ import { addReview } from '../fn/reviews/add-review';
 import { AddReview$Params } from '../fn/reviews/add-review';
 import { deleteReview } from '../fn/reviews/delete-review';
 import { DeleteReview$Params } from '../fn/reviews/delete-review';
+import { getAllIncomingReviews } from '../fn/reviews/get-all-incoming-reviews';
+import { GetAllIncomingReviews$Params } from '../fn/reviews/get-all-incoming-reviews';
 import { getIncomingReviews } from '../fn/reviews/get-incoming-reviews';
 import { GetIncomingReviews$Params } from '../fn/reviews/get-incoming-reviews';
 import { getOutgoingReviews } from '../fn/reviews/get-outgoing-reviews';
 import { GetOutgoingReviews$Params } from '../fn/reviews/get-outgoing-reviews';
-import { getReview } from '../fn/reviews/get-review';
-import { GetReview$Params } from '../fn/reviews/get-review';
+import { getReviewById } from '../fn/reviews/get-review-by-id';
+import { GetReviewById$Params } from '../fn/reviews/get-review-by-id';
+import { getReviewByRequestId } from '../fn/reviews/get-review-by-request-id';
+import { GetReviewByRequestId$Params } from '../fn/reviews/get-review-by-request-id';
 import { PageReview } from '../models/page-review';
 import { Review } from '../models/review';
 import { updateReview } from '../fn/reviews/update-review';
@@ -80,31 +84,6 @@ export class ReviewsService extends BaseService {
     );
   }
 
-  /** Path part for operation `getReview()` */
-  static readonly GetReviewPath = '/reviews/{reviewId}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getReview()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getReview$Response(params: GetReview$Params, context?: HttpContext): Observable<StrictHttpResponse<Review>> {
-    return getReview(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getReview$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getReview(params: GetReview$Params, context?: HttpContext): Observable<Review> {
-    return this.getReview$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Review>): Review => r.body)
-    );
-  }
-
   /** Path part for operation `getOutgoingReviews()` */
   static readonly GetOutgoingReviewsPath = '/reviews/outgoing';
 
@@ -152,6 +131,81 @@ export class ReviewsService extends BaseService {
   getIncomingReviews(params: GetIncomingReviews$Params, context?: HttpContext): Observable<PageReview> {
     return this.getIncomingReviews$Response(params, context).pipe(
       map((r: StrictHttpResponse<PageReview>): PageReview => r.body)
+    );
+  }
+
+  /** Path part for operation `getReviewById()` */
+  static readonly GetReviewByIdPath = '/reviews/by-reviewId';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getReviewById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getReviewById$Response(params: GetReviewById$Params, context?: HttpContext): Observable<StrictHttpResponse<Review>> {
+    return getReviewById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getReviewById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getReviewById(params: GetReviewById$Params, context?: HttpContext): Observable<Review> {
+    return this.getReviewById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Review>): Review => r.body)
+    );
+  }
+
+  /** Path part for operation `getReviewByRequestId()` */
+  static readonly GetReviewByRequestIdPath = '/reviews/by-requestId';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getReviewByRequestId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getReviewByRequestId$Response(params: GetReviewByRequestId$Params, context?: HttpContext): Observable<StrictHttpResponse<Review>> {
+    return getReviewByRequestId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getReviewByRequestId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getReviewByRequestId(params: GetReviewByRequestId$Params, context?: HttpContext): Observable<Review> {
+    return this.getReviewByRequestId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Review>): Review => r.body)
+    );
+  }
+
+  /** Path part for operation `getAllIncomingReviews()` */
+  static readonly GetAllIncomingReviewsPath = '/reviews/all-incoming';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAllIncomingReviews()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllIncomingReviews$Response(params: GetAllIncomingReviews$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Review>>> {
+    return getAllIncomingReviews(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAllIncomingReviews$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAllIncomingReviews(params: GetAllIncomingReviews$Params, context?: HttpContext): Observable<Array<Review>> {
+    return this.getAllIncomingReviews$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<Review>>): Array<Review> => r.body)
     );
   }
 

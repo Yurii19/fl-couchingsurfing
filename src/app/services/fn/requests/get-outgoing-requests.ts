@@ -11,6 +11,7 @@ import { PageRequest } from '../../models/page-request';
 export interface GetOutgoingRequests$Params {
   page: number;
   size: number;
+  requestStatusList: Array<'CREATED' | 'ACCEPTED' | 'DECLINED' | 'CANCELED' | 'COMPLETED'>;
 }
 
 export function getOutgoingRequests(http: HttpClient, rootUrl: string, params: GetOutgoingRequests$Params, context?: HttpContext): Observable<StrictHttpResponse<PageRequest>> {
@@ -18,6 +19,7 @@ export function getOutgoingRequests(http: HttpClient, rootUrl: string, params: G
   if (params) {
     rb.query('page', params.page, {});
     rb.query('size', params.size, {});
+    rb.query('requestStatusList', params.requestStatusList, {});
   }
 
   return http.request(

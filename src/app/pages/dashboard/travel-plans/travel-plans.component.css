@@ -10,4 +10,33 @@
   i {
     transform: rotate(225deg);
   }
+  span {
+    font-weight: 600;
+  }
+}
+.destination {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.message {
+  font-size: 0.8em;
+}
+.control {
+  display: flex;
+  column-gap: 5px;
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+
+  .btn-edit {
+    background-color: var(--light-blue);
+    height: 40px;
+    width: 200px;
+  }
+
+  .btn-feedback {
+    background-color: var(--orange);
+    height: 40px;
+    width: 200px;
+  }
 }

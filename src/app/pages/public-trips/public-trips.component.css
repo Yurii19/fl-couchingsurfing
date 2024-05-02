@@ -23,11 +23,22 @@
 }
 
 .control {
-  .btn {
-    color: var(--white);
+  display: flex;
+  column-gap: 5px;
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+
+  .btn-edit {
     background-color: var(--light-blue);
+    height: 40px;
     width: 200px;
-    border-radius: 0;
+  }
+
+  .btn-feedback {
+    background-color: var(--orange);
+    height: 40px;
+    width: 200px;
   }
 }
 .create {

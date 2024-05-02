@@ -403,36 +403,6 @@
         }
       }
     },
-    "/reviews/{reviewId}": {
-      "get": {
-        "tags": [
-          "Reviews"
-        ],
-        "operationId": "getReview",
-        "parameters": [
-          {
-            "name": "reviewId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Review"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/reviews/outgoing": {
       "get": {
         "tags": [
@@ -456,6 +426,18 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ACCOMMODATION_PROVISION",
+                "ACCOMMODATION_REQUEST"
+              ]
             }
           }
         ],
@@ -497,6 +479,18 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ACCOMMODATION_PROVISION",
+                "ACCOMMODATION_REQUEST"
+              ]
+            }
           }
         ],
         "responses": {
@@ -506,6 +500,103 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageReview"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reviews/by-reviewId": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "operationId": "getReviewById",
+        "parameters": [
+          {
+            "name": "reviewId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reviews/by-requestId": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "operationId": "getReviewByRequestId",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reviews/all-incoming": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "operationId": "getAllIncomingReviews",
+        "parameters": [
+          {
+            "name": "serviceType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ACCOMMODATION_PROVISION",
+                "ACCOMMODATION_REQUEST"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
                 }
               }
             }
@@ -575,6 +666,24 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "requestStatusList",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CREATED",
+                  "ACCEPTED",
+                  "DECLINED",
+                  "CANCELED",
+                  "COMPLETED"
+                ]
+              }
+            }
           }
         ],
         "responses": {
@@ -614,6 +723,24 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "requestStatusList",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CREATED",
+                  "ACCEPTED",
+                  "DECLINED",
+                  "CANCELED",
+                  "COMPLETED"
+                ]
+              }
             }
           }
         ],
@@ -704,6 +831,9 @@
             "type": "string"
           },
           "receiverId": {
+            "type": "string"
+          },
+          "requestId": {
             "type": "string"
           },
           "wouldRepeat": {
@@ -902,10 +1032,10 @@
           "ihaveKids": {
             "type": "boolean"
           },
-          "iamSmoker": {
+          "ihavePets": {
             "type": "boolean"
           },
-          "ihavePets": {
+          "iamSmoker": {
             "type": "boolean"
           }
         }
@@ -980,15 +1110,15 @@
               "$ref": "#/components/schemas/SortObject"
             }
           },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
           "first": {
             "type": "boolean"
           },
           "last": {
             "type": "boolean"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
           },
           "pageable": {
             "$ref": "#/components/schemas/PageableObject"
@@ -1019,10 +1149,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "paged": {
+          "unpaged": {
             "type": "boolean"
           },
-          "unpaged": {
+          "paged": {
             "type": "boolean"
           }
         }
@@ -1078,15 +1208,15 @@
               "$ref": "#/components/schemas/SortObject"
             }
           },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
           "first": {
             "type": "boolean"
           },
           "last": {
             "type": "boolean"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
           },
           "pageable": {
             "$ref": "#/components/schemas/PageableObject"
@@ -1127,15 +1257,15 @@
               "$ref": "#/components/schemas/SortObject"
             }
           },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
           "first": {
             "type": "boolean"
           },
           "last": {
             "type": "boolean"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
           },
           "pageable": {
             "$ref": "#/components/schemas/PageableObject"

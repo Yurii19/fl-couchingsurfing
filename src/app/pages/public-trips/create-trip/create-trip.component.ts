@@ -117,6 +117,7 @@ export class CreateTripComponent implements OnInit {
   }
 
   deleteTrip() {
+    this.formsService.setRequest({});
     this.requestsService.deleteRequest({
       requestId: this.tripId
     }).subscribe({

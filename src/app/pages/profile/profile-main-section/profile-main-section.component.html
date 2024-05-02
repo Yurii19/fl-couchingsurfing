@@ -21,9 +21,24 @@
     </div>
   </div>
   <div class="about d-flex">
-    <span class="about-link me-5">About</span>
-    <span class="home-link me-5">My Home</span>
-    <span class="home-link me-5">References</span>
+    <span
+      class="tab-link me-5 bookmark"
+      [ngClass]="{ 'active-tab': activeTab === tabs.about }"
+      (click)="swapTab(tabs.about)"
+      >{{ tabs.about }}</span
+    >
+    <span
+      class="tab-link me-5 bookmark"
+      [ngClass]="{ 'active-tab': activeTab === tabs.home }"
+      (click)="swapTab(tabs.home)"
+      >{{ tabs.home }}</span
+    >
+    <span
+      class="tab-link me-5 bookmark"
+      [ngClass]="{ 'active-tab': activeTab === tabs.references }"
+      (click)="swapTab(tabs.references)"
+      >{{ tabs.references }}</span
+    >
     <ul class="d-flex">
       <li class="me-5">
         <span class="item pe-1">Photos</span>
@@ -45,47 +60,18 @@
   </div>
 
   <div class="overview">
-    <h5 class="mt-4 mb-5">owerview</h5>
-    <div class="overview-options row">
-      <span class="col-6">
-        <i class="fa-solid fa-quote-left me-2"></i>
-        <span>0 references</span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-briefcase me-2"></i>
-        <span>{{ user.userInfo?.occupation }}</span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-comment me-2"></i>
-        <span>Fluent in {{ user.userInfo?.languages }} </span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-graduation-cap me-2"></i>
-        <span>{{ user.userInfo?.education }} </span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-venus-mars me-2"></i>
-        <span>{{ user.userInfo?.age }}&nbsp;years</span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-location-dot me-2"></i>
-        <span>No hometown listed</span>
-      </span>
-
-      <span class="col-6">
-        <i class="fa-solid fa-user-group me-2"></i>
-        <span>Member since 2023</span>
-      </span>
-
-      <span class="complete col-6">
-        <i class="fa-regular fa-id-card me-2"></i>
-        <span>Profile 55% complete</span>
-      </span>
-    </div>
+    <app-about-tab
+      [user]="user"
+      *ngIf="activeTab === tabs.about"
+    ></app-about-tab>
+  </div>
+  <div class="my-home">
+    <app-my-home-tab
+      [user]="user"
+      *ngIf="activeTab === tabs.home"
+    ></app-my-home-tab>
+  </div>
+  <div class="my-home" *ngIf="activeTab === tabs.references">
+    <span>Hello world</span>
   </div>
 </div>

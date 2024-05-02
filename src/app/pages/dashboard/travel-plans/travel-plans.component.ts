@@ -11,9 +11,9 @@ import {FormsService} from "../../../services/forms/forms.service";
 })
 export class TravelPlansComponent implements OnInit {
   links: { name: string; url: string }[] = [
-    { name: 'Create a Public Trip', url: '' },
+    { name: 'Create a Public Trip', url: '/dashboard/public-trips/manage' },
     { name: 'My Public Trips', url: 'dashboard/public-trips' },
-    { name: 'My Couch Requests', url: '' },
+    { name: 'My Couch Requests', url: 'dashboard/couch-requests' },
   ];
 
   page: number = 0;

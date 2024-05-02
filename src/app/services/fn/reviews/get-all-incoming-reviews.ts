@@ -8,14 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { Review } from '../../models/review';
 
-export interface GetReview$Params {
-  reviewId: string;
+export interface GetAllIncomingReviews$Params {
+  serviceType: 'ACCOMMODATION_PROVISION' | 'ACCOMMODATION_REQUEST';
 }
 
-export function getReview(http: HttpClient, rootUrl: string, params: GetReview$Params, context?: HttpContext): Observable<StrictHttpResponse<Review>> {
-  const rb = new RequestBuilder(rootUrl, getReview.PATH, 'get');
+export function getAllIncomingReviews(http: HttpClient, rootUrl: string, params: GetAllIncomingReviews$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Review>>> {
+  const rb = new RequestBuilder(rootUrl, getAllIncomingReviews.PATH, 'get');
   if (params) {
-    rb.path('reviewId', params.reviewId, {});
+    rb.query('serviceType', params.serviceType, {});
   }
 
   return http.request(
@@ -23,9 +23,9 @@ export function getReview(http: HttpClient, rootUrl: string, params: GetReview$P
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Review>;
+      return r as StrictHttpResponse<Array<Review>>;
     })
   );
 }
 
-getReview.PATH = '/reviews/{reviewId}';
+getAllIncomingReviews.PATH = '/reviews/all-incoming';

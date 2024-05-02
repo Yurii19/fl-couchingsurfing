@@ -5,9 +5,3 @@
 * {
   color: var(--white);
 }
-.aside {
-  border: 1px solid rgb(255, 255, 255);
-}
-.main {
-  border: 1px solid rgb(245, 255, 165);
-}

@@ -20,6 +20,7 @@ export class AboutFormComponent implements OnInit {
   languages: string[] = [];
   languagesSet = ['Ukrainian', 'English', 'Frech', 'Spain', 'Poland'];
   form = new FormGroup({
+    age: new FormControl(),
     location: new FormControl(''),
     occupation: new FormControl(''),
     education: new FormControl(''),
@@ -39,6 +40,7 @@ export class AboutFormComponent implements OnInit {
   initFormValues() {
     this.languages = this.user.userInfo?.languages ?? [];
     this.form.patchValue({
+      age: this.user.userInfo?.age ?? 10,
       location: this.user.userInfo?.location ?? '',
       occupation: this.user.userInfo?.occupation ?? '',
       education: this.user.userInfo?.education ?? '',

@@ -1,10 +1,23 @@
 <form class="mt-5" [formGroup]="form">
   <div class="checkbox-wrap mb-3 d-flex">
-    <label for="location" class="form-label w-25">Location</label>
+    <label for="age" class="form-label w-25">Age</label>
+    <div class=" ">
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        autocomplete="off"
+        formControlName="age"
+        min="1"
+      />
+    </div>
+  </div>
 
+  <div class="checkbox-wrap mb-3 d-flex">
+    <label for="location" class="form-label w-25">Location</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control w-75"
       id="location"
       autocomplete="off"
       formControlName="location"
@@ -16,7 +29,7 @@
     <label for="occupation" class="form-label w-25">Occupation</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control w-75"
       id="occupation"
       formControlName="occupation"
     />
@@ -26,14 +39,14 @@
     <label for="education" class="form-label w-25">Education</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control w-75"
       id="education"
       formControlName="education"
     />
   </div>
 
   <div class="mb-3 d-flex">
-    <label for="education" class="form-label language-label"
+    <label for="education" class="form-label language-label w-25"
       >Language i am fluent in</label
     >
     <div class="inputs w-50">

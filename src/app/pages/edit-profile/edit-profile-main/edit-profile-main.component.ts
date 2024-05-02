@@ -67,7 +67,7 @@ export class EditProfileMainComponent implements OnInit {
 
     const newUserInfo: UserInfo = {
       aboutMe: form.aboutText ?? '',
-      age: 0,
+      age: form.age ?? 0,
       education: form.education ?? '',
       languages: this.aboutForm.languages ?? [],
       location: form.location ?? '',

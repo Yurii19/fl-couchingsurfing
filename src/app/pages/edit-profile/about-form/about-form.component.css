@@ -12,9 +12,7 @@
   width: 20px;
   height: 20px;
 }
-.language-label {
-  width: 210px !important;
-}
+
 .inputs {
   & ul {
     border-color: none;

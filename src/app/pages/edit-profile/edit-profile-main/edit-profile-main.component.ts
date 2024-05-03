@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User, UserHome, UserInfo } from 'src/app/services/models';
-import { StorageService } from 'src/app/services/storage/storage.service';
-import { AboutFormComponent } from '../about-form/about-form.component';
-import { UsersService } from 'src/app/services/services';
-import { Router } from '@angular/router';
-import { HomeFormComponent } from '../home-form/home-form.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {User, UserHome, UserInfo} from 'src/app/services/models';
+import {StorageService} from 'src/app/services/storage/storage.service';
+import {AboutFormComponent} from '../about-form/about-form.component';
+import {UsersService} from 'src/app/services/services';
+import {Router} from '@angular/router';
+import {HomeFormComponent} from '../home-form/home-form.component';
 
 export type Tab = 'About' | 'My Home';
 @Component({
@@ -24,7 +24,8 @@ export class EditProfileMainComponent implements OnInit {
     private storeService: StorageService,
     private userService: UsersService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.storeService.getUser().subscribe((user: User) => {
@@ -57,7 +58,7 @@ export class EditProfileMainComponent implements OnInit {
     };
 
     this.user.userHome = newUserHome;
-    this.userService.updateUserInfo({ body: this.user }).subscribe((r) => {
+    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });
   }
@@ -76,7 +77,7 @@ export class EditProfileMainComponent implements OnInit {
     };
     this.user.userInfo = newUserInfo;
     // console.log(this.user);
-    this.userService.updateUserInfo({ body: this.user }).subscribe((r) => {
+    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });
   }

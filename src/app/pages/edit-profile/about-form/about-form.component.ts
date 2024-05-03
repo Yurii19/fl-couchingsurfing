@@ -18,7 +18,7 @@ export class AboutFormComponent implements OnInit {
   @Input() user!: User;
 
   languages: string[] = [];
-  languagesSet = ['Ukrainian', 'English', 'Frech', 'Spain', 'Poland'];
+  languagesSet = ['Ukrainian', 'English', 'French', 'Spain', 'Poland', 'German', 'Turkish', 'Italian'];
   form = new FormGroup({
     age: new FormControl(),
     location: new FormControl(''),

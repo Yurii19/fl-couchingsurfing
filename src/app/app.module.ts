@@ -35,6 +35,7 @@ import { HomeFormComponent } from './pages/edit-profile/home-form/home-form.comp
 import { AboutTabComponent } from './pages/profile/about-tab/about-tab.component';
 import { MyHomeTabComponent } from './pages/profile/my-home-tab/my-home-tab.component';
 import { FeedbackModalComponent } from './pages/public-trips/feedback-modal/feedback-modal.component';
+import { CouchRequestsComponent } from './pages/couch-requests/couch-requests.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { FeedbackModalComponent } from './pages/public-trips/feedback-modal/feed
     AboutTabComponent,
     MyHomeTabComponent,
     FeedbackModalComponent,
+    CouchRequestsComponent,
   ],
   imports: [
     BrowserModule,

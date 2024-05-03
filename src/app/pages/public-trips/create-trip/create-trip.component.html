@@ -23,6 +23,7 @@
               aria-describedby="emailHelp"
               formControlName="destination"
               [readOnly]="isEdit"
+              [ngClass]="destinationClass"
             />
           </div>
           <div
@@ -44,6 +45,7 @@
             id="arrival"
             aria-describedby="emailHelp"
             formControlName="arrival"
+            [ngClass]="arrivalClass"
           />
         </div>
 
@@ -58,6 +60,7 @@
             id="departure"
             aria-describedby="emailHelp"
             formControlName="departure"
+            [ngClass]="departureClass"
           />
         </div>
 
@@ -73,6 +76,7 @@
             id="travelers"
             aria-describedby="emailHelp"
             formControlName="travelers"
+            [ngClass]="travelersClass"
           />
         </div>
 
@@ -88,6 +92,7 @@
               id="selected-host"
               aria-describedby="emailHelp"
               formControlName="host"
+              [ngClass]="hostClass"
             />
           </fieldset>
         </div>
@@ -103,6 +108,7 @@
             id="description"
             aria-describedby="emailHelp"
             formControlName="description"
+            [ngClass]="descriptionClass"
           ></textarea>
         </div>
       </form>
@@ -119,7 +125,7 @@
           Delete
         </button>
       </div>
-      <div class="d-flex justify-content-between col-5">
+      <div class="d-flex justify-content-between col-5 gap-4">
         <button type="button" class="btn-cancel btn" (click)="cancelForm()">
           Cancel
         </button>

@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Request} from 'src/app/services/models/request';
-import {FormsService} from "../../../services/forms/forms.service";
-import {RequestsService, UsersService,} from 'src/app/services/services';
-import {User} from "../../../services/models/user";
-import {Router} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Request } from 'src/app/services/models/request';
+import { FormsService } from '../../../services/forms/forms.service';
+import { RequestsService, UsersService } from 'src/app/services/services';
+import { User } from '../../../services/models/user';
+import { Router } from '@angular/router';
+import { getTime } from 'date-fns';
 
 @Component({
   selector: 'app-create-trip',
@@ -16,13 +17,20 @@ export class CreateTripComponent implements OnInit {
   @Input() button: string = ' New Public Trip';
   @Input() request: Request = {} as Request;
 
+  destinationClass = '';
+  arrivalClass = '';
+  departureClass = '';
+  travelersClass = '';
+  descriptionClass = '';
+  hostClass = '';
+
   form: FormGroup = new FormGroup({
-    destination: new FormControl(''),
-    arrival: new FormControl(''),
-    departure: new FormControl(''),
-    travelers: new FormControl(''),
-    description: new FormControl(''),
-    host: new FormControl(''),
+    destination: new FormControl('', [Validators.required]),
+    arrival: new FormControl('', [Validators.required]),
+    departure: new FormControl('', [Validators.required]),
+    travelers: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    host: new FormControl('', [Validators.required, Validators.pattern(/\*/)]),
   });
 
   tripId: string = '';
@@ -39,8 +47,7 @@ export class CreateTripComponent implements OnInit {
     private requestsService: RequestsService,
     private usersService: UsersService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     const req = this.formsService.currentRequest;
@@ -55,31 +62,54 @@ export class CreateTripComponent implements OnInit {
     } else {
       this.isEdit = false;
     }
+
+    this.form.valueChanges.subscribe(() => {
+      this.validateForm();
+    });
+  }
+
+  validateDate() {
+    const unix1 = getTime(this.form.get('arrival')?.value);
+    const unix2 = getTime(this.form.get('departure')?.value);
+    if (unix1 > unix2) {
+      alert('Input correct dates');
+      this.form.get('arrival')?.reset();
+      this.form.get('departure')?.reset();
+    }
   }
 
   onCreateRequest() {
-    console.log(this.form);
+    this.validateForm();
+    this.validateDate();
+    if (!this.form.valid) return;
     if (!this.isHostEmpty) {
       this.usersService.getAuthenticatedUser().subscribe((resp: object) => {
         const sender = resp as { id: string };
-        const request = this.formsService
-          .createRequestFromFormValues(this.form.value, sender.id, this.selectedHostId);
+        const request = this.formsService.createRequestFromFormValues(
+          this.form.value,
+          sender.id,
+          this.selectedHostId
+        );
 
         if (this.isEdit) {
-          this.requestsService.updateRequest({
-            requestId: this.tripId,
-            body: request
-          }).subscribe({
-            next: (res) => console.log('Updated: ' + res),
-            error: (err) => console.log(err)
-          });
+          this.requestsService
+            .updateRequest({
+              requestId: this.tripId,
+              body: request,
+            })
+            .subscribe({
+              next: (res) => console.log('Updated: ' + res),
+              error: (err) => console.log(err),
+            });
         } else {
-          this.requestsService.sendAccommodationRequest({
-            body: request
-          }).subscribe({
-            next: (res) => console.log('Created new request: ' + res),
-            error: (err) => console.log(err)
-          });
+          this.requestsService
+            .sendAccommodationRequest({
+              body: request,
+            })
+            .subscribe({
+              next: (res) => console.log('Created new request: ' + res),
+              error: (err) => console.log(err),
+            });
         }
       });
 
@@ -87,22 +117,37 @@ export class CreateTripComponent implements OnInit {
     }
   }
 
+  validateForm() {
+    this.destinationClass = this.form.get('destination')?.errors ? 'error' : '';
+    this.arrivalClass = this.form.get('arrival')?.errors ? 'error' : '';
+    this.departureClass = this.form.get('departure')?.errors ? 'error' : '';
+    this.travelersClass = this.form.get('travelers')?.errors ? 'error' : '';
+    this.descriptionClass =
+      this.form.get('description')?.errors ||
+      this.form.get('description')?.value === ''
+        ? 'error'
+        : '';
+    this.hostClass = this.form.get('host')?.errors ? 'error' : '';
+  }
+
   findHosts() {
     this.location = this.form.get('destination')?.value as string;
 
-    this.usersService.getHosts({
-      location: this.location,
-      page: this.page,
-      size: this.size
-    }).subscribe({
-      next: (res) => {
-        this.availableHosts = res.content as User[];
-        console.log(`Available hosts ${this.availableHosts.length}`);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+    this.usersService
+      .getHosts({
+        location: this.location,
+        page: this.page,
+        size: this.size,
+      })
+      .subscribe({
+        next: (res) => {
+          this.availableHosts = res.content as User[];
+          console.log(`Available hosts ${this.availableHosts.length}`);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   selectHost(host: User) {
@@ -118,12 +163,14 @@ export class CreateTripComponent implements OnInit {
 
   deleteTrip() {
     this.formsService.setRequest({});
-    this.requestsService.deleteRequest({
-      requestId: this.tripId
-    }).subscribe({
-      next: (res) => console.log(res),
-      error: (err) => console.log(err)
-    });
+    this.requestsService
+      .deleteRequest({
+        requestId: this.tripId,
+      })
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (err) => console.log(err),
+      });
     this.router.navigate(['dashboard', 'public-trips']);
   }
 

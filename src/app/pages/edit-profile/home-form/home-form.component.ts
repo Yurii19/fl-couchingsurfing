@@ -23,9 +23,9 @@ export class HomeFormComponent implements OnInit {
     pets: new FormControl(),
     disabledPeople: new FormControl(),
     smoking: new FormControl(),
-    iAmSmoker: new FormControl(),
-    iHaveKids: new FormControl(),
-    iHavePets: new FormControl(),
+    iamSmoker: new FormControl(),
+    ihaveKids: new FormControl(),
+    ihavePets: new FormControl(),
     otherInfo: new FormControl(),
   });
 
@@ -41,9 +41,9 @@ export class HomeFormComponent implements OnInit {
       pets: this.user.userHome?.petFriendly ?? undefined,
       disabledPeople: this.user.userHome?.wheelchairAllowed ?? undefined,
       smoking: this.user.userHome?.smokingAllowed ?? undefined,
-      iAmSmoker: this.user.userHome?.iamSmoker ?? undefined,
-      iHaveKids: this.user.userHome?.ihaveKids ?? undefined,
-      iHavePets: this.user.userHome?.ihavePets ?? undefined,
+      iamSmoker: this.user.userHome?.iamSmoker ?? undefined,
+      ihaveKids: this.user.userHome?.ihaveKids ?? undefined,
+      ihavePets: this.user.userHome?.ihavePets ?? undefined,
       otherInfo: this.user.userHome?.otherInfo ?? undefined,
     });
   }

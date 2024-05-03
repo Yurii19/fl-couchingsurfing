@@ -44,20 +44,22 @@ export class EditProfileMainComponent implements OnInit {
   saveUserHome() {
     const form = this.homeForm.form.value;
     const newUserHome: UserHome = {
-      iamSmoker: undefined,
-      ihaveKids: undefined,
-      ihavePets: undefined,
+      iamSmoker: form.iamSmoker ?? false,
+      ihaveKids: form.ihaveKids ?? false,
+      ihavePets: form.ihavePets ?? false,
       isAcceptingGuests: form.availability ?? false,
       kidFriendly: form.kids ?? false,
       maxGuests: form.guests ?? 0,
-      otherInfo: undefined,
+      otherInfo: form.otherInfo ?? undefined,
       petFriendly: form.pets ?? false,
       preferredGender: form.gender ?? undefined,
       smokingAllowed: form.smoking ?? false,
-      wheelchairAllowed: undefined,
+      wheelchairAllowed: form.disabledPeople ?? false,
     };
 
     this.user.userHome = newUserHome;
+    console.log('Updated user home');
+    console.log(newUserHome);
     this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });
@@ -76,7 +78,8 @@ export class EditProfileMainComponent implements OnInit {
       userPhotos: [''],
     };
     this.user.userInfo = newUserInfo;
-    // console.log(this.user);
+    console.log('Updated user info');
+    console.log(newUserInfo);
     this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });

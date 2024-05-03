@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Review } from 'src/app/services/models';
 import { ReviewsService } from 'src/app/services/services';
 import { Request } from 'src/app/services/models/request';
@@ -10,6 +10,7 @@ import { Request } from 'src/app/services/models/request';
 })
 export class FeedbackModalComponent {
   @Input() trip: Request = {};
+  @Input() isHost: boolean = false;
   @Output() cloceModal = new EventEmitter();
 
   feedback = '';
@@ -29,6 +30,9 @@ export class FeedbackModalComponent {
       serviceType: this.trip.serviceType ?? undefined,
       wouldRepeat: true,
     };
+    if (this.isHost) {
+      review.serviceType = 'ACCOMMODATION_PROVISION';
+    }
     this.reviewService.addReview$Response({ body: review }).subscribe((d) => {
       this.close();
     });

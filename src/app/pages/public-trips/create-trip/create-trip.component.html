@@ -1,11 +1,12 @@
 <div class="create mt-4 mb-4 d-flex column-gap-5 justify-content-center">
-  <div class="form" style="width: 500px;">
+  <div class="form" style="width: 500px">
     <div class="form-header">
       <h1 class="main-title w-100 fs-5 px-2 py-3">{{ title }}</h1>
     </div>
     <div class="form-body px-3">
       <span class="caption d-block mt-3" *ngIf="!isEdit">
-        Post your trip details so that you can be discovered by local hosts, event organizer, or other travelers
+        Post your trip details so that you can be discovered by local hosts,
+        event organizer, or other travelers
       </span>
 
       <form [formGroup]="form" class="container mt-3 row">
@@ -15,10 +16,19 @@
               Destination
               <b class="required">*</b>
             </label>
-            <input type="text" class="form-control" id="destination" aria-describedby="emailHelp"
-                   formControlName="destination" [readOnly]="isEdit"/>
+            <input
+              type="text"
+              class="form-control"
+              id="destination"
+              aria-describedby="emailHelp"
+              formControlName="destination"
+              [readOnly]="isEdit"
+            />
           </div>
-          <div *ngIf="!isEdit" class="icon-wrap d-flex align-items-end p-1 text-end col-1">
+          <div
+            *ngIf="!isEdit"
+            class="icon-wrap d-flex align-items-end p-1 text-end col-1"
+          >
             <i class="fa-solid fa-magnifying-glass" (click)="findHosts()"></i>
           </div>
         </div>
@@ -28,7 +38,13 @@
             Arrival date
             <b class="required">*</b>
           </label>
-          <input type="date" class="form-control" id="arrival" aria-describedby="emailHelp" formControlName="arrival"/>
+          <input
+            type="date"
+            class="form-control"
+            id="arrival"
+            aria-describedby="emailHelp"
+            formControlName="arrival"
+          />
         </div>
 
         <div class="form-input col-6">
@@ -36,8 +52,13 @@
             Departure date
             <b class="required">*</b>
           </label>
-          <input type="date" class="form-control" id="departure" aria-describedby="emailHelp"
-                 formControlName="departure"/>
+          <input
+            type="date"
+            class="form-control"
+            id="departure"
+            aria-describedby="emailHelp"
+            formControlName="departure"
+          />
         </div>
 
         <div class="form-input col-6">
@@ -45,8 +66,14 @@
             Number of Travelers
             <b class="required">*</b>
           </label>
-          <input type="number" min="1" class="form-control" id="travelers" aria-describedby="emailHelp"
-                 formControlName="travelers"/>
+          <input
+            type="number"
+            min="1"
+            class="form-control"
+            id="travelers"
+            aria-describedby="emailHelp"
+            formControlName="travelers"
+          />
         </div>
 
         <div class="form-input col-6">
@@ -55,8 +82,13 @@
               Host
               <b class="required">*</b>
             </label>
-            <input type="string" class="form-control" id="selected-host" aria-describedby="emailHelp"
-                   formControlName="host"/>
+            <input
+              type="string"
+              class="form-control"
+              id="selected-host"
+              aria-describedby="emailHelp"
+              formControlName="host"
+            />
           </fieldset>
         </div>
 
@@ -65,58 +97,98 @@
             Trip description
             <b class="required">*</b>
           </label>
-          <textarea type="text" class="form-control" id="description" aria-describedby="emailHelp"
-                    formControlName="description"></textarea>
+          <textarea
+            type="text"
+            class="form-control"
+            id="description"
+            aria-describedby="emailHelp"
+            formControlName="description"
+          ></textarea>
         </div>
       </form>
     </div>
 
-    <div class="modal-footer row py-3 ps-4 pe-4 ">
+    <div class="modal-footer row py-3 ps-4 pe-4">
       <div class="text-start col-7">
-        <button *ngIf="isEdit" type="button" class="btn-delete btn" (click)="deleteTrip()">
+        <button
+          *ngIf="isEdit"
+          type="button"
+          class="btn-delete btn"
+          (click)="deleteTrip()"
+        >
           Delete
         </button>
       </div>
-      <div class=" d-flex justify-content-between col-5">
+      <div class="d-flex justify-content-between col-5">
         <button type="button" class="btn-cancel btn" (click)="cancelForm()">
           Cancel
         </button>
-        <button type="button" class="btn-create btn" id="btn-create" (click)="onCreateRequest()"
-                [disabled]="isHostEmpty">
+        <button
+          type="button"
+          class="btn-create btn"
+          id="btn-create"
+          (click)="onCreateRequest()"
+          [disabled]="isHostEmpty"
+        >
           Create
         </button>
       </div>
     </div>
   </div>
 
-  <div *ngIf="!isEdit" class="hosts" style="width: 500px;">
+  <div *ngIf="!isEdit" class="hosts" style="width: 500px">
     <div class="hosts-header">
       <h1 class="main-title w-100 fs-5 px-2 py-3">
         Available hosts at:
-        <b class="text-primary" style="background: transparent">{{ location }}</b>
+        <b class="text-primary" style="background: transparent">{{
+          location
+        }}</b>
       </h1>
     </div>
     <div class="border-top border-1 border-black mt-3 user-select-none">
-      <div class="border-bottom border-1 border-black d-flex column-gap-4" style="cursor: pointer;"
-           *ngFor="let host of availableHosts" (dblclick)="selectHost(host)">
-        <img class="d-flex mt-3 mb-3 ms-4" src="/assets/imgs/profile-img.png" alt=""
-             style="width: 100px; height: 100px;">
+      <div
+        class="border-bottom border-1 border-black d-flex column-gap-4"
+        style="cursor: pointer"
+        *ngFor="let host of availableHosts"
+        (dblclick)="selectHost(host)"
+      >
+        <img
+          class="d-flex mt-3 mb-3 ms-4"
+          src="/assets/imgs/profile-img.png"
+          alt=""
+          style="width: 100px; height: 100px"
+        />
         <div class="mt-3 d-flex flex-column row-gap-1" style="width: 200px">
-          <span class="host-fullname fs-5">{{ host.fullName }}
-            <i class="fa-solid fa-star text-warning" style="font-size: 13px;"> {{ host.rating?.toFixed(1) }}</i>
+          <span class="host-fullname fs-5"
+            >{{ host.fullName }}
+            <i class="fa-solid fa-star text-warning" style="font-size: 13px">
+              {{ host.rating?.toFixed(1) }}</i
+            >
           </span>
           <div style="font-size: 13px">
             <div>
               <label for="langs" class="fw-bold">Speaks: </label>
               &nbsp;
-              <span class="languages" id="langs" *ngFor="let language of host.userInfo?.languages; let last = last">
-              <span>{{ language }}</span>{{ !last ? ',' : '' }}
-            </span>
+              <span
+                class="languages"
+                id="langs"
+                *ngFor="
+                  let language of host.userInfo?.languages;
+                  let last = last
+                "
+              >
+                <span>{{ language }}</span
+                >{{ !last ? "," : "" }}
+              </span>
             </div>
             <div>
-              <label for="couches-amount" class="fw-bold">Max guests amount:</label>
+              <label for="couches-amount" class="fw-bold"
+                >Max guests amount:</label
+              >
               &nbsp;
-              <span class="couches-amount" id="couches-amount">{{ host.userHome?.maxGuests }}</span>
+              <span class="couches-amount" id="couches-amount">{{
+                host.userHome?.maxGuests
+              }}</span>
             </div>
           </div>
           <span class="text-success">Accepting guests</span>
@@ -125,33 +197,53 @@
           <div>
             <label for="kids-allowed">Kids allowed:</label>
             &nbsp;
-            <i class="fa-solid fs-6" id="kids-allowed"
-               [ngClass]="{'fa-xmark text-danger': !host.userHome?.kidFriendly,
-               'fa-check text-success': host.userHome?.kidFriendly}">
+            <i
+              class="fa-solid fs-6"
+              id="kids-allowed"
+              [ngClass]="{
+                'fa-xmark text-danger': !host.userHome?.kidFriendly,
+                'fa-check text-success': host.userHome?.kidFriendly
+              }"
+            >
             </i>
           </div>
           <div>
             <label for="pets-allowed">Pets allowed:</label>
             &nbsp;
-            <i class="fa-solid fs-6" id="pets-allowed"
-               [ngClass]="{'fa-xmark text-danger': !host.userHome?.petFriendly,
-               'fa-check text-success': host.userHome?.petFriendly}">
+            <i
+              class="fa-solid fs-6"
+              id="pets-allowed"
+              [ngClass]="{
+                'fa-xmark text-danger': !host.userHome?.petFriendly,
+                'fa-check text-success': host.userHome?.petFriendly
+              }"
+            >
             </i>
           </div>
           <div>
             <label for="wheelchair-allowed">For disabled:</label>
             &nbsp;
-            <i class="fa-solid fs-6" id="wheelchair-allowed"
-               [ngClass]="{'fa-xmark text-danger': !host.userHome?.wheelchairAllowed,
-               'fa-check text-success': host.userHome?.wheelchairAllowed}">
+            <i
+              class="fa-solid fs-6"
+              id="wheelchair-allowed"
+              [ngClass]="{
+                'fa-xmark text-danger': !host.userHome?.wheelchairAllowed,
+                'fa-check text-success': host.userHome?.wheelchairAllowed
+              }"
+            >
             </i>
           </div>
           <div>
             <label for="smoking-allowed">Smoking:</label>
             &nbsp;
-            <i class="fa-solid fs-6" id="smoking-allowed"
-               [ngClass]="{'fa-xmark text-danger': !host.userHome?.smokingAllowed,
-               'fa-check text-success': host.userHome?.smokingAllowed}">
+            <i
+              class="fa-solid fs-6"
+              id="smoking-allowed"
+              [ngClass]="{
+                'fa-xmark text-danger': !host.userHome?.smokingAllowed,
+                'fa-check text-success': host.userHome?.smokingAllowed
+              }"
+            >
             </i>
           </div>
         </div>

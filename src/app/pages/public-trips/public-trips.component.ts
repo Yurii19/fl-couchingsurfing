@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Request} from 'src/app/services/models/request';
-import {FormsService} from "../../services/forms/forms.service";
-import {RequestsService} from "../../services/services/requests.service";
-import {NavigationEnd, Router} from "@angular/router";
-import {ReviewsService} from "../../services/services/reviews.service";
+import { Component, OnInit } from '@angular/core';
+import { Request } from 'src/app/services/models/request';
+import { FormsService } from '../../services/forms/forms.service';
+import { RequestsService } from '../../services/services/requests.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { ReviewsService } from '../../services/services/reviews.service';
 
 @Component({
   selector: 'app-public-trips',
@@ -15,6 +15,8 @@ export class PublicTripsComponent implements OnInit {
   size: number = 1000;
 
   trips: Request[] = [];
+  isModalShown = false;
+  tripToFeedback? = 'hello';
 
   constructor(
     private router: Router,
@@ -35,26 +37,33 @@ export class PublicTripsComponent implements OnInit {
   }
 
   loadData() {
-    this.requestsService.getOutgoingRequests({
-      page: this.page,
-      size: this.size,
-      requestStatusList: ['CREATED', 'COMPLETED']
-    }).subscribe({
-      next: (res) => {
-        this.trips = res.content as Request[];
-        console.log('Requests retrieved.');
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    this.requestsService
+      .getOutgoingRequests({
+        page: this.page,
+        size: this.size,
+        requestStatusList: ['CREATED', 'COMPLETED'],
+      })
+      .subscribe({
+        next: (res) => {
+          this.trips = res.content as Request[];
+          console.log('Requests retrieved.');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   edit(trip: Request) {
-    this.formsService.setRequest(trip)
+    this.formsService.setRequest(trip);
   }
 
   giveFeedback(requestId?: string) {
-    console.log(`Feedback for ${requestId} request`);
+    const theTrip = this.trips.find((trip) => trip.id === requestId);
+    if (theTrip !== undefined) {
+      this.tripToFeedback = theTrip.location;
+    }
+
+    this.isModalShown = true;
   }
 }

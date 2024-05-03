@@ -16,7 +16,7 @@ export class PublicTripsComponent implements OnInit {
 
   trips: Request[] = [];
   isModalShown = false;
-  tripToFeedback? = 'hello';
+  tripToFeedback : Request = {} ;
 
   constructor(
     private router: Router,
@@ -61,7 +61,7 @@ export class PublicTripsComponent implements OnInit {
   giveFeedback(requestId?: string) {
     const theTrip = this.trips.find((trip) => trip.id === requestId);
     if (theTrip !== undefined) {
-      this.tripToFeedback = theTrip.location;
+      this.tripToFeedback = theTrip;
     }
 
     this.isModalShown = true;

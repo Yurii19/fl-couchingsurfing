@@ -1,4 +1,5 @@
 * {
+  background-color: var(--light-black);
   color: var(--white);
 }
 .status {
@@ -47,4 +48,11 @@
 }
 .bookmark {
   cursor: pointer;
+}
+
+.form-control {
+  color: var(--white);
+  &:focus {
+    background-color: var(--grey);
+  }
 }

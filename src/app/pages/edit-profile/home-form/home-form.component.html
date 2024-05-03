@@ -44,39 +44,92 @@
     </select>
   </div>
 
-  <div class="mb-3 d-flex">
-    <span class="title w-25">Childeren, Pets, Smoking</span>
-    <div class="input-group d-flex flex-column gap-1 w-25">
-      <div class="checkbox-wrap">
-        <input
-          type="checkbox"
-          class="checkbox ms-2"
-          id="kids"
-          autocomplete="off"
-          formControlName="kids"
-        />
-        <label for="kids" class="form-label">Kids Friendly</label>
+  <div class="mb-3 d-flex flex-column row-gap-3">
+    <div class="input-group d-flex column-gap-5">
+      <div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="kids"
+            autocomplete="off"
+            formControlName="kids"
+          />
+          <label for="kids" class="form-label">Allow kids</label>
+        </div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="pets"
+            autocomplete="off"
+            formControlName="pets"
+          />
+          <label for="pets" class="form-label">Allow pets</label>
+        </div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="smoking"
+            autocomplete="off"
+            formControlName="smoking"
+          />
+          <label for="smoking" class="form-label">Allow smoking</label>
+        </div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="disabledPeople"
+            autocomplete="off"
+            formControlName="disabledPeople"
+          />
+          <label for="disabledPeople" class="form-label">Available for disabled people</label>
+        </div>
       </div>
-      <div class="checkbox-wrap">
-        <input
-          type="checkbox"
-          class="checkbox ms-2"
-          id="pets"
-          autocomplete="off"
-          formControlName="pets"
-        />
-        <label for="pets" class="form-label">Pet Friendly</label>
+      <div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="iamSmoker"
+            autocomplete="off"
+            formControlName="iamSmoker"
+          />
+          <label for="iamSmoker" class="form-label">I'm smoker</label>
+        </div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="ihaveKids"
+            autocomplete="off"
+            formControlName="ihaveKids"
+          />
+          <label for="ihaveKids" class="form-label">I have kids</label>
+        </div>
+        <div class="checkbox-wrap">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="ihavePets"
+            autocomplete="off"
+            formControlName="ihavePets"
+          />
+          <label for="ihavePets" class="form-label">I have pets</label>
+        </div>
       </div>
-      <div class="checkbox-wrap">
-        <input
-          type="checkbox"
-          class="checkbox ms-2"
-          id="smoking"
-          autocomplete="off"
-          formControlName="smoking"
-        />
-        <label for="smoking" class="form-label">Smoking is Allowed</label>
-      </div>
+    </div>
+    <div class="mb-3">
+      <label for="otherInfo" class="form-label">Other info</label>
+      <textarea
+        type="text"
+        class="form-control"
+        id="otherInfo"
+        rows="6"
+        formControlName="otherInfo"
+      ></textarea>
     </div>
   </div>
 </form>

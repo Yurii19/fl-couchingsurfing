@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User, UserHome, UserInfo } from 'src/app/services/models';
-import { StorageService } from 'src/app/services/storage/storage.service';
-import { AboutFormComponent } from '../about-form/about-form.component';
-import { UsersService } from 'src/app/services/services';
-import { Router } from '@angular/router';
-import { HomeFormComponent } from '../home-form/home-form.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {User, UserHome, UserInfo} from 'src/app/services/models';
+import {StorageService} from 'src/app/services/storage/storage.service';
+import {AboutFormComponent} from '../about-form/about-form.component';
+import {UsersService} from 'src/app/services/services';
+import {Router} from '@angular/router';
+import {HomeFormComponent} from '../home-form/home-form.component';
 
 export type Tab = 'About' | 'My Home';
 @Component({
@@ -24,7 +24,8 @@ export class EditProfileMainComponent implements OnInit {
     private storeService: StorageService,
     private userService: UsersService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.storeService.getUser().subscribe((user: User) => {
@@ -43,21 +44,23 @@ export class EditProfileMainComponent implements OnInit {
   saveUserHome() {
     const form = this.homeForm.form.value;
     const newUserHome: UserHome = {
-      iamSmoker: undefined,
-      ihaveKids: undefined,
-      ihavePets: undefined,
+      iamSmoker: form.iamSmoker ?? false,
+      ihaveKids: form.ihaveKids ?? false,
+      ihavePets: form.ihavePets ?? false,
       isAcceptingGuests: form.availability ?? false,
       kidFriendly: form.kids ?? false,
       maxGuests: form.guests ?? 0,
-      otherInfo: undefined,
+      otherInfo: form.otherInfo ?? undefined,
       petFriendly: form.pets ?? false,
       preferredGender: form.gender ?? undefined,
       smokingAllowed: form.smoking ?? false,
-      wheelchairAllowed: undefined,
+      wheelchairAllowed: form.disabledPeople ?? false,
     };
 
     this.user.userHome = newUserHome;
-    this.userService.updateUserInfo({ body: this.user }).subscribe((r) => {
+    console.log('Updated user home');
+    console.log(newUserHome);
+    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });
   }
@@ -75,8 +78,9 @@ export class EditProfileMainComponent implements OnInit {
       userPhotos: [''],
     };
     this.user.userInfo = newUserInfo;
-    // console.log(this.user);
-    this.userService.updateUserInfo({ body: this.user }).subscribe((r) => {
+    console.log('Updated user info');
+    console.log(newUserInfo);
+    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
       this.router.navigateByUrl('/profile');
     });
   }

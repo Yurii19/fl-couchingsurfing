@@ -17,3 +17,10 @@
     width: 20px;
   }
 }
+
+.form-control {
+  color: var(--white);
+  &:focus {
+    background-color: var(--grey);
+  }
+}

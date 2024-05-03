@@ -2,16 +2,14 @@
   <div class="status d-flex justify-content-between align-items-center">
     <div class="status">
       <div *ngIf="user.userHome">
-        <span
-          *ngIf="user.userHome.isAcceptingGuests"
-          class="status d-block text-center my-5"
-          >Accepting Guests</span
-        >
-      </div>
-      <div *ngIf="!user.userHome">
-        <span class="status d-block text-center my-5 h4"
-          >Non Accepting Guests</span
-        >
+        <span *ngIf="user.userHome.isAcceptingGuests"
+              class="status d-block text-center my-5 h4 text-success">
+          Accepting Guests
+        </span>
+        <span *ngIf="!user.userHome.isAcceptingGuests"
+              class="status d-block text-center my-5 h4 text-danger">
+          Non Accepting Guests
+        </span>
       </div>
     </div>
     <div class="edit-btn-wrap">
@@ -21,55 +19,28 @@
     </div>
   </div>
   <div class="about d-flex">
-    <span
-      class="tab-link me-5 bookmark"
+    <span class="tab-link me-5 bookmark"
       [ngClass]="{ 'active-tab': activeTab === tabs.about }"
-      (click)="swapTab(tabs.about)"
-      >{{ tabs.about }}</span
-    >
-    <span
-      class="tab-link me-5 bookmark"
+      (click)="swapTab(tabs.about)">
+      {{ tabs.about }}
+    </span>
+    <span class="tab-link me-5 bookmark"
       [ngClass]="{ 'active-tab': activeTab === tabs.home }"
-      (click)="swapTab(tabs.home)"
-      >{{ tabs.home }}</span
-    >
-    <span
-      class="tab-link me-5 bookmark"
+      (click)="swapTab(tabs.home)">
+      {{ tabs.home }}
+    </span>
+    <span class="tab-link me-5 bookmark"
       [ngClass]="{ 'active-tab': activeTab === tabs.references }"
-      (click)="swapTab(tabs.references)"
-      >{{ tabs.references }}</span
-    >
-    <ul class="d-flex">
-      <li class="me-5">
-        <span class="item pe-1">Photos</span>
-        <span class="about-counter">2</span>
-      </li>
-      <li class="me-5">
-        <span class="item pe-3">References</span
-        ><span class="about-counter">0</span>
-      </li>
-      <li class="me-5">
-        <span class="item pe-3">Friends</span
-        ><span class="about-counter">0</span>
-      </li>
-      <li class="me-5">
-        <span class="item pe-3">Favorites</span
-        ><span class="about-counter">0</span>
-      </li>
-    </ul>
+      (click)="swapTab(tabs.references)">
+      {{ tabs.references }}
+    </span>
   </div>
 
   <div class="overview">
-    <app-about-tab
-      [user]="user"
-      *ngIf="activeTab === tabs.about"
-    ></app-about-tab>
+    <app-about-tab [user]="user" *ngIf="activeTab === tabs.about"></app-about-tab>
   </div>
   <div class="my-home">
-    <app-my-home-tab
-      [user]="user"
-      *ngIf="activeTab === tabs.home"
-    ></app-my-home-tab>
+    <app-my-home-tab [user]="user" *ngIf="activeTab === tabs.home"></app-my-home-tab>
   </div>
   <div class="my-home" *ngIf="activeTab === tabs.references">
     <span>Hello world</span>

@@ -5,10 +5,8 @@
     <span class="card-caption">{{ user.userInfo?.location }}</span>
   </div>
   <div class="card-body">
-    <h5 class="verified" *ngIf="user.isVerified; else notverified">Verified</h5>
-    <ng-template #notverified
-      ><h6 class="verified">Profile not Verified</h6></ng-template
-    >
+    <h5 class="verified text-success" *ngIf="user.isVerified; else notverified">Verified</h5>
+    <ng-template #notverified><h6 class="verified text-danger">Profile not Verified</h6></ng-template>
     <div class="main">
       <ul class="my-3">
         <li class="verified-item my-2">
@@ -27,6 +25,7 @@
         </li>
       </ul>
     </div>
+
     <div class="card-footer px-0">
       <button class="verify-btn btn w-100" routerLink="/verify">
         <i class="fa-solid fa-circle-check me-1"></i>Upgrade to Verify Profile

@@ -1,40 +1,91 @@
 <div class="overview">
   <h5 class="my-5">my home</h5>
-  <span class="subtitle d-block mb-5">{{ getAppeal() }}</span>
-  <div class="overview-options d-flex flex-column">
-    <span class="col-6">
-      <span>Max Number of Guests:&nbsp; {{ user.userHome?.maxGuests }}</span>
-    </span>
+  <span class="subtitle d-block mb-4">{{ getAppeal() }}</span>
 
-    <span class="col-6">
-      <span>Last Minute Request Okay? &nbsp; Yes</span>
-    </span>
+  <div class="d-flex column-gap-5 mb-5">
+    <div class="overview-options d-flex flex-column">
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Max number of guests:</span>
+        <span>{{ user.userHome?.maxGuests }}</span>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Preferred gender:</span>
+        <span>{{ user.userHome?.preferredGender }}</span>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Kids allowed:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.kidFriendly,
+                'fa-check text-success': user.userHome?.kidFriendly
+              }">
+        </i>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Pets allowed:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.petFriendly,
+                'fa-check text-success': user.userHome?.petFriendly
+              }">
+        </i>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Available for disabled people:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.wheelchairAllowed,
+                'fa-check text-success': user.userHome?.wheelchairAllowed
+              }">
+        </i>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>Smoking allowed:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.smokingAllowed,
+                'fa-check text-success': user.userHome?.smokingAllowed
+              }">
+        </i>
+      </div>
+    </div>
 
-    <span class="col-6">
-      <span
-        >Preferred Gender to Host:&nbsp;
-        {{ user.userHome?.preferredGender }}</span
-      >
-    </span>
+    <div class="overview-options d-flex flex-column">
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>I am smoker:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.iamSmoker,
+                'fa-check text-success': user.userHome?.iamSmoker
+              }">
+        </i>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>I have kids:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.ihaveKids,
+                'fa-check text-success': user.userHome?.ihaveKids
+              }">
+        </i>
+      </div>
+      <div class="d-flex column-gap-2 align-items-center">
+        <span>I have pets:</span>
+        <i class="fa-solid fs-5"
+           [ngClass]="{
+                'fa-xmark text-danger': !user.userHome?.ihavePets,
+                'fa-check text-success': user.userHome?.ihavePets
+              }">
+        </i>
+      </div>
+    </div>
+  </div>
 
-    <span class="col-6">
-      <span
-        >Kid Friendly? &nbsp; {{ user.userHome?.kidFriendly ? "Yes" : "No" }}
-      </span>
-    </span>
-
-    <span class="col-6">
-      <span>
-        Pets Friendly? &nbsp;
-        {{ user.userHome?.petFriendly ? "Yes" : "No" }}</span
-      >
-    </span>
-
-    <span class="col-6">
-      <span
-        >Smoking Allowed? &nbsp;
-        {{ user.userHome?.smokingAllowed ? "Yes" : "No" }}</span
-      >
-    </span>
+  <div class="mb-3" *ngIf="user.userHome?.otherInfo">
+    <h5 class="mt-4 mb-2">other info</h5>
+    <textarea class="form-control"
+              id="otherInfo"
+              [readonly]="true"
+              rows="6">{{ user.userHome?.otherInfo }}</textarea>
   </div>
 </div>

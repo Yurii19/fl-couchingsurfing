@@ -5,6 +5,7 @@ import { FormsService } from '../../../services/forms/forms.service';
 import { RequestsService, UsersService } from 'src/app/services/services';
 import { User } from '../../../services/models/user';
 import { Router } from '@angular/router';
+import { getTime } from 'date-fns';
 
 @Component({
   selector: 'app-create-trip',
@@ -29,7 +30,7 @@ export class CreateTripComponent implements OnInit {
     departure: new FormControl('', [Validators.required]),
     travelers: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    host: new FormControl('', [Validators.required]),
+    host: new FormControl('', [Validators.required, Validators.pattern(/\*/)]),
   });
 
   tripId: string = '';
@@ -62,14 +63,25 @@ export class CreateTripComponent implements OnInit {
       this.isEdit = false;
     }
 
-    this.form.valueChanges.subscribe(()=>{
-      this.validateForm()
-    })
+    this.form.valueChanges.subscribe(() => {
+      this.validateForm();
+    });
+  }
+
+  validateDate() {
+    const unix1 = getTime(this.form.get('arrival')?.value);
+    const unix2 = getTime(this.form.get('departure')?.value);
+    if (unix1 > unix2) {
+      alert('Input correct dates');
+      this.form.get('arrival')?.reset();
+      this.form.get('departure')?.reset();
+    }
   }
 
   onCreateRequest() {
     this.validateForm();
-    if(!this.form.valid)  return;
+    this.validateDate();
+    if (!this.form.valid) return;
     if (!this.isHostEmpty) {
       this.usersService.getAuthenticatedUser().subscribe((resp: object) => {
         const sender = resp as { id: string };
@@ -106,14 +118,15 @@ export class CreateTripComponent implements OnInit {
   }
 
   validateForm() {
-    this.destinationClass = this.descriptionClass = this.form.get('destination')
-      ?.errors
-      ? 'error'
-      : '';
+    this.destinationClass = this.form.get('destination')?.errors ? 'error' : '';
     this.arrivalClass = this.form.get('arrival')?.errors ? 'error' : '';
     this.departureClass = this.form.get('departure')?.errors ? 'error' : '';
     this.travelersClass = this.form.get('travelers')?.errors ? 'error' : '';
-    this.descriptionClass = this.form.get('description')?.errors ? 'error' : '';
+    this.descriptionClass =
+      this.form.get('description')?.errors ||
+      this.form.get('description')?.value === ''
+        ? 'error'
+        : '';
     this.hostClass = this.form.get('host')?.errors ? 'error' : '';
   }
 

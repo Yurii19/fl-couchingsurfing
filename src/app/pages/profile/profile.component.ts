@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/services';
 import { User } from 'src/app/services/models';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +11,27 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
+
+  viewProfile = false;
+
   constructor(
     private userServices: UsersService,
-    private storeService: StorageService
+    private storeService: StorageService,
+    private activatedRoute: ActivatedRoute,
   ) {}
+
   ngOnInit(): void {
-    this.userServices.getAuthenticatedUser().subscribe((user: User) => {
-      this.storeService.setUser(user);
-    });
+    const userId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (userId) {
+      this.viewProfile = true;
+      this.userServices.getUserById({ userId }).subscribe((user: User) => {
+        this.storeService.setUser(user);
+      });
+    } else {
+      this.viewProfile = false;
+      this.userServices.getAuthenticatedUser().subscribe((user: User) => {
+        this.storeService.setUser(user);
+      });
+    }
   }
 }

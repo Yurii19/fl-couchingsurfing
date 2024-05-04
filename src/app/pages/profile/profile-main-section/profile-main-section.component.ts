@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/services/models/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 export enum tabs {
@@ -13,10 +13,13 @@ export enum tabs {
   styleUrls: ['./profile-main-section.component.css'],
 })
 export class ProfileMainSectionComponent implements OnInit {
+  @Input() noEdit : boolean = false;
   user!: User;
 
   activeTab: tabs = tabs.about;
   tabs = tabs;
+
+
 
   constructor(private storeService: StorageService) {}
   ngOnInit(): void {

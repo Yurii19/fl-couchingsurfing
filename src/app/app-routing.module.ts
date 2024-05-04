@@ -9,7 +9,7 @@ import { PublicTripsComponent } from './pages/public-trips/public-trips.componen
 import { CreateTripComponent } from './pages/public-trips/create-trip/create-trip.component';
 import { authGuard } from './core/auth.guard';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
-import {CouchRequestsComponent} from "./pages/couch-requests/couch-requests.component";
+import { CouchRequestsComponent } from './pages/couch-requests/couch-requests.component';
 
 const routes: Routes = [
   {
@@ -50,6 +50,12 @@ const routes: Routes = [
     component: EditProfileComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+  },
+
   {
     path: 'verify',
     component: VerifyComponent,

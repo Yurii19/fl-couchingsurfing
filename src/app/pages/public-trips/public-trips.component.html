@@ -43,6 +43,13 @@
           </span>
           <span class="message">{{ trip.message }}</span>
         </div>
+        <div class="d-flex align-items-center">
+          <a
+            (click)="viewProfile(trip.receiver)"
+            class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+            >Host profile</a
+          >
+        </div>
         <div class="control">
           <button
             type="button"

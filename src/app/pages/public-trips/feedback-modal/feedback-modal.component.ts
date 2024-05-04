@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Review } from 'src/app/services/models';
-import { ReviewsService } from 'src/app/services/services';
-import { Request } from 'src/app/services/models/request';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Review} from 'src/app/services/models';
+import {ReviewsService} from 'src/app/services/services';
+import {Request} from 'src/app/services/models/request';
 
 @Component({
   selector: 'app-feedback-modal',
   templateUrl: './feedback-modal.component.html',
   styleUrls: ['./feedback-modal.component.css'],
 })
-export class FeedbackModalComponent {
+export class FeedbackModalComponent implements OnInit {
   @Input() trip: Request = {};
   @Input() isHost: boolean = false;
   @Output() closeModal = new EventEmitter();
+  @Input() isModalShown = true;
+  isReadOnly = false;
 
   feedback = '';
   rating = 0;
@@ -19,12 +21,29 @@ export class FeedbackModalComponent {
 
   constructor(private reviewService: ReviewsService) {}
 
+  ngOnInit(): void {
+    this.reviewService.getReviewByRequestId({
+      requestId: this.trip.id as string,
+      serviceType: this.isHost ? 'ACCOMMODATION_PROVISION' : 'ACCOMMODATION_REQUEST'
+    }).subscribe({
+      next: (res) => {
+        if (res) {
+          this.feedback = res.reviewMessage as string;
+          this.rating = res.rating as number;
+          this.wouldRepeat = res.wouldRepeat as boolean;
+          this.isReadOnly = true;
+        }
+      },
+      error: (err) => console.log('Error during retrieving Review')
+    })
+  }
+
   close() {
+    this.isModalShown = false;
     this.closeModal.emit();
   }
-  save() {
-    console.log(this.trip);
 
+  save() {
     const review: Review = {
       requestId: this.trip.id,
       reviewMessage: this.feedback,
@@ -40,7 +59,7 @@ export class FeedbackModalComponent {
       review.senderId = this.trip.receiver;
     }
     console.log(review);
-    this.reviewService.addReview$Response({ body: review }).subscribe((d) => {
+    this.reviewService.addReview$Response({body: review}).subscribe((d) => {
       this.close();
     });
   }

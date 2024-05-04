@@ -48,6 +48,8 @@
             type="button"
             class="btn-trigger btn btn-feedback"
             (click)="giveFeedback(trip.id)"
+            data-bs-toggle="modal" data-bs-target="#feedbackModal"
+            data-bs-whatever="@mdo"
             [disabled]="trip.requestStatus != 'COMPLETED'"
           >
             Give feedback
@@ -64,6 +66,7 @@
           <ng-container *ngIf="isModalShown">
             <app-feedback-modal
               [trip]="tripToFeedback"
+              [isModalShown]="isModalShown"
               (closeModal)="isModalShown = false"
             ></app-feedback-modal
           ></ng-container>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Review } from 'src/app/services/models';
 import { ReviewsService } from 'src/app/services/services';
 import { Request } from 'src/app/services/models/request';
@@ -11,30 +11,45 @@ import { Request } from 'src/app/services/models/request';
 export class FeedbackModalComponent {
   @Input() trip: Request = {};
   @Input() isHost: boolean = false;
-  @Output() cloceModal = new EventEmitter();
+  @Output() closeModal = new EventEmitter();
 
   feedback = '';
+  rating = 0;
+  wouldRepeat = false;
 
   constructor(private reviewService: ReviewsService) {}
 
   close() {
-    this.cloceModal.emit();
+    this.closeModal.emit();
   }
   save() {
+    console.log(this.trip);
+
     const review: Review = {
-      receiverId: this.trip.receiver ?? undefined,
-      requestId: this.trip.id ?? undefined,
+      requestId: this.trip.id,
       reviewMessage: this.feedback,
-      senderId: this.trip.sender ?? undefined,
-      rating: 0,
-      serviceType: this.trip.serviceType ?? undefined,
-      wouldRepeat: true,
+      receiverId: this.trip.receiver,
+      senderId: this.trip.sender,
+      rating: this.rating,
+      serviceType: this.trip.serviceType,
+      wouldRepeat: this.wouldRepeat,
     };
     if (this.isHost) {
       review.serviceType = 'ACCOMMODATION_PROVISION';
+      review.receiverId = this.trip.sender;
+      review.senderId = this.trip.receiver;
     }
+    console.log(review);
     this.reviewService.addReview$Response({ body: review }).subscribe((d) => {
       this.close();
     });
+  }
+
+  updateRating(i: number) {
+    this.rating = i;
+  }
+
+  resetRating() {
+    this.rating = 0;
   }
 }

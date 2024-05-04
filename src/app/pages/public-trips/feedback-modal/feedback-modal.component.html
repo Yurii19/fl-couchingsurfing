@@ -6,17 +6,35 @@
   <div class="modal-dialog d-flex p-3">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Leave feedback about {{ trip.location }}
-        </h1>
+        <h1 class="modal-title fs-5">Feedback</h1>
       </div>
-      <div class="modal-body pt-5">
-        <textarea
-          class="form-control"
-          placeholder="Leave a comment here"
-          [(ngModel)]="feedback"
-          rows="6"
-        ></textarea>
+      <div class="modal-body pt-5 d-flex flex-column row-gap-3">
+        <div class="d-flex flex-column row-gap-1">
+          <label for="wouldRepeat" class="form-label">Share your impressions about it</label>
+          <textarea
+            class="form-control"
+            rows="6"
+            [(ngModel)]="feedback"
+          ></textarea>
+        </div>
+        <div class="checkbox-wrap mt-4 d-flex column-gap-1">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="wouldRepeat"
+            autocomplete="off"
+            [(ngModel)]="wouldRepeat"
+          />
+          <label for="wouldRepeat" class="form-label">Would repeat this trip</label>
+        </div>
+        <div id="rating-container"
+             class="d-flex column-gap-3">
+          <i id="reset" class="fa-solid fa-xmark fs3" (click)="resetRating()"></i>
+
+            <i *ngFor="let i of [5, 4, 3, 2, 1]" class="fa-solid fa-star star"
+               [class.rated]="rating >= i"
+               (click)="updateRating(i)"></i>
+        </div>
       </div>
       <div class="modal-footer d-flex gap-2">
         <button type="button" class="btn" (click)="close()">Close</button>

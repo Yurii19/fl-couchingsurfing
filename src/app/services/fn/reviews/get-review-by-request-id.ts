@@ -10,12 +10,14 @@ import { Review } from '../../models/review';
 
 export interface GetReviewByRequestId$Params {
   requestId: string;
+  serviceType: 'ACCOMMODATION_PROVISION' | 'ACCOMMODATION_REQUEST';
 }
 
 export function getReviewByRequestId(http: HttpClient, rootUrl: string, params: GetReviewByRequestId$Params, context?: HttpContext): Observable<StrictHttpResponse<Review>> {
   const rb = new RequestBuilder(rootUrl, getReviewByRequestId.PATH, 'get');
   if (params) {
     rb.query('requestId', params.requestId, {});
+    rb.query('serviceType', params.serviceType, {});
   }
 
   return http.request(

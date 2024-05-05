@@ -43,6 +43,6 @@
     <app-my-home-tab [user]="user" *ngIf="activeTab === tabs.home"></app-my-home-tab>
   </div>
   <div class="my-home" *ngIf="activeTab === tabs.references">
-    <span>Hello world</span>
+    <app-reviews-page [user]="user" *ngIf="activeTab === tabs.references"></app-reviews-page>
   </div>
 </div>

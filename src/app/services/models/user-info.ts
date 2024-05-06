@@ -7,5 +7,5 @@ export interface UserInfo {
   languages?: Array<string>;
   location: string;
   occupation?: string;
-  userPhotos?: Array<string>;
+  userPhoto?: string;
 }

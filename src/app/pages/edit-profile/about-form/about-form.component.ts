@@ -17,6 +17,7 @@ import { User } from 'src/app/services/models';
 export class AboutFormComponent implements OnInit {
   @Input() user!: User;
 
+  imageUrl: string | null = null;
   languages: string[] = [];
   languagesSet = ['Ukrainian', 'English', 'French', 'Spain', 'Poland', 'German', 'Turkish', 'Italian'];
   form = new FormGroup({
@@ -40,13 +41,26 @@ export class AboutFormComponent implements OnInit {
   initFormValues() {
     this.languages = this.user.userInfo?.languages ?? [];
     this.form.patchValue({
-      age: this.user.userInfo?.age ?? 10,
-      location: this.user.userInfo?.location ?? '',
-      occupation: this.user.userInfo?.occupation ?? '',
-      education: this.user.userInfo?.education ?? '',
-      languages: '',
-      aboutText: this.user.userInfo?.aboutMe ?? '',
+      age: this.user.userInfo?.age ?? null,
+      location: this.user.userInfo?.location ?? null,
+      occupation: this.user.userInfo?.occupation ?? null,
+      education: this.user.userInfo?.education ?? null,
+      languages: null,
+      aboutText: this.user.userInfo?.aboutMe ?? null,
     });
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.imageUrl = reader.result as string;
+    };
   }
 
   removeLanguage(language: string) {

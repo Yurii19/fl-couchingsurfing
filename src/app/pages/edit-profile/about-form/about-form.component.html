@@ -1,5 +1,20 @@
 <form class="mt-5" [formGroup]="form">
   <div class="checkbox-wrap mb-3 d-flex">
+    <label for="img" class="form-label w-25">Image</label>
+    <div class=" ">
+      <input
+        type="file"
+        class="form-control"
+        id="img"
+        autocomplete="off"
+        formControlName="userPhoto"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+  </div>
+
+  <div class="checkbox-wrap mb-3 d-flex">
     <label for="age" class="form-label w-25">Age</label>
     <div class=" ">
       <input
@@ -47,7 +62,7 @@
 
   <div class="mb-3 d-flex">
     <label for="education" class="form-label language-label w-25"
-      >Language i am fluent in</label
+    >Language i am fluent in</label
     >
     <div class="inputs w-50">
       <ul class="list-group">

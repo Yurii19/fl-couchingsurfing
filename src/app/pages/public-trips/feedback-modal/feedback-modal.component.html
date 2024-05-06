@@ -1,26 +1,49 @@
-<div
-  class="feedback d-flex align-items-center"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
->
-  <div class="modal-dialog d-flex p-3">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Leave feedback about {{ trip.location }}
-        </h1>
+<div *ngIf="isModalShown" class="review-modal modal fade position-fixed"
+     style="background: transparent"
+     id="feedbackModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background: var(--light-black); min-height: 400px;">
+      <div class="modal-header d-flex flex-column row-gap-3 justify-content-lg-start">
+        <h1 class="modal-title text-uppercase fs-5">Feedback</h1>
+        <h5 class="text-primary fs-6" *ngIf="isReadOnly">You have already gave a feedback</h5>
       </div>
-      <div class="modal-body pt-5">
-        <textarea
-          class="form-control"
-          placeholder="Leave a comment here"
-          [(ngModel)]="feedback"
-          rows="6"
-        ></textarea>
+      <div class="modal-body pt-4 d-flex flex-column row-gap-3">
+        <div class="d-flex flex-column row-gap-1">
+          <label for="wouldRepeat" class="form-label">Share your impressions about it</label>
+          <textarea
+            class="form-control"
+            rows="6"
+            [(ngModel)]="feedback"
+            [readonly]="isReadOnly"
+          ></textarea>
+        </div>
+        <div class="checkbox-wrap mt-4 d-flex column-gap-1">
+          <input
+            type="checkbox"
+            class="checkbox ms-2"
+            id="wouldRepeat"
+            autocomplete="off"
+            [(ngModel)]="wouldRepeat"
+            [disabled]="isReadOnly"
+          />
+          <label for="wouldRepeat" class="form-label">Would repeat this trip</label>
+        </div>
+        <div id="rating-container"
+             [class.readOnly]="isReadOnly"
+             class="d-flex column-gap-3">
+          <i id="reset" class="fa-solid fa-xmark fs3" (click)="resetRating()"></i>
+
+          <i *ngFor="let i of [5, 4, 3, 2, 1]" class="fa-solid fa-star star"
+             [class.rated]="rating >= i"
+             (click)="updateRating(i)"
+          ></i>
+        </div>
       </div>
       <div class="modal-footer d-flex gap-2">
-        <button type="button" class="btn" (click)="close()">Close</button>
-        <button type="button" class="btn btn-save" (click)="save()">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+        <button type="button" class="btn btn-save" id="save-btn" data-bs-dismiss="modal" (click)="save()"
+                [disabled]="isReadOnly">
           Save
         </button>
       </div>

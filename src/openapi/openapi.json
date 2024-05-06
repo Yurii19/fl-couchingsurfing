@@ -1099,11 +1099,8 @@
           "location": {
             "type": "string"
           },
-          "userPhotos": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "userPhoto": {
+            "type": "string"
           }
         }
       },

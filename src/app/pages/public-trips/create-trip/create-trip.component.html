@@ -148,7 +148,7 @@
         Available hosts at:
         <b class="text-primary" style="background: transparent">{{
           location
-        }}</b>
+          }}</b>
       </h1>
     </div>
     <div class="border-top border-1 border-black mt-3 user-select-none">
@@ -158,15 +158,15 @@
         *ngFor="let host of availableHosts"
         (dblclick)="selectHost(host)"
       >
-        <img
-          class="d-flex mt-3 mb-3 ms-4"
-          src="/assets/imgs/profile-img.png"
-          alt=""
-          style="width: 100px; height: 100px"
-        />
+
+        <img *ngIf="host.userInfo!.userPhoto" [src]="host.userInfo!.userPhoto" class="d-flex mt-3 mb-3 ms-4"
+             style="width: 100px; height: 100px" alt="Uploaded Image">
+        <img *ngIf="!host.userInfo!.userPhoto" src="/assets/imgs/profile-img.png" class="d-flex mt-3 mb-3 ms-4"
+             style="width: 100px; height: 100px" alt="Default Image"/>
+
         <div class="mt-3 d-flex flex-column row-gap-1" style="width: 200px">
           <span class="host-fullname fs-5"
-            >{{ host.fullName }}
+          >{{ host.fullName }}
             <i class="fa-solid fa-star text-warning" style="font-size: 13px">
               {{ host.rating?.toFixed(1) }}</i
             >
@@ -189,12 +189,12 @@
             </div>
             <div>
               <label for="couches-amount" class="fw-bold"
-                >Max guests amount:</label
+              >Max guests amount:</label
               >
               &nbsp;
               <span class="couches-amount" id="couches-amount">{{
                 host.userHome?.maxGuests
-              }}</span>
+                }}</span>
             </div>
           </div>
           <span class="text-success">Accepting guests</span>

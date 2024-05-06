@@ -30,7 +30,7 @@ export class CreateTripComponent implements OnInit {
     departure: new FormControl('', [Validators.required]),
     travelers: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    host: new FormControl('', [Validators.required, Validators.pattern(/\*/)]),
+    host: new FormControl('', [Validators.required]),
   });
 
   tripId: string = '';

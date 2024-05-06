@@ -67,15 +67,16 @@ export class EditProfileMainComponent implements OnInit {
 
   saveUserInfo() {
     const form = this.aboutForm.form.value;
+    const imgUrl = this.aboutForm.imageUrl;
 
     const newUserInfo: UserInfo = {
-      aboutMe: form.aboutText ?? '',
-      age: form.age ?? 0,
-      education: form.education ?? '',
+      aboutMe: form.aboutText ?? undefined,
+      age: form.age ?? undefined,
+      education: form.education ?? undefined,
       languages: this.aboutForm.languages ?? [],
-      location: form.location ?? '',
-      occupation: form.occupation ?? '',
-      userPhotos: [''],
+      location: form.location ?? undefined,
+      occupation: form.occupation ?? undefined,
+      userPhoto: imgUrl ?? undefined,
     };
     this.user.userInfo = newUserInfo;
     console.log('Updated user info');

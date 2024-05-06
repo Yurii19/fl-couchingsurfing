@@ -1,0 +1,49 @@
+<div class="references">
+  <h5 class="my-5">
+    {{ 'references' | uppercase }}
+  </h5>
+  <div class="col-10 d-flex justify-content-evenly column-gap-5">
+    <div class="review-type">
+      <span class="title d-block mb-5">
+        <span
+          class="ps-1 ps-3 surfer-reviews"
+          (click)="setServiceType('ACCOMMODATION_PROVISION')"
+        >
+          {{ "from surfers" | uppercase }}
+        </span>
+      </span>
+    </div>
+    <div class="review-type">
+      <span class="title d-block mb-5">
+        <span
+          class="ps-1 ps-3 host-reviews"
+          (click)="setServiceType('ACCOMMODATION_REQUEST')"
+        >
+          {{ "from hosts" | uppercase }}
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-10" style="min-height: 420px">
+    <div *ngIf="!composedReviews.length" class="content my-5 text-center">
+      <span>You have no reviews.</span>
+    </div>
+    <div class="trips d-flex flex-column justify-content-between">
+      <div
+        class="trip p-3 d-flex justify-content-between"
+        *ngFor="let review of composedReviews">
+        <img
+          class="d-flex mt-3 mb-3 ms-4"
+          src="/assets/imgs/profile-img.png"
+          alt=""
+          style="width: 100px; height: 100px"
+        />
+        <div class="d-flex flex-column">
+          <span class="text-info">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

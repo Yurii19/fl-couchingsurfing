@@ -1,0 +1,17 @@
+.surfer-reviews {
+  color: var(--light-blue);
+}
+.surfer-reviews:hover {
+  color: var(--dark-blue);
+}
+
+.host-reviews {
+  color: var(--light-green);
+}
+.host-reviews:hover {
+  color: var(--dark-green);
+}
+
+.review-type {
+  cursor: pointer;
+}

@@ -62,11 +62,10 @@ export class PublicTripsComponent implements OnInit {
   }
 
   giveFeedback(requestId?: string) {
-    const theTrip = this.trips.find((trip) => trip.id === requestId);
-    if (theTrip !== undefined) {
+    this.isModalShown = true;
+    const theTrip = this.trips.find((trip) => trip.id === requestId) as Request;
+    if (theTrip) {
       this.tripToFeedback = theTrip;
     }
-
-    this.isModalShown = true;
   }
 }

@@ -22,3 +22,47 @@
 .btn-save {
     background-color: var(--orange);
 }
+
+#rating-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+
+  .star {
+    color: var(--dark-black);
+    font-size: 24px;
+    cursor: pointer;
+
+    &.rated,
+    &:hover,
+    &:hover ~ .star {
+      color: orange;
+    }
+
+    transition: color 0.3s ease-in-out;
+  }
+
+  &.readOnly {
+    .star {
+      cursor: default;
+      &:hover:not(.rated),
+      &:hover ~ .star:not(.rated) {
+        color: var(--grey);
+      }
+    }
+    #reset {
+      cursor: default;
+      color: var(--dark-red);
+    }
+  }
+
+  #reset {
+    color: var(--light-red);
+    font-size: 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--dark-red);
+    }
+  }
+}

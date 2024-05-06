@@ -30,7 +30,7 @@ export class CreateTripComponent implements OnInit {
     departure: new FormControl('', [Validators.required]),
     travelers: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    host: new FormControl('', [Validators.required, Validators.pattern(/\*/)]),
+    host: new FormControl('', [Validators.required]),
   });
 
   tripId: string = '';
@@ -153,6 +153,7 @@ export class CreateTripComponent implements OnInit {
   selectHost(host: User) {
     this.selectedHostId = host.id as string;
     this.form.get('host')?.setValue(host.fullName);
+    this.hostClass = host.fullName as string;
     this.isHostEmpty = false;
   }
 

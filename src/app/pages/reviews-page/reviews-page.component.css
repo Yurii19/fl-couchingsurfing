@@ -15,3 +15,15 @@
 .review-type {
   cursor: pointer;
 }
+.trip {
+  border: 1px dotted yellow;
+  & * {
+    color: var(--white);
+  }
+}
+.would-repeat {
+  color: var(--light-green);
+  & * {
+    color: var(--light-green);
+  }
+}

@@ -1,6 +1,6 @@
 <div class="references">
   <h5 class="my-5">
-    {{ 'references' | uppercase }}
+    {{ "references" | uppercase }}
   </h5>
   <div class="col-10 d-flex justify-content-evenly column-gap-5">
     <div class="review-type">
@@ -29,18 +29,25 @@
     <div *ngIf="!composedReviews.length" class="content my-5 text-center">
       <span>You have no reviews.</span>
     </div>
-    <div class="trips d-flex flex-column justify-content-between">
-      <div
-        class="trip p-3 d-flex justify-content-between"
-        *ngFor="let review of composedReviews">
+    <div
+      class="trips d-flex flex-column justify-content-between"
+      *ngIf="composedReviews$ | async as r"
+    >
+      <div class="trip d-flex py-4 gap-3" *ngFor="let review of r">
         <img
-          class="d-flex mt-3 mb-3 ms-4"
+          class="d-flex"
           src="/assets/imgs/profile-img.png"
           alt=""
           style="width: 100px; height: 100px"
         />
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column align-items-start">
+          <h4 class="name">{{ review.reviewSender.fullName }}</h4>
+          <h5 class="name">{{ review.reviewSender.userInfo?.location }}</h5>
+          <h6 class="would-repeat">
+            <i class="fa-solid fa-star"></i>Comfirmed Stay - Would Stay Again
+          </h6>
           <span class="text-info">
+            {{ review.review.reviewMessage }}
           </span>
         </div>
       </div>

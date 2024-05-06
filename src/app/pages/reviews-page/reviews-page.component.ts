@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../services/models/user';
 import { ReviewsService } from '../../services/services/reviews.service';
 import { Router } from '@angular/router';
@@ -6,14 +6,14 @@ import { Review } from '../../services/models/review';
 import { RequestsService } from '../../services/services/requests.service';
 import { UsersService } from '../../services/services/users.service';
 import { Request } from '../../services/models/request';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, Subject, combineLatest, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-reviews-page',
   templateUrl: './reviews-page.component.html',
   styleUrls: ['./reviews-page.component.css'],
 })
-export class ReviewsPageComponent implements OnInit {
+export class ReviewsPageComponent implements OnInit, OnDestroy {
   @Input() user!: User;
   page = 0;
   size = 1000;
@@ -25,9 +25,11 @@ export class ReviewsPageComponent implements OnInit {
     {
       review: {} as Review,
       request: {} as Request,
-      reviewSender: {fullName: ''} as User,
+      reviewSender: { fullName: '' } as User,
     },
   ]);
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private reviewsService: ReviewsService,
@@ -40,6 +42,11 @@ export class ReviewsPageComponent implements OnInit {
     this.loadData(this.serviceType);
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   loadData(serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION') {
     this.reviewsService
       .getIncomingReviews({
@@ -47,11 +54,11 @@ export class ReviewsPageComponent implements OnInit {
         size: this.size,
         serviceType: serviceType,
       })
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           const reviews = res.content as Review[];
           reviews.forEach((review) => {
-            
             combineLatest([
               this.requestsService.getRequest({
                 requestId: review.requestId as string,
@@ -59,72 +66,26 @@ export class ReviewsPageComponent implements OnInit {
               this.usersService.getUserById({
                 userId: review.senderId as string,
               }),
-            ]).subscribe((response) => {
-              const user = response[1];
-              const request = response[0];
-              const composedReview: ComposedReview = {
-                review,
-                request: request,
-                reviewSender: user,
-              };
-              console.log(composedReview)
-              this.composedReviews = [...this.composedReviews, composedReview];
-              this.composedReviews$.next(this.composedReviews);
-           
-            });
-
-            // console.log(tempRequest);
-            // console.log(tempUser);
-
-            // const composedReview: ComposedReview = {
-            //   review,
-            //   request: tempRequest,
-            //   reviewSender: tempUser,
-            // };
+            ])
+              .pipe(takeUntil(this.destroy$))
+              .subscribe((response) => {
+                const [request, user] = response;
+                const composedReview: ComposedReview = {
+                  review,
+                  request: request,
+                  reviewSender: user,
+                };
+                this.composedReviews = [
+                  ...this.composedReviews,
+                  composedReview,
+                ];
+                this.composedReviews$.next(this.composedReviews);
+              });
           });
-
-          // console.log(`Reviews of ${this.serviceType} retrieved.`);
         },
         error: (err) => console.log('Error retrieving reviews.'),
       });
   }
-
-  // loadRequest(requestId: string): Request {
-  //   this.requestsService
-  //     .getRequest({
-  //       requestId: requestId,
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         // console.log(res);
-  //         // console.log(`Request ${requestId} retrieved.`);
-
-  //         return res;
-  //       },
-  //       error: (err) => console.log('Error during request retrieving'),
-  //     });
-
-  //   return {};
-  // }
-  // loadReviewSender(senderId: string): User {
-  //   this.usersService
-  //     .getUserById({
-  //       userId: senderId,
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         // console.log(res);
-  //         // console.log(`User ${senderId} retrieved.`);
-
-  //         return res;
-  //       },
-  //       error: (err) => {
-  //         console.log('Error during user retrieving');
-  //       },
-  //     });
-
-  //   return {};
-  // }
 
   setServiceType(
     serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION'

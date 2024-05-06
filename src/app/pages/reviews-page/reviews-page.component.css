@@ -16,7 +16,6 @@
   cursor: pointer;
 }
 .trip {
-  border: 1px dotted yellow;
   & * {
     color: var(--white);
   }
@@ -26,4 +25,15 @@
   & * {
     color: var(--light-green);
   }
+}
+.read-more {
+  color: var(--light-blue);
+  cursor: pointer;
+}
+
+.text-info {
+  color: var(--white) !important;
+}
+.date {
+  color: rgba(255, 255, 255, 0.5);
 }

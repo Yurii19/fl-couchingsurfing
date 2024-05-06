@@ -33,21 +33,31 @@
       class="trips d-flex flex-column justify-content-between"
       *ngIf="composedReviews$ | async as r"
     >
-      <div class="trip d-flex py-4 gap-3" *ngFor="let review of r">
+      <div class="trip d-flex py-4 px-2 gap-3" *ngFor="let review of r">
         <img
           class="d-flex"
           src="/assets/imgs/profile-img.png"
           alt=""
           style="width: 100px; height: 100px"
         />
-        <div class="d-flex flex-column align-items-start">
-          <h4 class="name">{{ review.reviewSender.fullName }}</h4>
-          <h5 class="name">{{ review.reviewSender.userInfo?.location }}</h5>
+        <div class="d-flex flex-column align-items-start w-100">
+          <div class="heading d-flex w-100 justify-content-between">
+            <div class="user-data">
+              <h4 class="name">{{ review.reviewSender.fullName }}</h4>
+              <h5 class="">{{ review.reviewSender.userInfo?.location }}</h5>
+            </div>
+            <span class="date">{{review.request.to | date: 'MMM yyyy'}}</span>
+          </div>
+
           <h6 class="would-repeat">
-            <i class="fa-solid fa-star"></i>Comfirmed Stay - Would Stay Again
+            <i class="fa-solid fa-star me-1"></i>Comfirmed Stay - Would Stay
+            Again
           </h6>
           <span class="text-info">
             {{ review.review.reviewMessage }}
+          </span>
+          <span class="w-100 text-end">
+            <a class="read-more">Read more</a>
           </span>
         </div>
       </div>

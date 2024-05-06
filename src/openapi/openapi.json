@@ -481,6 +481,14 @@
             }
           },
           {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "serviceType",
             "in": "query",
             "required": true,
@@ -586,6 +594,14 @@
         ],
         "operationId": "getAllIncomingReviews",
         "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "serviceType",
             "in": "query",
@@ -1044,10 +1060,10 @@
           "ihaveKids": {
             "type": "boolean"
           },
-          "iamSmoker": {
+          "ihavePets": {
             "type": "boolean"
           },
-          "ihavePets": {
+          "iamSmoker": {
             "type": "boolean"
           }
         }
@@ -1102,9 +1118,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
           "size": {
             "type": "integer",
             "format": "int32"
@@ -1135,6 +1148,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
           "empty": {
             "type": "boolean"
           }
@@ -1143,20 +1159,6 @@
       "PageableObject": {
         "type": "object",
         "properties": {
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "paged": {
-            "type": "boolean"
-          },
-          "unpaged": {
-            "type": "boolean"
-          },
           "offset": {
             "type": "integer",
             "format": "int64"
@@ -1166,6 +1168,20 @@
             "items": {
               "$ref": "#/components/schemas/SortObject"
             }
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unpaged": {
+            "type": "boolean"
+          },
+          "paged": {
+            "type": "boolean"
           }
         }
       },
@@ -1200,9 +1216,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
           "size": {
             "type": "integer",
             "format": "int32"
@@ -1233,6 +1246,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
           "empty": {
             "type": "boolean"
           }
@@ -1248,9 +1264,6 @@
           "totalPages": {
             "type": "integer",
             "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
           },
           "size": {
             "type": "integer",
@@ -1281,6 +1294,9 @@
           "numberOfElements": {
             "type": "integer",
             "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
           },
           "empty": {
             "type": "boolean"

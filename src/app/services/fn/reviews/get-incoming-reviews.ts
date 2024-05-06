@@ -11,6 +11,7 @@ import { PageReview } from '../../models/page-review';
 export interface GetIncomingReviews$Params {
   page: number;
   size: number;
+  userId?: string;
   serviceType: 'ACCOMMODATION_PROVISION' | 'ACCOMMODATION_REQUEST';
 }
 
@@ -19,6 +20,7 @@ export function getIncomingReviews(http: HttpClient, rootUrl: string, params: Ge
   if (params) {
     rb.query('page', params.page, {});
     rb.query('size', params.size, {});
+    rb.query('userId', params.userId, {});
     rb.query('serviceType', params.serviceType, {});
   }
 

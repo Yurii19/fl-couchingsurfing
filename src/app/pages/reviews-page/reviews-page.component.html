@@ -34,18 +34,22 @@
       *ngIf="composedReviews$ | async as r"
     >
       <div class="trip d-flex py-4 px-2 gap-3" *ngFor="let review of r">
-        <div class="image-container" id="img-pane">
+        <a (click)="viewProfile(review.reviewSender.id)" class="user_link">
           <img *ngIf="review.reviewSender.userInfo?.userPhoto" [src]="review.reviewSender.userInfo?.userPhoto"
                class="d-flex"
                style="width: 150px; height: 150px" alt="Uploaded Image">
           <img *ngIf="!review.reviewSender.userInfo?.userPhoto" src="/assets/imgs/profile-img.png"
                class="d-flex"
                style="width: 150px; height: 150px" alt="Default Image"/>
-        </div>
+        </a>
+
         <div class="d-flex flex-column align-items-start w-100">
           <div class="heading d-flex w-100 justify-content-between">
             <div class="user-data">
-              <h4 class="name">{{ review.reviewSender.fullName }}</h4>
+              <a (click)="viewProfile(review.reviewSender.id)" class="user_link">
+                <h4 class="name">{{ review.reviewSender.fullName }}</h4>
+              </a>
+
               <h5 class="">{{ review.reviewSender.userInfo?.location }}</h5>
             </div>
             <span class="date">{{review.request.to | date: 'MMM yyyy'}}</span>

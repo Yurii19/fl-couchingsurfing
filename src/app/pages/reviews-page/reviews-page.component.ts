@@ -98,6 +98,11 @@ export class ReviewsPageComponent implements OnInit, OnDestroy {
     this.serviceType = serviceType;
     this.loadData(this.serviceType);
   }
+
+  viewProfile(userId: string | undefined) {
+    if (userId === undefined) return;
+    this.router.navigateByUrl(`/profile/${userId}`);
+  }
 }
 
 interface ComposedReview {

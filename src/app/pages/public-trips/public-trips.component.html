@@ -55,8 +55,6 @@
             type="button"
             class="btn-trigger btn btn-feedback"
             (click)="giveFeedback(trip.id)"
-            data-bs-toggle="modal" data-bs-target="#feedbackModal"
-            data-bs-whatever="@mdo"
             [disabled]="trip.requestStatus != 'COMPLETED'"
           >
             Give feedback

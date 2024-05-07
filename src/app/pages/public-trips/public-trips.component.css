@@ -58,3 +58,6 @@
 .link-primary {
   cursor: pointer;
 }
+.btn {
+  border-radius: 0;
+}

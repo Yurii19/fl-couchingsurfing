@@ -49,7 +49,6 @@ export class PublicTripsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.trips = res.content as Request[];
-          console.log('Requests retrieved.');
         },
         error: (err) => {
           console.log(err);

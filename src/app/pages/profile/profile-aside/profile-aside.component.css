@@ -16,3 +16,15 @@
   opacity: 0.8;
   font-size: 0.8em;
 }
+
+.image-container {
+  width: 18rem;
+  min-height: 250px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}

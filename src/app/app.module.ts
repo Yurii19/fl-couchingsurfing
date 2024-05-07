@@ -37,6 +37,7 @@ import { MyHomeTabComponent } from './pages/profile/my-home-tab/my-home-tab.comp
 import { FeedbackModalComponent } from './pages/public-trips/feedback-modal/feedback-modal.component';
 import { CouchRequestsComponent } from './pages/couch-requests/couch-requests.component';
 import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.componen
     FeedbackModalComponent,
     CouchRequestsComponent,
     ReviewsPageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

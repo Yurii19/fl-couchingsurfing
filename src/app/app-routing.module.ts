@@ -10,6 +10,7 @@ import { CreateTripComponent } from './pages/public-trips/create-trip/create-tri
 import { authGuard } from './core/auth.guard';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { CouchRequestsComponent } from './pages/couch-requests/couch-requests.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -55,12 +56,20 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [authGuard],
   },
-
   {
     path: 'verify',
     component: VerifyComponent,
     canActivate: [authGuard],
   },
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  }
 ];
 
 @NgModule({

@@ -50,4 +50,8 @@ export class TravelPlansComponent implements OnInit {
     this.formsService.setRequest(trip)
   }
 
+  viewProfile(userId: string | undefined) {
+    if (userId === undefined) return;
+    this.router.navigateByUrl(`/profile/${userId}`);
+  }
 }

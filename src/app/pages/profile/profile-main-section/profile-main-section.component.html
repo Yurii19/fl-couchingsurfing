@@ -3,11 +3,11 @@
     <div class="status">
       <div *ngIf="user.userHome">
         <span *ngIf="user.userHome.isAcceptingGuests"
-              class="status d-block text-center my-5 h4 text-success">
+              class="status d-block text-center my-2 h4 text-success">
           Accepting Guests
         </span>
         <span *ngIf="!user.userHome.isAcceptingGuests"
-              class="status d-block text-center my-5 h4 text-danger">
+              class="status d-block text-center my-2 h4 text-danger">
           Non Accepting Guests
         </span>
       </div>

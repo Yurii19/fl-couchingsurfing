@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    document.body.scrollTop = 0;
     const userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (userId) {
       this.viewProfile = true;

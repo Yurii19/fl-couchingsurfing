@@ -20,12 +20,6 @@
     color: var(--white);
   }
 }
-.would-repeat {
-  color: var(--light-green);
-  & * {
-    color: var(--light-green);
-  }
-}
 .read-more {
   color: var(--light-blue);
   cursor: pointer;

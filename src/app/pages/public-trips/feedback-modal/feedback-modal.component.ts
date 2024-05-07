@@ -71,4 +71,7 @@ export class FeedbackModalComponent implements OnInit {
   resetRating() {
     this.rating = 0;
   }
+  checkRepeat(){
+    this.wouldRepeat = !this.wouldRepeat;
+  }
 }

@@ -1,8 +1,9 @@
-<div class="card mt-3" style="width: 18rem" *ngIf="user$ | async as user">
-  <img *ngIf="user.userInfo!.userPhoto" [src]="user.userInfo!.userPhoto" class="card-img-top"
-       alt="Uploaded Image">
-  <img *ngIf="!user.userInfo!.userPhoto" src="/assets/imgs/profile-img.png" class="card-img-top"
-       alt="Default Image"/>
+<div class="card" style="width: 18rem" *ngIf="user$ | async as user">
+  <div class="image-container" id="img-pane">
+    <img *ngIf="user.userInfo?.userPhoto" [src]="user.userInfo?.userPhoto" class="card-img-top" alt="Uploaded Image">
+    <img *ngIf="!user.userInfo?.userPhoto" src="/assets/imgs/profile-img.png" class="card-img-top" alt="Default Image"/>
+  </div>
+
   <div class="card-body">
     <span class="title d-block">Overview</span>
 

@@ -50,6 +50,7 @@ export class ReviewsPageComponent implements OnInit, OnDestroy {
   loadData(serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION') {
     this.reviewsService
       .getIncomingReviews({
+        userId: this.user.id,
         page: this.page,
         size: this.size,
         serviceType: serviceType,

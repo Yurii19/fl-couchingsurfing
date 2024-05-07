@@ -88,4 +88,9 @@ export class CouchRequestsComponent {
 
     console.log(`Feedback for ${request} couch request`);
   }
+
+  viewProfile(userId: string | undefined) {
+    if (userId === undefined) return;
+    this.router.navigateByUrl(`/profile/${userId}`);
+  }
 }

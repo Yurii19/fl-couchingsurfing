@@ -45,11 +45,10 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog(): void {
     this.dialog.open(FeedbackModalComponent, {
       width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+      data: { request: this.tripToFeedback },
     });
   }
 
@@ -85,6 +84,7 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
     const theTrip = this.trips.find((trip) => trip.id === requestId) as Request;
     if (theTrip) {
       this.tripToFeedback = theTrip;
+      this.openDialog();
     }
   }
 }

@@ -51,11 +51,19 @@
           >
         </div>
         <div class="control">
-          <button
+          <!-- <button
             type="button"
             class="btn-trigger btn btn-feedback"
             (click)="giveFeedback(trip.id)"
             [disabled]="trip.requestStatus != 'COMPLETED'"
+          >
+            Give feedback
+          </button> -->
+          <button
+            (click)="openDialog('0ms', '0ms')"
+            [disabled]="trip.requestStatus != 'COMPLETED'"
+            class="btn-trigger btn btn-feedback"
+            (click)="giveFeedback(trip.id)"
           >
             Give feedback
           </button>
@@ -68,13 +76,13 @@
           >
             Edit
           </button>
-          <ng-container *ngIf="isModalShown">
+          <!-- <ng-container *ngIf="isModalShown">
             <app-feedback-modal
               [trip]="tripToFeedback"
               [isModalShown]="isModalShown"
               (closeModal)="isModalShown = false"
             ></app-feedback-modal
-          ></ng-container>
+          ></ng-container> -->
         </div>
       </div>
     </div>

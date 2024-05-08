@@ -3,6 +3,7 @@ import { Review } from 'src/app/services/models';
 import { ReviewsService } from 'src/app/services/services';
 import { Request } from 'src/app/services/models/request';
 import { Subject, takeUntil } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-feedback-modal',
@@ -13,7 +14,6 @@ export class FeedbackModalComponent implements OnInit, OnDestroy {
   @Input() trip: Request = {};
   @Input() isHost: boolean = false;
   @Output() closeModal = new EventEmitter();
-  @Input() isModalShown = true;
   isReadOnly = false;
 
   feedback = '';
@@ -22,7 +22,9 @@ export class FeedbackModalComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private reviewService: ReviewsService) {}
+  constructor(private reviewService: ReviewsService,
+    public dialogRef: MatDialogRef<FeedbackModalComponent>
+  ) {}
 
   ngOnInit(): void {
     this.reviewService
@@ -51,10 +53,10 @@ export class FeedbackModalComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  close() {
-    this.isModalShown = false;
-    this.closeModal.emit();
-  }
+  // close() {
+  //   this.isModalShown = false;
+  //   this.closeModal.emit();
+  // }
 
   save() {
     const review: Review = {
@@ -76,7 +78,7 @@ export class FeedbackModalComponent implements OnInit, OnDestroy {
       .addReview$Response({ body: review })
       .pipe(takeUntil(this.destroy$))
       .subscribe((d) => {
-        this.close();
+        // this.close();
       });
   }
 

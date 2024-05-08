@@ -1,14 +1,9 @@
 <div
-  *ngIf="isModalShown"
   class="review-modal position-fixed d-flex align-items-start justify-content-center"
- 
   tabindex="-1"
 >
   <div class="modal-dialog modal-dialog-centered p-3 mt-5">
-    <div
-      class="modal-content"
-     
-    >
+    <div class="modal-content">
       <div
         class="modal-header d-flex flex-column row-gap-3 justify-content-lg-start"
       >
@@ -23,7 +18,7 @@
             >Share your impressions about it</label
           >
           <textarea
-            class="form-control"
+            class="form-control feedback-field"
             rows="6"
             [(ngModel)]="feedback"
             [readonly]="isReadOnly"
@@ -38,7 +33,10 @@
             [(ngModel)]="wouldRepeat"
             [disabled]="isReadOnly"
           />
-          <label for="wouldRepeat" class="form-label p-0 m-0" (click)="checkRepeat()"
+          <label
+            for="wouldRepeat"
+            class="form-label p-0 m-0"
+            (click)="checkRepeat()"
             >Would repeat this trip</label
           >
         </div>
@@ -62,10 +60,16 @@
         </div>
       </div>
       <div class="modal-footer d-flex gap-2">
-        <button type="button" class="btn btn-secondary" (click)="close()">
+        <button
+          mat-dialog-close
+          type="button"
+          class="btn btn-secondary"
+         
+        >
           Close
         </button>
         <button
+          mat-dialog-close
           type="button"
           class="btn btn-save"
           (click)="save()"
@@ -77,3 +81,12 @@
     </div>
   </div>
 </div>
+
+<!-- <h2 mat-dialog-title>Delete file</h2>
+<mat-dialog-content>
+  Would you like to delete cat.jpeg?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</mat-dialog-actions> -->

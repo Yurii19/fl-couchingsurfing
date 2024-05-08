@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {User, UserHome, UserInfo} from 'src/app/services/models';
-import {StorageService} from 'src/app/services/storage/storage.service';
-import {AboutFormComponent} from '../about-form/about-form.component';
-import {UsersService} from 'src/app/services/services';
-import {Router} from '@angular/router';
-import {HomeFormComponent} from '../home-form/home-form.component';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { User, UserHome, UserInfo } from 'src/app/services/models';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { AboutFormComponent } from '../about-form/about-form.component';
+import { UsersService } from 'src/app/services/services';
+import { Router } from '@angular/router';
+import { HomeFormComponent } from '../home-form/home-form.component';
+import { Subject, takeUntil } from 'rxjs';
 
 export type Tab = 'About' | 'My Home';
 @Component({
@@ -12,7 +13,7 @@ export type Tab = 'About' | 'My Home';
   templateUrl: './edit-profile-main.component.html',
   styleUrls: ['./edit-profile-main.component.css'],
 })
-export class EditProfileMainComponent implements OnInit {
+export class EditProfileMainComponent implements OnInit, OnDestroy {
   user: User = {} as User;
   @ViewChild(AboutFormComponent) aboutForm!: AboutFormComponent;
   @ViewChild(HomeFormComponent) homeForm!: HomeFormComponent;
@@ -20,17 +21,26 @@ export class EditProfileMainComponent implements OnInit {
   tabs: Tab[] = ['About', 'My Home'];
   isInfoFormActive: boolean = true;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private storeService: StorageService,
     private userService: UsersService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-    this.storeService.getUser().subscribe((user: User) => {
-      this.user = user;
-    });
+    this.storeService
+      .getUser()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user: User) => {
+        this.user = user;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   updateUser() {
@@ -60,9 +70,12 @@ export class EditProfileMainComponent implements OnInit {
     this.user.userHome = newUserHome;
     console.log('Updated user home');
     console.log(newUserHome);
-    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
-      this.router.navigateByUrl('/profile');
-    });
+    this.userService
+      .updateUserInfo({ body: this.user })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((r) => {
+        this.router.navigateByUrl('/profile');
+      });
   }
 
   saveUserInfo() {
@@ -81,9 +94,12 @@ export class EditProfileMainComponent implements OnInit {
     this.user.userInfo = newUserInfo;
     console.log('Updated user info');
     console.log(newUserInfo);
-    this.userService.updateUserInfo({body: this.user}).subscribe((r) => {
-      this.router.navigateByUrl('/profile');
-    });
+    this.userService
+      .updateUserInfo({ body: this.user })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((r) => {
+        this.router.navigateByUrl('/profile');
+      });
   }
 
   cancelForm() {

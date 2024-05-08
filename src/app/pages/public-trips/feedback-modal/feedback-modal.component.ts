@@ -1,14 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Review} from 'src/app/services/models';
-import {ReviewsService} from 'src/app/services/services';
-import {Request} from 'src/app/services/models/request';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Review } from 'src/app/services/models';
+import { ReviewsService } from 'src/app/services/services';
+import { Request } from 'src/app/services/models/request';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-feedback-modal',
   templateUrl: './feedback-modal.component.html',
   styleUrls: ['./feedback-modal.component.css'],
 })
-export class FeedbackModalComponent implements OnInit {
+export class FeedbackModalComponent implements OnInit, OnDestroy {
   @Input() trip: Request = {};
   @Input() isHost: boolean = false;
   @Output() closeModal = new EventEmitter();
@@ -19,23 +20,35 @@ export class FeedbackModalComponent implements OnInit {
   rating = 0;
   wouldRepeat = false;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private reviewService: ReviewsService) {}
 
   ngOnInit(): void {
-    this.reviewService.getReviewByRequestId({
-      requestId: this.trip.id as string,
-      serviceType: this.isHost ? 'ACCOMMODATION_PROVISION' : 'ACCOMMODATION_REQUEST'
-    }).subscribe({
-      next: (res) => {
-        if (res) {
-          this.feedback = res.reviewMessage as string;
-          this.rating = res.rating as number;
-          this.wouldRepeat = res.wouldRepeat as boolean;
-          this.isReadOnly = true;
-        }
-      },
-      error: (err) => console.log('Error during retrieving Review')
-    })
+    this.reviewService
+      .getReviewByRequestId({
+        requestId: this.trip.id as string,
+        serviceType: this.isHost
+          ? 'ACCOMMODATION_PROVISION'
+          : 'ACCOMMODATION_REQUEST',
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          if (res) {
+            this.feedback = res.reviewMessage as string;
+            this.rating = res.rating as number;
+            this.wouldRepeat = res.wouldRepeat as boolean;
+            this.isReadOnly = true;
+          }
+        },
+        error: (err) => console.log('Error during retrieving Review'),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   close() {
@@ -59,9 +72,12 @@ export class FeedbackModalComponent implements OnInit {
       review.senderId = this.trip.receiver;
     }
     console.log(review);
-    this.reviewService.addReview$Response({body: review}).subscribe((d) => {
-      this.close();
-    });
+    this.reviewService
+      .addReview$Response({ body: review })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((d) => {
+        this.close();
+      });
   }
 
   updateRating(i: number) {
@@ -71,7 +87,7 @@ export class FeedbackModalComponent implements OnInit {
   resetRating() {
     this.rating = 0;
   }
-  checkRepeat(){
+  checkRepeat() {
     this.wouldRepeat = !this.wouldRepeat;
   }
 }

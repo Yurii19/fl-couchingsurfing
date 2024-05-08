@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Request } from 'src/app/services/models/request';
 import { FormsService } from '../../../services/forms/forms.service';
@@ -6,13 +6,14 @@ import { RequestsService, UsersService } from 'src/app/services/services';
 import { User } from '../../../services/models/user';
 import { Router } from '@angular/router';
 import { getTime } from 'date-fns';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-create-trip',
   templateUrl: './create-trip.component.html',
   styleUrls: ['./create-trip.component.css'],
 })
-export class CreateTripComponent implements OnInit {
+export class CreateTripComponent implements OnInit, OnDestroy {
   @Input() title: string = 'Create Public Trip';
   @Input() button: string = ' New Public Trip';
   @Input() request: Request = {} as Request;
@@ -42,6 +43,8 @@ export class CreateTripComponent implements OnInit {
   page: number = 0;
   size: number = 1000;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private formsService: FormsService,
     private requestsService: RequestsService,
@@ -63,9 +66,14 @@ export class CreateTripComponent implements OnInit {
       this.isEdit = false;
     }
 
-    this.form.valueChanges.subscribe(() => {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.validateForm();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   validateDate() {
@@ -83,35 +91,39 @@ export class CreateTripComponent implements OnInit {
     this.validateDate();
     if (!this.form.valid) return;
     if (!this.isHostEmpty) {
-      this.usersService.getAuthenticatedUser().subscribe((resp: object) => {
-        const sender = resp as { id: string };
-        const request = this.formsService.createRequestFromFormValues(
-          this.form.value,
-          sender.id,
-          this.selectedHostId
-        );
+      this.usersService
+        .getAuthenticatedUser()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((resp: object) => {
+          const sender = resp as { id: string };
+          const request = this.formsService.createRequestFromFormValues(
+            this.form.value,
+            sender.id,
+            this.selectedHostId
+          );
 
-        if (this.isEdit) {
-          this.requestsService
-            .updateRequest({
-              requestId: this.tripId,
-              body: request,
-            })
-            .subscribe({
-              next: (res) => console.log('Updated: ' + res),
-              error: (err) => console.log(err),
-            });
-        } else {
-          this.requestsService
-            .sendAccommodationRequest({
-              body: request,
-            })
-            .subscribe({
-              next: (res) => console.log('Created new request: ' + res),
-              error: (err) => console.log(err),
-            });
-        }
-      });
+          if (this.isEdit) {
+            this.requestsService
+              .updateRequest({
+                requestId: this.tripId,
+                body: request,
+              })
+              .pipe(takeUntil(this.destroy$))
+              .subscribe({
+                next: (res) => console.log('Updated: ' + res),
+                error: (err) => console.log(err),
+              });
+          } else {
+            this.requestsService
+              .sendAccommodationRequest({
+                body: request,
+              })
+              .subscribe({
+                next: (res) => console.log('Created new request: ' + res),
+                error: (err) => console.log(err),
+              });
+          }
+        });
 
       this.router.navigate(['dashboard', 'public-trips']);
     }
@@ -139,6 +151,7 @@ export class CreateTripComponent implements OnInit {
         page: this.page,
         size: this.size,
       })
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
           this.availableHosts = res.content as User[];
@@ -167,6 +180,7 @@ export class CreateTripComponent implements OnInit {
       .deleteRequest({
         requestId: this.tripId,
       })
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => console.log(res),
         error: (err) => console.log(err),

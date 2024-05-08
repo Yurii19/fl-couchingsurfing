@@ -11,6 +11,7 @@
     width: 400px;
     background-color: var(--grey);
     border-radius: 5px;
+    min-height: 445px;
   }
 }
 

@@ -20,12 +20,6 @@
     color: var(--white);
   }
 }
-.would-repeat {
-  color: var(--light-green);
-  & * {
-    color: var(--light-green);
-  }
-}
 .read-more {
   color: var(--light-blue);
   cursor: pointer;
@@ -36,4 +30,8 @@
 }
 .date {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.user_link {
+  cursor: pointer;
 }

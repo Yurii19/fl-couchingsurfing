@@ -18,7 +18,7 @@ export class ReviewsPageComponent implements OnInit, OnDestroy {
   page = 0;
   size = 1000;
   serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION' =
-    'ACCOMMODATION_PROVISION';
+    'ACCOMMODATION_REQUEST';
 
   composedReviews: ComposedReview[] = [];
   composedReviews$: BehaviorSubject<ComposedReview[]> = new BehaviorSubject([
@@ -48,6 +48,7 @@ export class ReviewsPageComponent implements OnInit, OnDestroy {
   }
 
   loadData(serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION') {
+    this.composedReviews$.next([]);
     this.reviewsService
       .getIncomingReviews({
         userId: this.user.id,
@@ -92,8 +93,15 @@ export class ReviewsPageComponent implements OnInit, OnDestroy {
     serviceType: 'ACCOMMODATION_REQUEST' | 'ACCOMMODATION_PROVISION'
   ) {
     this.composedReviews = [];
+    this.composedReviews$.next([]);
+
     this.serviceType = serviceType;
     this.loadData(this.serviceType);
+  }
+
+  viewProfile(userId: string | undefined) {
+    if (userId === undefined) return;
+    this.router.navigateByUrl(`/profile/${userId}`);
   }
 }
 

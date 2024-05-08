@@ -1,9 +1,17 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Review } from 'src/app/services/models';
 import { ReviewsService } from 'src/app/services/services';
 import { Request } from 'src/app/services/models/request';
 import { Subject, takeUntil } from 'rxjs';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-feedback-modal',
@@ -22,14 +30,17 @@ export class FeedbackModalComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private reviewService: ReviewsService,
-    public dialogRef: MatDialogRef<FeedbackModalComponent>
+  constructor(
+    private reviewService: ReviewsService,
+    public dialogRef: MatDialogRef<FeedbackModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
+    console.log('OPENED', this.data);
     this.reviewService
       .getReviewByRequestId({
-        requestId: this.trip.id as string,
+        requestId: this.data.request.id as string,
         serviceType: this.isHost
           ? 'ACCOMMODATION_PROVISION'
           : 'ACCOMMODATION_REQUEST',

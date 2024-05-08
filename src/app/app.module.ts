@@ -38,7 +38,6 @@ import { FeedbackModalComponent } from './pages/public-trips/feedback-modal/feed
 import { CouchRequestsComponent } from './pages/couch-requests/couch-requests.component';
 import { ReviewsPageComponent } from './pages/reviews-page/reviews-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -80,7 +79,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     TitleCasePipe,
     ReactiveFormsModule,
-    MatDialogModule,
   ],
   providers: [
     HttpClient,

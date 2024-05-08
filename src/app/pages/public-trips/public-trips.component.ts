@@ -4,8 +4,6 @@ import { FormsService } from '../../services/forms/forms.service';
 import { RequestsService } from '../../services/services/requests.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { FeedbackModalComponent } from './feedback-modal/feedback-modal.component';
 
 @Component({
   selector: 'app-public-trips',
@@ -17,7 +15,7 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
   size: number = 1000;
 
   trips: Request[] = [];
-  // isModalShown = false;
+  isModalShown = false;
   tripToFeedback: Request = {};
 
   private destroy$ = new Subject<void>();
@@ -25,8 +23,7 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private formsService: FormsService,
-    private requestsService: RequestsService,
-    public dialog: MatDialog
+    private requestsService: RequestsService
   ) {}
 
   ngOnInit(): void {
@@ -43,14 +40,6 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(FeedbackModalComponent, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
   }
 
   viewProfile(userId: string | undefined) {
@@ -81,7 +70,7 @@ export class PublicTripsComponent implements OnInit, OnDestroy {
   }
 
   giveFeedback(requestId?: string) {
-    // this.isModalShown = true;
+    this.isModalShown = true;
     const theTrip = this.trips.find((trip) => trip.id === requestId) as Request;
     if (theTrip) {
       this.tripToFeedback = theTrip;

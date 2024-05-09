@@ -61,3 +61,8 @@
 .btn {
   border-radius: 0;
 }
+.blocked {
+  overflow: hidden;
+  height: 0;
+  
+}

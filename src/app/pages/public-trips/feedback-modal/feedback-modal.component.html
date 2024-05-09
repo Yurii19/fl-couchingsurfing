@@ -1,14 +1,10 @@
 <div
   *ngIf="isModalShown"
-  class="review-modal position-fixed d-flex align-items-center justify-content-center"
- 
+  class="review-modal position-fixed d-flex align-items-start mt-5 justify-content-center"
   tabindex="-1"
 >
   <div class="modal-dialog modal-dialog-centered p-3">
-    <div
-      class="modal-content"
-     
-    >
+    <div class="modal-content">
       <div
         class="modal-header d-flex flex-column row-gap-3 justify-content-lg-start"
       >
@@ -38,7 +34,10 @@
             [(ngModel)]="wouldRepeat"
             [disabled]="isReadOnly"
           />
-          <label for="wouldRepeat" class="form-label p-0 m-0" (click)="checkRepeat()"
+          <label
+            for="wouldRepeat"
+            class="form-label p-0 m-0"
+            (click)="checkRepeat()"
             >Would repeat this trip</label
           >
         </div>
